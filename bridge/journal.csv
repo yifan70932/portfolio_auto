@@ -1,0 +1,7 @@
+date,account,symbol,side,qty,entry,exit,realized_pnl,rule_based,process_grade,notes
+2026-06-10,agentic,DAL,sell_to_close,0.1,81.30,79.0201,-0.23,yes,A,"Pre-committed post-CPI exit; energy-composition trigger; executed by rule"
+2026-06-11,main,SNDK,short_round_trip,1,~1750,~1800,-50.00,no,F-entry/A-exit,"VIOLATION: no qualifying event; sized 5x over cap; countertrend short on options-flow hunch; clean -3pct stop. Paid-bill ritual closed; same-mistake repeat forfeits the table"
+2026-06-11,agentic,SMCI,buy,0.5,30.36,,,yes,A,"Event playbook trigger: priced offering + holding above issue; contract complete at entry"
+2026-06-11,main,SMCI,buy,1.0,30.01,,,no,C,"Mirrors sandbox thesis into main (one-thesis-one-account violation); contract pending adoption"
+2026-06-11,main,MU,round_trip,0.4,909.78,~960,+20.00 (est; user to fill exact),no/yes,C-entry/A-exit,"Impulse pre-earnings entry on tilt day; framework-restoring exit into analyst-rerating strength; +-20pct implied print avoided. Re-entry banned until after 2026-06-24"
+2026-06-11,main,SNDK,buy,0.1,1861.00,,,no,D,"3rd engagement in 30h with tilt-ticker; chased +13pct intraday; above consensus PT; no contract at entry. (a)/(b) due 6/12 open"

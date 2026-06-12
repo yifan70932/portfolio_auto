@@ -1,0 +1,37 @@
+{
+  "schema_version": "1.0",
+  "exported_at": "2026-06-11T21:30:00-04:00",
+  "source": "Robinhood MCP (live, post-close 2026-06-11)",
+  "accounts": [
+    {
+      "label": "main",
+      "account_ref": "1686",
+      "type": "margin",
+      "mandate": "core + contracted satellites; full critical-thinking channel",
+      "cash_usd": 12947.32,
+      "pending_deposits_usd": 100.00,
+      "positions": [
+        {"symbol": "VOO",  "qty": 2.0,      "avg_cost": 671.28,  "bucket": "core"},
+        {"symbol": "QQQM", "qty": 1.0,      "avg_cost": 289.24,  "bucket": "core"},
+        {"symbol": "SMCI", "qty": 1.0,      "avg_cost": 30.01,   "bucket": "satellite"},
+        {"symbol": "SNDK", "qty": 0.1,      "avg_cost": 1861.00, "bucket": "satellite", "flag": "contract pending: (a) sign or (b) exit, due 2026-06-12 open"},
+        {"symbol": "KO",   "qty": 0.5,      "avg_cost": 83.22,   "bucket": "defensive"},
+        {"symbol": "HOOD", "qty": 1.0,      "avg_cost": 88.24,   "bucket": "satellite"}
+      ],
+      "pending": [
+        {"symbol": "SPCX", "note": "IPO allocation, 10 shares requested; pricing 2026-06-11 evening, lists 2026-06-12; 60-day flip restriction applies"}
+      ]
+    },
+    {
+      "label": "agentic",
+      "account_ref": "4830",
+      "type": "cash",
+      "mandate": "written-off experimental sandbox; event-driven alpha trades <= $20 each; growth mandate, idle capital is a violation",
+      "cash_usd": 166.59,
+      "positions": [
+        {"symbol": "SMCI", "qty": 0.5,      "avg_cost": 30.36, "bucket": "event"},
+        {"symbol": "COO",  "qty": 0.261248, "avg_cost": 68.90, "bucket": "legacy", "flag": "thesis-watch: underperforming both tapes"}
+      ]
+    }
+  ]
+}

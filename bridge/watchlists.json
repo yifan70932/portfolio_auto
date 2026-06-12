@@ -1,0 +1,50 @@
+{
+  "schema_version": "1.0",
+  "exported_at": "2026-06-11T21:30:00-04:00",
+  "source": "Robinhood MCP (live)",
+  "note": "Single source of truth = Robinhood watchlists. Re-export via Claude (Tier 1) whenever lists change; do not hand-edit.",
+  "watchlists": [
+    {
+      "name": "Semiconductors & AI Compute",
+      "theme": "semis",
+      "description": "Chip leaders and AI hardware supply chain",
+      "symbols": ["MU", "SNDK", "MRVL", "INTC", "QCOM", "ASML", "TSM", "AMD", "NVDA", "DELL", "AVGO", "SMCI"]
+    },
+    {
+      "name": "AI Software & Applications",
+      "theme": "ai_software",
+      "description": "Enterprise AI platforms and software applications",
+      "symbols": ["DDOG", "NFLX", "AMZN", "AAPL", "SNOW", "MDB", "CRWV", "NOW", "ORCL", "CRM", "META", "GOOGL", "MSFT", "PLTR", "TSLA"]
+    },
+    {
+      "name": "Quantum Computing",
+      "theme": "quantum",
+      "description": "Pure-play quantum names plus big-cap quantum exposure",
+      "symbols": ["HON", "MSFT", "GOOGL", "IBM", "QUBT", "QBTS", "RGTI", "IONQ"]
+    },
+    {
+      "name": "Nuclear & Power",
+      "theme": "power",
+      "description": "Nuclear and utilities powering the AI datacenter buildout",
+      "symbols": ["D", "BWXT", "SO", "NEE", "SMR", "OKLO", "GEV", "TLN", "VST", "CEG"]
+    },
+    {
+      "name": "Defense & Space",
+      "theme": "defense",
+      "description": "Defense primes, drones, and commercial space",
+      "symbols": ["SPCX", "LDOS", "ASTS", "RKLB", "BA", "LHX", "KTOS", "AVAV", "RTX", "LMT", "PLTR"]
+    },
+    {
+      "name": "ETFs",
+      "theme": "etf",
+      "description": "Index, sector, and leveraged ETFs",
+      "symbols": ["VOO", "QQQM", "DRAM", "VXUS", "SOXX", "TQQQ", "SMH", "QQQ"]
+    },
+    {
+      "name": "Core & Other",
+      "theme": "core",
+      "description": "Defensive and non-tech holdings",
+      "symbols": ["GOOG", "ABBV", "PG", "JNJ", "KO", "NOK", "COO", "HOOD", "GE", "COST", "DAL"]
+    }
+  ]
+}

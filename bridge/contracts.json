@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0",
+  "updated_at": "2026-06-11T21:30:00-04:00",
+  "doctrine": {
+    "five_items": ["thesis", "size", "invalidation (stop)", "target", "time_limit"],
+    "rules": [
+      "Every non-ETF position must carry a complete contract BEFORE entry; a position without one is flagged VIOLATION at every audit.",
+      "Exit rules must match thesis type: event -> price+time, cycle -> cycle signals, structural -> thesis falsification, market ETF -> life events only.",
+      "Tilt protocol (main account): after any single realized loss > $25, no new discretionary trades for 24h; deposits never on a loss day.",
+      "Sandbox event trades are exempt from macro gates but never from contracts.",
+      "One event thesis lives in ONE account only (no mirroring sandbox positions into main)."
+    ]
+  },
+  "contracts": [
+    {
+      "id": "SMCI-AGENTIC-2026-06-11",
+      "account": "agentic", "symbol": "SMCI", "qty": 0.5, "entry": 30.36, "opened": "2026-06-11",
+      "thesis_type": "event",
+      "thesis": "Post-offering dislocation: $5B supply cleared at $27.50; market holding 9-16% above issue price = demand absorbed supply; capex payer->payee rotation tailwind.",
+      "invalidation": "Daily close below 27.50 (issue price = floor of this price discovery round; break = thesis dead).",
+      "target": "34-36 (gap-fill zone); trim half at target, trail remainder.",
+      "time_limit": "Review 2026-06-15 (depositary shares settle; last convert-hedge supply window). Hard review at FOMC 2026-06-17.",
+      "status": "OPEN, healthy"
+    },
+    {
+      "id": "COO-AGENTIC-LEGACY",
+      "account": "agentic", "symbol": "COO", "qty": 0.261248, "entry": 68.90, "opened": "pre-2026-06-10",
+      "thesis_type": "defensive (failing)",
+      "thesis": "Defensive single name, target zone 80-82. Empirically underperforming on both red and green tapes -> thesis-watch.",
+      "invalidation": "Daily close below 65.00 -> exit immediately (upgraded from 62 mental stop).",
+      "target": "80-82 (original; low conviction).",
+      "time_limit": "Slot review at FOMC 2026-06-17: if still underperforming both directions, slot reallocates to AVGO-class candidates.",
+      "status": "OPEN, thesis-watch"
+    },
+    {
+      "id": "SMCI-MAIN-2026-06-11",
+      "account": "main", "symbol": "SMCI", "qty": 1.0, "entry": 30.01, "opened": "2026-06-11",
+      "thesis_type": "event",
+      "thesis": "PENDING SIGNATURE: same event thesis as sandbox. NOTE: violates one-thesis-one-account rule; user to either adopt sandbox contract verbatim or exit. Default if unsigned by 2026-06-12 close: adopt sandbox contract (stop 27.50 close / target 34-36).",
+      "invalidation": "27.50 daily close (pending adoption)",
+      "target": "34-36 (pending adoption)",
+      "time_limit": "2026-06-15 review (same as sandbox)",
+      "status": "OPEN, CONTRACT PENDING"
+    },
+    {
+      "id": "SNDK-MAIN-2026-06-11",
+      "account": "main", "symbol": "SNDK", "qty": 0.1, "entry": 1861.00, "opened": "2026-06-11",
+      "thesis_type": "UNDECLARED",
+      "thesis": "PENDING (a)/(b) DECISION due 2026-06-12 open. (a) = declare cycle thesis (NAND undersupply, 4-maker capacity discipline) with cycle-signal invalidation and explicit horizon; (b) = exit. Advisory: (b). Context: 3rd engagement with this ticker in 30h; entry chased +13% intraday; price closed above analyst consensus PT ($1,751).",
+      "invalidation": "UNSET (candidate: daily close below 1643 = full give-back of 6/11 re-rating day)",
+      "target": "UNSET",
+      "time_limit": "Decision due 2026-06-12 market open",
+      "status": "OPEN, VIOLATION (no contract at entry)"
+    }
+  ],
+  "watch_queue": [
+    {"symbol": "AVGO", "thesis_type": "post-earnings drift", "trigger": "post-FOMC deployment window 2026-06-17+; pullback vs known blowout fundamentals (AI rev +143%, Q3 guide +200%)"},
+    {"symbol": "MU",   "thesis_type": "post-print entry",    "trigger": "after 2026-06-24 earnings, on confirmation; NEVER before the print (re-entry ban active)"},
+    {"symbol": "ORCL", "thesis_type": "event dislocation",   "trigger": "stabilization day + financing terms settled; beat-but-sold pattern (price reaction governs drift, not the accounting surprise)"}
+  ]
+}
