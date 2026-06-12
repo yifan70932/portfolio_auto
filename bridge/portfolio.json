@@ -1,29 +1,30 @@
 {
   "schema_version": "1.0",
-  "exported_at": "2026-06-12T04:10:00Z",
-  "source": "Robinhood MCP (live, post-close 2026-06-11 / audit run 2026-06-12)",
-  "quote_date": "2026-06-11",
+  "exported_at": "2026-06-12T20:30:00-04:00",
+  "source": "Robinhood MCP (live, post-close 2026-06-12 / audit run 2026-06-12 16:30 ET)",
+  "quote_date": "2026-06-12",
   "accounts": [
     {
       "label": "main",
       "account_ref": "1686",
       "type": "margin",
       "mandate": "core + contracted satellites; full critical-thinking channel",
-      "total_value_usd": 15158.13,
-      "equity_value_usd": 2013.44,
-      "cash_usd": 13144.69,
-      "pending_deposits_usd": 100.00,
-      "buying_power_usd": 11615.37,
+      "total_value_usd": 15437.23,
+      "equity_value_usd": 3221.40,
+      "cash_usd": 12215.83,
+      "pending_deposits_usd": 0,
+      "buying_power_usd": 12216.83,
       "positions": [
-        {"symbol": "VOO",  "qty": 2.0,      "avg_cost": 671.28,  "last_close": 678.23,  "unrealized_pnl": 13.90,  "bucket": "core"},
-        {"symbol": "QQQM", "qty": 1.0,      "avg_cost": 289.24,  "last_close": 295.02,  "unrealized_pnl": 5.78,   "bucket": "core"},
-        {"symbol": "SMCI", "qty": 1.0,      "avg_cost": 30.01,   "last_close": 31.97,   "unrealized_pnl": 1.96,   "bucket": "satellite", "flag": "CONTRACT PENDING; one-thesis-one-account violation"},
-        {"symbol": "SNDK", "qty": 0.1,      "avg_cost": 1861.00, "last_close": 1881.51, "unrealized_pnl": 2.05,   "bucket": "satellite", "flag": "VIOLATION — no contract; decision (a)/(b) expired 2026-06-12 open"},
-        {"symbol": "KO",   "qty": 0.5,      "avg_cost": 83.22,   "last_close": 82.53,   "unrealized_pnl": -0.35,  "bucket": "defensive", "flag": "no contract in registry — VIOLATION per doctrine"},
-        {"symbol": "HOOD", "qty": 1.0,      "avg_cost": 88.24,   "last_close": 92.23,   "unrealized_pnl": 3.99,   "bucket": "satellite", "flag": "no contract in registry — VIOLATION per doctrine"}
+        {"symbol": "VOO",  "qty": 2.5,      "avg_cost": 673.08,  "last_close": 681.92,  "unrealized_pnl": 22.10,           "bucket": "etf"},
+        {"symbol": "QQQM", "qty": 1.5,      "avg_cost": 291.61,  "last_close": 297.04,  "unrealized_pnl": 8.15,            "bucket": "etf"},
+        {"symbol": "SPCX", "qty": 5.0,      "avg_cost": null,    "avg_cost_note": "unavailable — reconciling; IPO price $135.00 est", "last_close": 161.29, "last_close_note": "last trade 2026-06-12; official close source=ipo $135 interpolated", "unrealized_pnl": null, "unrealized_pnl_est": 131.45, "unrealized_pnl_est_basis": "IPO price $135.00", "shares_available": 4.0, "shares_held_for_sell": 1.0, "bucket": "defense", "flag": "NO CONTRACT — VIOLATION; IPO 2026-06-12; 60-day flip restriction; 1 share held-for-sell (pending)"},
+        {"symbol": "INTC", "qty": 1.0,      "avg_cost": 119.95,  "last_close": 124.54,  "unrealized_pnl": 4.59,            "bucket": "semis", "flag": "NO CONTRACT — VIOLATION; entered 2026-06-12"},
+        {"symbol": "HOOD", "qty": 1.0,      "avg_cost": 88.24,   "last_close": 93.16,   "unrealized_pnl": 4.92,            "bucket": "satellite", "flag": "no contract in registry — VIOLATION per doctrine"},
+        {"symbol": "KO",   "qty": 0.5,      "avg_cost": 83.22,   "last_close": 82.62,   "unrealized_pnl": -0.30,           "bucket": "defensive", "flag": "no contract in registry — VIOLATION per doctrine"}
       ],
-      "pending": [
-        {"symbol": "SPCX", "qty_confirmed": 0, "note": "IPO listed 2026-06-12; 10 shares requested; position shows 0 shares allocated as of this run; 60-day flip restriction applies; IPO price $135.00 (interpolated)"}
+      "closed_this_run": [
+        {"symbol": "SNDK", "note": "position no longer in live positions; exited 2026-06-12 (decision b or otherwise); journal entry pending"},
+        {"symbol": "SMCI", "note": "position no longer in live positions; exited 2026-06-12; journal entry pending"}
       ]
     },
     {
@@ -31,14 +32,14 @@
       "account_ref": "4830",
       "type": "cash",
       "mandate": "written-off experimental sandbox; event-driven alpha trades <= $20 each; growth mandate, idle capital is a violation",
-      "total_value_usd": 200.28,
-      "equity_value_usd": 33.69,
+      "total_value_usd": 199.50,
+      "equity_value_usd": 32.91,
       "cash_usd": 166.59,
       "pending_deposits_usd": 0,
       "buying_power_usd": 166.59,
       "positions": [
-        {"symbol": "SMCI", "qty": 0.5,      "avg_cost": 30.36,   "last_close": 31.97,   "unrealized_pnl": 0.81,   "bucket": "event"},
-        {"symbol": "COO",  "qty": 0.261248, "avg_cost": 68.90,   "last_close": 67.51,   "unrealized_pnl": -0.36,  "bucket": "legacy", "flag": "thesis-watch; FOMC slot review 2026-06-17"}
+        {"symbol": "SMCI", "qty": 0.5,      "avg_cost": 30.36,   "last_close": 30.45,   "unrealized_pnl": 0.05,            "bucket": "event"},
+        {"symbol": "COO",  "qty": 0.261248, "avg_cost": 68.90,   "last_close": 67.89,   "unrealized_pnl": -0.26,           "bucket": "legacy", "flag": "thesis-watch; FOMC slot review 2026-06-17"}
       ]
     }
   ]
