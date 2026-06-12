@@ -3,7 +3,7 @@
 ================================================================
 PORTFOLIO X-RAY  (live holdings, both accounts)
 ================================================================
-total value $15,364.59   cash 86.6%   rf(FRED) 4.50%
+total value $15,368.22   cash 86.6%   rf(FRED) 4.50%
 portfolio beta INCL cash: 0.19    ex-cash: 1.44
 
 -- theme weights --
@@ -13,42 +13,42 @@ semis     1.6
 core      1.0
 
 -- positions --
-account symbol   qty  avg_cost    price    value    pnl  weight   beta themes
-   main    VOO 2.000    671.28  680.580 1361.160 18.600   0.089  1.002    etf
-   main   QQQM 1.000    289.24  296.470  296.470  7.230   0.019  1.319    etf
-   main   SNDK 0.100   1861.00 1984.690  198.469 12.369   0.013  3.711  semis
-   main   HOOD 1.000     88.24   92.420   92.420  4.180   0.006  3.245   core
-   main     KO 0.500     83.22   82.105   41.053 -0.557   0.003 -0.217   core
-   main   SMCI 1.000     30.01   30.880   30.880  0.870   0.002  3.539  semis
-agentic    COO 0.261     68.90   66.690   17.423 -0.577   0.001  0.628   core
-agentic   SMCI 0.500     30.36   30.880   15.440  0.260   0.001  3.539  semis
+account symbol   qty  avg_cost   price    value    pnl  weight   beta themes
+   main    VOO 2.000    671.28  682.00 1364.000 21.440   0.089  1.002    etf
+   main   QQQM 1.000    289.24  297.01  297.010  7.770   0.019  1.320    etf
+   main   SNDK 0.100   1861.00 1980.10  198.010 11.910   0.013  3.758  semis
+   main   HOOD 1.000     88.24   93.19   93.190  4.950   0.006  3.261   core
+   main     KO 0.500     83.22   82.62   41.310 -0.300   0.003 -0.226   core
+   main   SMCI 1.000     30.01   30.46   30.460  0.450   0.002  3.528  semis
+agentic    COO 0.261     68.90   67.88   17.734 -0.266   0.001  0.623   core
+agentic   SMCI 0.500     30.36   30.46   15.230  0.050   0.001  3.528  semis
 
 -- marginal contribution to risk --
 SNDK    38.1
 VOO     36.3
 QQQM    11.1
-HOOD     9.5
-SMCI     5.1
+HOOD     9.6
+SMCI     5.0
 COO      0.3
 KO      -0.3
 
 -- holdings correlation --
        COO  HOOD    KO  QQQM  SMCI  SNDK   VOO
-COO   1.00  0.14  0.15  0.09  0.08  0.07  0.25
-HOOD  0.14  1.00 -0.23  0.57  0.35  0.22  0.57
-KO    0.15 -0.23  1.00 -0.25 -0.21 -0.14 -0.16
+COO   1.00  0.14  0.15  0.09  0.07  0.08  0.25
+HOOD  0.14  1.00 -0.24  0.57  0.35  0.22  0.57
+KO    0.15 -0.24  1.00 -0.25 -0.22 -0.14 -0.16
 QQQM  0.09  0.57 -0.25  1.00  0.52  0.51  0.94
-SMCI  0.08  0.35 -0.21  0.52  1.00  0.20  0.51
-SNDK  0.07  0.22 -0.14  0.51  0.20  1.00  0.46
+SMCI  0.07  0.35 -0.22  0.52  1.00  0.20  0.51
+SNDK  0.08  0.22 -0.14  0.51  0.20  1.00  0.46
 VOO   0.25  0.57 -0.16  0.94  0.51  0.46  1.00
 
 ================================================================
 ALPHA LEDGER  (closed trades: pnl = beta$ + alpha$)
 ================================================================
       date account symbol             side  pnl_$  beta  beta_$  alpha_$  rule_based          grade
-2026-06-10 agentic    DAL    sell_to_close  -0.23  1.94     0.0    -0.23        True              A
-2026-06-11    main   SNDK short_round_trip -50.00  3.71     0.0   -50.00       False F-entry/A-exit
-2026-06-11    main     MU       round_trip  20.00  2.96     0.0    20.00       False C-entry/A-exit
+2026-06-10 agentic    DAL    sell_to_close  -0.23  1.93     0.0    -0.23        True              A
+2026-06-11    main   SNDK short_round_trip -50.00  3.76     0.0   -50.00       False F-entry/A-exit
+2026-06-11    main     MU       round_trip  20.00  2.97     0.0    20.00       False C-entry/A-exit
 
 aggregate: {
   "closed_trades": 3,
