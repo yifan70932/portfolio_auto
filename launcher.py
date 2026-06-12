@@ -30,6 +30,23 @@ BG, PANEL, FG, DIM, ACCENT, WARN, ERR = ("#0e141f", "#1a2230", "#dce4f0",
                                           "#8b98ae", "#4ade9a", "#e0a92e", "#ff6b70")
 
 
+def git_sync():
+    """If this folder (or bridge/) is a git clone, pull latest before reading state.
+    Returns a one-line status for the UI; never blocks launch on failure."""
+    for d in (HERE, BRIDGE_DIR):
+        if os.path.isdir(os.path.join(d, ".git")):
+            try:
+                r = subprocess.run(["git", "-C", d, "pull", "--rebase", "--autostash"],
+                                   capture_output=True, text=True, timeout=30)
+                if r.returncode == 0:
+                    out = (r.stdout or "").strip().splitlines()
+                    return f"git \u2713 {out[-1][:60] if out else 'up to date'}"
+                return f"git \u2717 {(r.stderr or '').strip()[:60]} (using local copy)"
+            except Exception as e:
+                return f"git \u2717 {e.__class__.__name__} (using local copy)"
+    return None  # not a repo: silent
+
+
 def bridge_status():
     """Return (ok, summary_line, symbols_union, pending_contracts)."""
     try:
@@ -74,8 +91,11 @@ class App:
         tk.Label(root, text="Quant Console \u00b7 bridge-aware", bg=BG, fg=DIM,
                  font=("Consolas", 9)).pack(pady=(0, 10))
 
-        # --- bridge status panel
+        # --- sync repo, then read bridge status
+        sync_line = git_sync()
         self.b_ok, b_line, self.b_syms, self.b_pending = bridge_status()
+        if sync_line:
+            b_line = sync_line + "  ·  " + b_line
         self.bridge_lbl = tk.Label(root, text=b_line, bg=PANEL,
                                    fg=ACCENT if self.b_ok else WARN,
                                    font=("Consolas", 9), padx=10, pady=6,

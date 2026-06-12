@@ -525,7 +525,7 @@ def _sec(title):
     return f'<div class="section-label"><span>{title}</span><span class="sl-rule"></span></div>'
 
 I18N_P = {
- "zh": {"title":"一飞云霄夜航帆 - 股市持仓分析","sub":"CAPM, QVM+L, and Fama-French 量化分析 · 两账户实时持仓",
+ "zh": {"title":"一飞重洋夜航帆 - 股市持仓分析","sub":"CAPM, QVM+L, and Fama-French 量化分析 · 两账户实时持仓",
    "overview":"总览","contracts":"合同审计","positions":"当前持仓","hold":"持仓个股指标",
    "capm":"CAPM 归因(个股)","ff":"Fama-French 五因子 + 动量(个股)","qvml":"QVM+L 因子评分(持仓组内横截面)",
    "themes":"主题权重","mcr":"边际风险贡献","corr":"持仓相关性","attr":"组合因子归因","ledger":"Alpha 账本",

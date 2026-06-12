@@ -1,0 +1,77 @@
+# .github/workflows/analysis.yml
+# Runs the Tier-2 analysis in the cloud whenever the routine commits fresh
+# bridge data (or on manual trigger / schedule), and publishes both HTML
+# reports to GitHub Pages. Result: reports become URLs; no local steps.
+#
+# One-time setup: repo Settings -> Pages -> Source: "GitHub Actions".
+# Repo layout assumed:  quant_prototype.py / bridge_module.py /
+#                       quant_report_template.html / bridge/*.json|csv
+name: portfolio-analysis
+
+on:
+  push:
+    paths: ["bridge/**"]          # fires right after the Tue/Fri routine commits
+  workflow_dispatch: {}            # manual run from the Actions tab (or phone)
+  schedule:
+    - cron: "45 20 * * 2,5"        # 4:45 PM ET Tue/Fri backstop (20:45 UTC during DST)
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  analyze:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Install deps
+        run: pip install yfinance pandas numpy scipy statsmodels
+
+      - name: Run portfolio X-ray (writes portfolio_report.html)
+        run: python bridge_module.py --no-open
+
+      - name: Run screener (writes quant_report.html)
+        # Screener hits Yahoo for ~70 tickers; tolerate flakiness without
+        # failing the whole publish — the portfolio report still ships.
+        continue-on-error: true
+        run: python quant_prototype.py
+
+      - name: Assemble site
+        run: |
+          mkdir -p _site
+          cp portfolio_report.html _site/portfolio.html
+          [ -f quant_report.html ] && cp quant_report.html _site/screener.html || true
+          cat > _site/index.html <<'EOF'
+          <!DOCTYPE html><meta charset="utf-8"><title>一飞重洋夜航帆</title>
+          <body style="background:#131a26;color:#e3eaf5;font-family:ui-monospace,Consolas,monospace;
+                       display:flex;flex-direction:column;gap:18px;align-items:center;padding-top:18vh">
+          <h2 style="font-weight:600">一飞重洋夜航帆 · Yifan the Nightfarer</h2>
+          <a href="portfolio.html" style="color:#4ade9a">Portfolio X-Ray · 股市持仓分析</a>
+          <a href="screener.html"  style="color:#6bb3ff">Screener · 股市量化分析</a>
+          </body>
+          EOF
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+  deploy:
+    needs: analyze
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
