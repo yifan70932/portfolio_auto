@@ -1,0 +1,159 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Portfolio X-Ray · 2026-06-12 01:55</title><style>
+:root{--bg:#131a26;--panel:#1b2433;--panel2:#222d3f;--line:#374559;--ink:#e3eaf5;
+--dim:#94a2ba;--faint:#5a6880;--green:#4ade9a;--red:#ff6b70;--amber:#f5bd3f;--blue:#6bb3ff;
+--accent:#4ade9a;--mono:'JetBrains Mono','SF Mono',ui-monospace,Menlo,Consolas,monospace;
+--serif:'Spectral',Georgia,'Songti SC','Noto Serif SC',serif}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:radial-gradient(1000px 560px at 85% -10%,rgba(74,222,154,.08),transparent),
+radial-gradient(760px 440px at 0% 110%,rgba(107,179,255,.06),transparent),var(--bg);
+color:var(--ink);font-family:var(--mono);font-feature-settings:"tnum" 1;line-height:1.5;padding:0 0 80px}
+.wrap{max-width:1280px;margin:0 auto;padding:0 40px}
+header{display:flex;align-items:flex-end;justify-content:space-between;padding:38px 0 22px;
+border-bottom:1px solid var(--line);flex-wrap:wrap;gap:16px}
+.brand h1{font-family:var(--serif);font-weight:600;font-size:30px}
+.brand .sub{color:var(--dim);font-size:12px;margin-top:7px;letter-spacing:.5px}
+.gen{color:var(--faint);font-size:11px}
+.epigraph{margin:24px 0 8px;padding:18px 26px;border-left:3px solid var(--accent);
+background:linear-gradient(90deg,rgba(63,207,142,.05),transparent);border-radius:0 10px 10px 0}
+.epi-en{font-family:var(--serif);font-style:italic;font-size:15px}
+.epi-zh{font-family:var(--serif);font-size:13.5px;color:var(--dim);margin-top:8px}
+.epi-by{font-size:11px;color:var(--faint);margin-top:10px;text-align:right;letter-spacing:1px}
+.section-label{font-size:11px;letter-spacing:2.5px;color:var(--dim);text-transform:uppercase;
+margin:34px 0 14px;display:flex;align-items:center;gap:12px}
+.section-label .sl-rule{flex:1;height:1px;background:var(--line)}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:16px 18px}
+.card .k{font-size:10px;color:var(--dim);letter-spacing:1.5px;text-transform:uppercase}
+.card .v{font-size:22px;font-weight:700;margin-top:6px}
+.tbl{width:100%;border-collapse:collapse;font-size:13px}
+.tbl thead th{text-align:right;color:var(--dim);font-weight:500;font-size:10.5px;letter-spacing:1px;
+padding:10px 12px;border-bottom:1px solid var(--line);text-transform:uppercase;white-space:nowrap}
+.tbl thead th.l{text-align:left}
+.tbl tbody td{padding:11px 12px;text-align:right;border-bottom:1px solid rgba(34,45,61,.5)}
+.tbl tbody td.l{text-align:left}
+.sym{font-weight:700;font-size:14px}
+.pos{color:var(--green)}.neg{color:var(--red)}
+.bar{height:5px;border-radius:3px;background:var(--line);overflow:hidden;margin-top:5px;min-width:90px}
+.bar>i{display:block;height:100%;border-radius:3px;background:var(--accent)}
+.lamp{display:inline-block;padding:2px 10px;border-radius:20px;font-size:11px;font-weight:700}
+.lamp.g{background:rgba(74,222,154,.15);color:var(--green);border:1px solid var(--green)}
+.lamp.y{background:rgba(245,189,63,.15);color:var(--amber);border:1px solid var(--amber)}
+.lamp.r{background:rgba(255,107,112,.15);color:var(--red);border:1px solid var(--red)}
+pre{background:var(--panel);border:1px solid var(--line);border-radius:10px;
+padding:16px 18px;font-size:12px;overflow-x:auto;color:var(--dim)}
+.note{color:var(--faint);font-size:11px;margin-top:8px;font-style:italic}
+.lang-toggle{display:flex;border:1px solid var(--line);border-radius:7px;overflow:hidden}
+.lang-toggle button{background:transparent;color:var(--dim);border:0;padding:7px 15px;
+font-family:var(--mono);font-size:12px;cursor:pointer;letter-spacing:.5px;transition:.18s}
+.lang-toggle button.on{background:var(--accent);color:#06231a;font-weight:700}
+.hm{border-collapse:separate;border-spacing:5px;margin:8px auto 0;width:100%;max-width:880px;table-layout:fixed}
+.hm td,.hm th{height:62px;text-align:center;font-size:15px;border-radius:8px;padding:0}
+.hm th{color:var(--dim);font-weight:600;font-size:13px;background:transparent;letter-spacing:.5px}
+.hm td{font-weight:700;color:#0a0e14}
+.hm .corner{width:62px}
+.hm .diag{color:var(--faint);background:var(--panel2)!important}
+</style></head><body><div class="wrap">
+<header><div class="brand"><h1>Yifan the Starbound Nightfarer</h1>
+<div class="sub" data-i18n="sub"></div></div>
+<div style="display:flex;align-items:center;gap:14px">
+<div class="lang-toggle"><button id="btn-zh" class="on" onclick="setLang('zh')">中文</button><button id="btn-en" onclick="setLang('en')">EN</button></div>
+<div class="gen">generated 2026-06-12 01:55</div></div></header>
+<div class="epigraph">
+<div class="epi-en">"All day he frets that his hoard is still too small; the day it is enough, his eyes close for good."</div>
+<div class="epi-zh">"终朝只恨聚无多,及到多时眼闭了。"</div>
+<div class="epi-by">— 曹雪芹《红楼梦 · 好了歌》</div></div>
+<div class="section-label"><span data-i18n="overview"></span><span class="sl-rule"></span></div>
+<div class="cards">
+<div class="card"><div class="k" data-i18n="k_total"></div><div class="v">$15,153</div></div>
+<div class="card"><div class="k" data-i18n="k_cash"></div><div class="v">86.5%</div></div>
+<div class="card"><div class="k" data-i18n="k_bic"></div><div class="v">0.19</div></div>
+<div class="card"><div class="k" data-i18n="k_bxc"></div><div class="v">1.43</div></div>
+<div class="card"><div class="k" data-i18n="k_rf"></div><div class="v">4.50%</div></div>
+</div><div class="note" data-i18n="n_beta"></div>
+<div class="section-label"><span data-i18n="contracts"></span><span class="sl-rule"></span></div>
+<table class="tbl"><thead><tr><th class="l">ID</th><th class="l">Thesis</th><th>Status</th></tr></thead><tbody>
+<tr><td class="l sym">SMCI-AGENTIC-2026-06-11</td><td class="l">event</td><td><span class="lamp g">OPEN, healthy</span></td></tr>
+<tr><td class="l sym">COO-AGENTIC-LEGACY</td><td class="l">defensive (failing)</td><td><span class="lamp y">OPEN, thesis-watch</span></td></tr>
+<tr><td class="l sym">SMCI-MAIN-2026-06-11</td><td class="l">event</td><td><span class="lamp y">OPEN, CONTRACT PENDING</span></td></tr>
+<tr><td class="l sym">SNDK-MAIN-2026-06-11</td><td class="l">UNDECLARED</td><td><span class="lamp r">OPEN, VIOLATION (no contract at entry)</span></td></tr>
+</tbody></table>
+<div class="section-label"><span data-i18n="positions"></span><span class="sl-rule"></span></div>
+<table class="tbl"><thead><tr><th class="l">Symbol</th><th class="l">Acct</th><th>Qty</th><th>Cost</th><th>Price</th><th>Value</th><th>P&L</th><th>Weight</th><th>β</th><th class="l">Themes</th></tr></thead><tbody>
+<tr><td class="l sym">VOO</td><td class="l">main</td><td>2</td><td>671.28</td><td>678.23</td><td>1,356.46</td><td><span class="pos">+13.90</span></td><td>8.95%</td><td>1.00</td><td class="l" style="color:var(--dim);font-size:11px">etf</td></tr>
+<tr><td class="l sym">QQQM</td><td class="l">main</td><td>1</td><td>289.24</td><td>295.02</td><td>295.02</td><td><span class="pos">+5.78</span></td><td>1.95%</td><td>1.32</td><td class="l" style="color:var(--dim);font-size:11px">etf</td></tr>
+<tr><td class="l sym">SNDK</td><td class="l">main</td><td>0.1</td><td>1,861.00</td><td>1,881.51</td><td>188.15</td><td><span class="pos">+2.05</span></td><td>1.24%</td><td>3.71</td><td class="l" style="color:var(--dim);font-size:11px">semis</td></tr>
+<tr><td class="l sym">HOOD</td><td class="l">main</td><td>1</td><td>88.24</td><td>92.23</td><td>92.23</td><td><span class="pos">+3.99</span></td><td>0.61%</td><td>3.25</td><td class="l" style="color:var(--dim);font-size:11px">core</td></tr>
+<tr><td class="l sym">KO</td><td class="l">main</td><td>0.5</td><td>83.22</td><td>82.53</td><td>41.26</td><td><span class="neg">-0.35</span></td><td>0.27%</td><td>-0.22</td><td class="l" style="color:var(--dim);font-size:11px">core</td></tr>
+<tr><td class="l sym">SMCI</td><td class="l">main</td><td>1</td><td>30.01</td><td>31.97</td><td>31.97</td><td><span class="pos">+1.96</span></td><td>0.21%</td><td>3.55</td><td class="l" style="color:var(--dim);font-size:11px">semis</td></tr>
+<tr><td class="l sym">COO</td><td class="l">agentic</td><td>0.261248</td><td>68.90</td><td>67.51</td><td>17.64</td><td><span class="neg">-0.36</span></td><td>0.12%</td><td>0.63</td><td class="l" style="color:var(--dim);font-size:11px">core</td></tr>
+<tr><td class="l sym">SMCI</td><td class="l">agentic</td><td>0.5</td><td>30.36</td><td>31.97</td><td>15.98</td><td><span class="pos">+0.80</span></td><td>0.11%</td><td>3.55</td><td class="l" style="color:var(--dim);font-size:11px">semis</td></tr>
+</tbody></table>
+<div class="section-label"><span data-i18n="hold"></span><span class="sl-rule"></span></div>
+<table class="tbl"><thead><tr><th class="l">Symbol</th><th>1M</th><th>3M</th><th>6M</th><th>12M</th><th>Vol (ann.)</th><th>Max DD</th><th>vs 52W High</th><th>RVol Rank</th></tr></thead><tbody>
+<tr><td class="l sym">COO</td><td><span class="pos">+13.5%</span></td><td><span class="neg">-3.4%</span></td><td><span class="neg">-16.4%</span></td><td>—</td><td>30%</td><td><span class="neg">-30.1%</span></td><td><span class="neg">-19.9%</span></td><td>15</td></tr>
+<tr><td class="l sym">HOOD</td><td><span class="pos">+20.2%</span></td><td><span class="pos">+25.7%</span></td><td><span class="neg">-32.0%</span></td><td>—</td><td>70%</td><td><span class="neg">-57.3%</span></td><td><span class="neg">-39.5%</span></td><td>15</td></tr>
+<tr><td class="l sym">KO</td><td><span class="pos">+2.8%</span></td><td><span class="pos">+6.7%</span></td><td><span class="pos">+18.4%</span></td><td>—</td><td>17%</td><td><span class="neg">-7.9%</span></td><td><span class="neg">-1.3%</span></td><td>1</td></tr>
+<tr><td class="l sym">QQQM</td><td><span class="pos">+0.3%</span></td><td><span class="pos">+20.9%</span></td><td><span class="pos">+14.5%</span></td><td>—</td><td>17%</td><td><span class="neg">-12.0%</span></td><td><span class="neg">-4.0%</span></td><td>0</td></tr>
+<tr><td class="l sym">SMCI</td><td><span class="neg">-0.1%</span></td><td><span class="pos">+4.0%</span></td><td><span class="neg">-8.4%</span></td><td>—</td><td>85%</td><td><span class="neg">-66.2%</span></td><td><span class="neg">-47.3%</span></td><td>0</td></tr>
+<tr><td class="l sym">SNDK</td><td><span class="pos">+30.0%</span></td><td><span class="pos">+184.4%</span></td><td><span class="pos">+708.0%</span></td><td>—</td><td>100%</td><td><span class="neg">-31.3%</span></td><td><span class="pos">+0.0%</span></td><td>61</td></tr>
+<tr><td class="l sym">VOO</td><td><span class="neg">-0.6%</span></td><td><span class="pos">+11.7%</span></td><td><span class="pos">+7.9%</span></td><td>—</td><td>12%</td><td><span class="neg">-8.9%</span></td><td><span class="neg">-2.9%</span></td><td>10</td></tr>
+</tbody></table>
+<div class="section-label"><span data-i18n="themes"></span><span class="sl-rule"></span></div>
+<table class="tbl"><tbody>
+<tr><td class="l sym" style="width:160px">cash</td><td style="width:90px">86.5%</td><td class="l"><div class="bar"><i style="width:100%"></i></div></td></tr>
+<tr><td class="l sym" style="width:160px">etf</td><td style="width:90px">10.9%</td><td class="l"><div class="bar"><i style="width:13%"></i></div></td></tr>
+<tr><td class="l sym" style="width:160px">semis</td><td style="width:90px">1.6%</td><td class="l"><div class="bar"><i style="width:2%"></i></div></td></tr>
+<tr><td class="l sym" style="width:160px">core</td><td style="width:90px">1.0%</td><td class="l"><div class="bar"><i style="width:1%"></i></div></td></tr>
+</tbody></table>
+<div class="section-label"><span data-i18n="mcr"></span><span class="sl-rule"></span></div>
+<table class="tbl"><tbody>
+<tr><td class="l sym" style="width:160px">VOO</td><td style="width:90px">37.2%</td><td class="l"><div class="bar"><i style="width:100%"></i></div></td></tr>
+<tr><td class="l sym" style="width:160px">SNDK</td><td style="width:90px">36.4%</td><td class="l"><div class="bar"><i style="width:98%"></i></div></td></tr>
+<tr><td class="l sym" style="width:160px">QQQM</td><td style="width:90px">11.4%</td><td class="l"><div class="bar"><i style="width:31%"></i></div></td></tr>
+<tr><td class="l sym" style="width:160px">HOOD</td><td style="width:90px">9.7%</td><td class="l"><div class="bar"><i style="width:26%"></i></div></td></tr>
+<tr><td class="l sym" style="width:160px">SMCI</td><td style="width:90px">5.4%</td><td class="l"><div class="bar"><i style="width:15%"></i></div></td></tr>
+<tr><td class="l sym" style="width:160px">COO</td><td style="width:90px">0.3%</td><td class="l"><div class="bar"><i style="width:1%"></i></div></td></tr>
+<tr><td class="l sym" style="width:160px">KO</td><td style="width:90px">-0.3%</td><td class="l"><div class="bar"><i style="width:0%"></i></div></td></tr>
+</tbody></table>
+<div class="section-label"><span data-i18n="corr"></span><span class="sl-rule"></span></div>
+<table class="hm"><thead><tr><th class="corner"></th><th>COO</th><th>HOOD</th><th>KO</th><th>QQQM</th><th>SMCI</th><th>SNDK</th><th>VOO</th></tr></thead><tbody>
+<tr><th>COO</th><td class="diag">1.00</td><td style="background:rgb(66,54,70);color:#0a0e14">0.14</td><td style="background:rgb(67,54,70);color:#0a0e14">0.15</td><td style="background:rgb(55,51,68);color:#0a0e14">0.09</td><td style="background:rgb(50,50,67);color:#0a0e14">0.07</td><td style="background:rgb(51,50,67);color:#0a0e14">0.07</td><td style="background:rgb(90,61,75);color:#0a0e14">0.25</td></tr>
+<tr><th>HOOD</th><td style="background:rgb(66,54,70);color:#0a0e14">0.14</td><td class="diag">1.00</td><td style="background:rgb(51,76,108);color:#0a0e14">-0.23</td><td style="background:rgb(160,80,91);color:#fff">0.57</td><td style="background:rgb(112,67,80);color:#0a0e14">0.35</td><td style="background:rgb(83,59,74);color:#0a0e14">0.22</td><td style="background:rgb(160,80,91);color:#fff">0.57</td></tr>
+<tr><th>KO</th><td style="background:rgb(67,54,70);color:#0a0e14">0.15</td><td style="background:rgb(51,76,108);color:#0a0e14">-0.23</td><td class="diag">1.00</td><td style="background:rgb(52,78,110);color:#0a0e14">-0.25</td><td style="background:rgb(50,74,104);color:#0a0e14">-0.21</td><td style="background:rgb(44,64,90);color:#0a0e14">-0.14</td><td style="background:rgb(45,66,93);color:#0a0e14">-0.16</td></tr>
+<tr><th>QQQM</th><td style="background:rgb(55,51,68);color:#0a0e14">0.09</td><td style="background:rgb(160,80,91);color:#fff">0.57</td><td style="background:rgb(52,78,110);color:#0a0e14">-0.25</td><td class="diag">1.00</td><td style="background:rgb(150,78,89);color:#fff">0.53</td><td style="background:rgb(147,77,88);color:#fff">0.51</td><td style="background:rgb(243,104,109);color:#fff">0.94</td></tr>
+<tr><th>SMCI</th><td style="background:rgb(50,50,67);color:#0a0e14">0.07</td><td style="background:rgb(112,67,80);color:#0a0e14">0.35</td><td style="background:rgb(50,74,104);color:#0a0e14">-0.21</td><td style="background:rgb(150,78,89);color:#fff">0.53</td><td class="diag">1.00</td><td style="background:rgb(79,58,73);color:#0a0e14">0.21</td><td style="background:rgb(147,77,88);color:#fff">0.51</td></tr>
+<tr><th>SNDK</th><td style="background:rgb(51,50,67);color:#0a0e14">0.07</td><td style="background:rgb(83,59,74);color:#0a0e14">0.22</td><td style="background:rgb(44,64,90);color:#0a0e14">-0.14</td><td style="background:rgb(147,77,88);color:#fff">0.51</td><td style="background:rgb(79,58,73);color:#0a0e14">0.21</td><td class="diag">1.00</td><td style="background:rgb(135,73,85);color:#fff">0.46</td></tr>
+<tr><th>VOO</th><td style="background:rgb(90,61,75);color:#0a0e14">0.25</td><td style="background:rgb(160,80,91);color:#fff">0.57</td><td style="background:rgb(45,66,93);color:#0a0e14">-0.16</td><td style="background:rgb(243,104,109);color:#fff">0.94</td><td style="background:rgb(147,77,88);color:#fff">0.51</td><td style="background:rgb(135,73,85);color:#fff">0.46</td><td class="diag">1.00</td></tr>
+</tbody></table><div class="note" data-i18n="n_corr"></div>
+<div class="section-label"><span data-i18n="ledger"></span><span class="sl-rule"></span></div>
+<table class="tbl"><thead><tr><th class="l" data-i18n="h_date"></th><th class="l" data-i18n="h_acct"></th><th class="l">Symbol</th><th>P&L $</th><th>β</th><th>β $</th><th>α $</th><th data-i18n="h_rule"></th><th class="l" data-i18n="h_grade"></th></tr></thead><tbody>
+<tr><td class="l">2026-06-10</td><td class="l">agentic</td><td class="l sym">DAL</td><td><span class="neg">-0.23</span></td><td>1.94</td><td>0.0</td><td>-0.23</td><td>✓</td><td class="l">A</td></tr>
+<tr><td class="l">2026-06-11</td><td class="l">main</td><td class="l sym">SNDK</td><td><span class="neg">-50.00</span></td><td>3.71</td><td>0.0</td><td>-50.0</td><td>✗</td><td class="l">F-entry/A-exit</td></tr>
+<tr><td class="l">2026-06-11</td><td class="l">main</td><td class="l sym">MU</td><td><span class="pos">+20.00</span></td><td>2.96</td><td>0.0</td><td>20.0</td><td>✗</td><td class="l">C-entry/A-exit</td></tr>
+</tbody></table>
+<div class="cards" style="margin-top:14px">
+<div class="card"><div class="k" data-i18n="k_trades"></div><div class="v">3</div></div>
+<div class="card"><div class="k" data-i18n="k_pnl"></div><div class="v">$-30.23</div></div>
+<div class="card"><div class="k" data-i18n="k_rule"></div><div class="v">$-0.23</div></div>
+<div class="card"><div class="k" data-i18n="k_disc"></div><div class="v">$-30.00</div></div>
+<div class="card"><div class="k" data-i18n="k_hit"></div><div class="v">33%</div></div>
+</div><div class="note" data-i18n="n_ledger"></div>
+</div>
+<script>
+const I18N = {"zh": {"title": "组合透视 · Portfolio X-Ray", "sub": "两账户实时持仓", "overview": "总览 · Overview", "contracts": "合同审计 · Contracts", "positions": "持仓 · Positions", "hold": "持仓个股分析 · Holdings Analytics", "themes": "主题权重 · Theme Weights", "mcr": "边际风险贡献 · Marginal Risk Contribution", "corr": "持仓相关性 · Correlation", "attr": "因子暴露 · FF5+Mom", "ledger": "Alpha 账本 · Alpha Ledger", "k_total": "总市值", "k_cash": "现金占比", "k_bic": "β 含现金", "k_bxc": "β 不含现金", "k_rf": "无风险利率 (FRED)", "n_beta": "β 含现金把全部现金按 β=0 计入——现金是仓位,不是缺席。", "n_ledger": "pnl = β$ + α$:β$ 是市场给的,α$ 才是你挣(或亏)的。规则内 vs 自由裁量的分栏,是「系统大于冲动」的周度读数。", "n_corr": "红=正相关,蓝=负相关(与 Screener 同色规)。满屏深红 = 分散是幻觉。", "h_date": "日期", "h_acct": "账户", "h_rule": "规则", "h_grade": "过程分", "k_trades": "已平仓", "k_pnl": "总盈亏", "k_rule": "规则内盈亏", "k_disc": "自由裁量盈亏", "k_hit": "击中率"}, "en": {"title": "Portfolio X-Ray", "sub": "live holdings, both accounts", "overview": "Overview", "contracts": "Contracts", "positions": "Positions", "hold": "Holdings Analytics", "themes": "Theme Weights", "mcr": "Marginal Risk Contribution", "corr": "Correlation", "attr": "FF5+Mom Exposure", "ledger": "Alpha Ledger", "k_total": "Total Value", "k_cash": "Cash Weight", "k_bic": "β incl. cash", "k_bxc": "β ex-cash", "k_rf": "Risk-free (FRED)", "n_beta": "β incl. cash counts all cash at β=0 — cash is a position, not an absence.", "n_ledger": "pnl = β$ + α$: β$ is what the market gave; α$ is what you earned (or lost). Rule-based vs discretionary is the weekly read on system > impulse.", "n_corr": "Red = positive corr, blue = negative (same ramp as the Screener). A wall of deep red means diversification is an illusion.", "h_date": "Date", "h_acct": "Acct", "h_rule": "Rule", "h_grade": "Grade", "k_trades": "Closed", "k_pnl": "Total P&L", "k_rule": "Rule-based P&L", "k_disc": "Discretionary P&L", "k_hit": "Hit rate"}};
+let LANG = "zh";
+function setLang(l){
+  LANG = l;
+  document.getElementById("btn-zh").className = l==="zh" ? "on" : "";
+  document.getElementById("btn-en").className = l==="en" ? "on" : "";
+  document.querySelectorAll("[data-i18n]").forEach(el=>{
+    const k = el.getAttribute("data-i18n");
+    if(I18N[l][k] !== undefined) el.textContent = I18N[l][k];
+  });
+  const epiZh = document.querySelector(".epi-zh");
+  if(epiZh) epiZh.style.display = (l==="en") ? "none" : "block";
+}
+setLang("zh");
+</script></body></html>

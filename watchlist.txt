@@ -1,0 +1,13 @@
+# one ticker per line
+MU
+SNDK
+MRVL
+AVGO
+AAPL
+ORCL
+NOK
+META
+COST
+QQQM
+VOO
+GOOG
