@@ -1082,6 +1082,7 @@ def main():
 
     # export HTML
     payload = df.to_dict(orient="records")
+    payload = bm.attach_capm(payload, price_map)
     html = build_html(payload, corr, watchlist, attribution, backtest, returns_panel, macro)
     html = html.replace("'__THEMES__'",
     json.dumps(json.dumps(bm.themes_for_template(_bridge), ensure_ascii=False), ensure_ascii=False))

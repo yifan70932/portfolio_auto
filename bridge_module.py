@@ -112,6 +112,50 @@ def positions_frame(bridge):
                          "bucket": p.get("bucket", "")})
     return pd.DataFrame(rows), cash
 
+def _capm_ols(asset_ret, mkt_ret, rf_annual):
+    """OLS of daily excess returns; returns dict or None."""
+    df = pd.concat([asset_ret, mkt_ret], axis=1).dropna()
+    if len(df) < 120: return None
+    rf_d = rf_annual / 252.0
+    y = df.iloc[:, 0].values - rf_d
+    x = df.iloc[:, 1].values - rf_d
+    n = len(y); vx = np.var(x, ddof=1)
+    if vx <= 0: return None
+    beta = float(np.cov(y, x, ddof=1)[0, 1] / vx)
+    alpha_d = float(np.mean(y) - beta * np.mean(x))
+    resid = y - (alpha_d + beta * x)
+    s2 = float(resid @ resid) / (n - 2)
+    se_a = np.sqrt(s2 * (1.0/n + np.mean(x)**2 / ((n-1)*vx)))
+    se_b = np.sqrt(s2 / ((n-1)*vx))
+    ss_tot = float(((y - y.mean())**2).sum())
+    return {"alpha_annual": round(float(alpha_d*252*100), 2),
+            "t_alpha": round(float(alpha_d/se_a), 2) if se_a > 0 else None,
+            "beta": round(float(beta), 2),
+            "t_beta": round(float(beta/se_b), 1) if se_b > 0 else None,
+            "r2": round(float(1.0 - (resid @ resid)/ss_tot), 2) if ss_tot > 0 else None,
+            "n": int(n)}
+
+def attach_capm(payload, price_map, lookback=252):
+    """Screener hook: attach a 'capm' dict to each payload record.
+    price_map: {symbol: close Series} (main()'s backtest panel). One SPY fetch total."""
+    try:
+        spy_ret = _hist("SPY", period="3y").pct_change().dropna().tail(lookback)
+    except Exception:
+        spy_ret = None
+    rf = risk_free_rate()
+    for rec in payload:
+        rec["capm"] = None
+        if spy_ret is None: continue
+        c = price_map.get(rec.get("symbol"))
+        if c is None or len(c) < 130: continue
+        try:
+            res = _capm_ols(c.pct_change().dropna().tail(lookback), spy_ret, rf)
+            if res and res["t_alpha"] is not None and res["t_beta"] is not None and res["r2"] is not None:
+                rec["capm"] = res
+        except Exception:
+            pass
+    return payload
+
 # ----------------------------------------------------------------
 # 2. Portfolio analytics
 # ----------------------------------------------------------------
@@ -211,8 +255,117 @@ def portfolio_analytics(bridge, period="1y"):
     hd = [d for d in (_h_detail(s) for s in sorted(set(pos["symbol"]))) if d]
     holdings_detail = pd.DataFrame(hd)
 
+    rf_annual = risk_free_rate()
+    held_syms = sorted(set(pos["symbol"]))
+
+    # --- CAPM per holding: OLS of daily excess returns on SPY excess returns
+    def _capm(sym):
+        if sym not in rets.columns or "SPY" not in rets.columns: return None
+        df = pd.concat([rets[sym], rets["SPY"]], axis=1).dropna()
+        if len(df) < 120: return None
+        rf_d = rf_annual / 252.0
+        y = df.iloc[:, 0].values - rf_d
+        x = df.iloc[:, 1].values - rf_d
+        n = len(y)
+        vx = np.var(x, ddof=1)
+        if vx <= 0: return None
+        beta = float(np.cov(y, x, ddof=1)[0, 1] / vx)
+        alpha_d = float(np.mean(y) - beta * np.mean(x))
+        resid = y - (alpha_d + beta * x)
+        s2 = float(resid @ resid) / (n - 2)
+        se_a = np.sqrt(s2 * (1.0/n + np.mean(x)**2 / ((n-1)*vx)))
+        se_b = np.sqrt(s2 / ((n-1)*vx))
+        ss_tot = float(((y - y.mean())**2).sum())
+        r2 = 1.0 - float(resid @ resid)/ss_tot if ss_tot > 0 else np.nan
+        return {"symbol": sym, "alpha_annual": alpha_d*252*100, "t_alpha": alpha_d/se_a if se_a > 0 else np.nan,
+                "beta": beta, "t_beta": beta/se_b if se_b > 0 else np.nan, "r2": r2, "n": n}
+    capm = pd.DataFrame([c for c in (_capm(s) for s in held_syms) if c])
+
+    # --- FF5+Mom per holding (reuse the prototype's attribution machinery)
+    ff_singles = []
+    try:
+        ff = qp.fetch_ff_factors()
+        if ff is not None:
+            for s_ in held_syms:
+                if s_ not in rets.columns: continue
+                try:
+                    res = qp.run_attribution(rets[s_], ff, label=s_)
+                    if res: ff_singles.append(res)
+                except Exception:
+                    pass
+    except Exception:
+        pass
+
+    # --- QVM+L cross-sectional scores WITHIN the holdings set
+    # Same factor logic as the screener (P/E,P/B | ROE,margin,D/E | 12-1 mom | -vol),
+    # percentile-ranked across current holdings only.
+    def _pct_rank(sr, low_is_good=False):
+        r = sr.rank(pct=True, na_option="keep") * 100
+        return (100 - r) if low_is_good else r
+    qvml = None
+    try:
+        fund = {}
+        for s_ in held_syms:
+            try:
+                f = qp.fetch_fundamentals(yf.Ticker(s_)) or {}
+            except Exception:
+                f = {}
+            c = prices[s_].dropna() if s_ in prices.columns else pd.Series(dtype=float)
+            mom = float(c.iloc[-21] / c.iloc[-252] - 1) if len(c) > 252 else np.nan   # 12-1 momentum
+            vol = float(c.pct_change().std() * np.sqrt(252)) if len(c) > 60 else np.nan
+            fund[s_] = {"pe": f.get("pe"), "pb": f.get("pb"), "roe": f.get("roe"),
+                        "pm": f.get("profit_margin"), "de": f.get("de"), "mom": mom, "vol": vol}
+        fd = pd.DataFrame(fund).T.astype(float)
+        if len(fd) >= 3:
+            value    = pd.concat([_pct_rank(fd["pe"], True), _pct_rank(fd["pb"], True)], axis=1).mean(axis=1)
+            quality  = pd.concat([_pct_rank(fd["roe"]), _pct_rank(fd["pm"]), _pct_rank(fd["de"], True)], axis=1).mean(axis=1)
+            momentum = _pct_rank(fd["mom"])
+            lowvol   = _pct_rank(fd["vol"], True)
+            qvml = pd.DataFrame({"V": value, "Q": quality, "M": momentum, "L": lowvol})
+            qvml["composite"] = qvml.mean(axis=1)
+            qvml = qvml.sort_values("composite", ascending=False)
+    except Exception:
+        qvml = None
+
+    # --- per-scope aggregates for the account tabs (all / main / agentic)
+    def _scope(label):
+        if label == "all":
+            p = pos; csh = total_cash
+        else:
+            p = pos[pos["account"] == label]
+            csh = cash.get(label, 0.0)
+        tv = float(p["value"].sum()) + csh
+        if tv <= 0:
+            return None
+        w_sym = p.groupby("symbol")["value"].sum() / tv
+        b_ex = float(np.nansum(p["beta"] * p["value"]) / max(p["value"].sum(), 1e-9)) if len(p) else float("nan")
+        b_in = float(np.nansum(p["beta"] * (p["value"] / tv))) if len(p) else 0.0
+        tw = {}
+        for _, r_ in p.iterrows():
+            for th_ in (tmap.get(r_["symbol"]) or ["unmapped"]):
+                tw[th_] = tw.get(th_, 0.0) + r_["value"] / tv
+        tw["cash"] = csh / tv
+        tw = pd.Series(tw).sort_values(ascending=False)
+        syms_ = [s_ for s_ in sorted(set(p["symbol"])) if s_ in rets.columns]
+        corr_ = rets[syms_].corr() if len(syms_) >= 2 else pd.DataFrame()
+        mcr_ = pd.Series(dtype=float)
+        if len(syms_) >= 2:
+            cov_ = rets[syms_].cov() * 252
+            wv_ = w_sym.reindex(syms_).fillna(0).values
+            pv_ = float(wv_ @ cov_.values @ wv_)
+            if pv_ > 0:
+                mcr_ = pd.Series((cov_.values @ wv_) * wv_ / pv_, index=syms_).sort_values(ascending=False)
+        return {"total_value": tv, "cash": csh, "cash_weight": csh / tv,
+                "beta_incl": b_in, "beta_ex": b_ex,
+                "theme_weights": tw, "corr": corr_, "mcr": mcr_}
+    scopes = {k: v for k, v in (("all", _scope("all")), ("main", _scope("main")),
+                                ("agentic", _scope("agentic"))) if v}
+    sym_accts = pos.groupby("symbol")["account"].apply(lambda x: ",".join(sorted(set(x)))).to_dict()
+
     return {"positions": pos.sort_values("value", ascending=False),
+            "scopes": scopes, "sym_accts": sym_accts,
             "holdings_detail": holdings_detail,
+            "capm": capm, "ff_singles": ff_singles, "qvml": qvml,
             "cash": cash, "cash_weight": cash_weight, "total_value": total_value,
             "port_beta_incl_cash": port_beta_incl_cash,
             "port_beta_ex_cash": port_beta_ex_cash,
@@ -311,23 +464,23 @@ color:var(--ink);font-family:var(--mono);font-feature-settings:"tnum" 1;line-hei
 .wrap{max-width:1280px;margin:0 auto;padding:0 40px}
 header{display:flex;align-items:flex-end;justify-content:space-between;padding:38px 0 22px;
 border-bottom:1px solid var(--line);flex-wrap:wrap;gap:16px}
-.brand h1{font-family:var(--serif);font-weight:600;font-size:30px}
-.brand .sub{color:var(--dim);font-size:12px;margin-top:7px;letter-spacing:.5px}
+.brand h1{font-family:var(--serif);font-weight:600;font-size:32px}
+.brand .sub{color:var(--dim);font-size:13px;margin-top:7px;letter-spacing:.5px}
 .gen{color:var(--faint);font-size:11px}
 .epigraph{margin:24px 0 8px;padding:18px 26px;border-left:3px solid var(--accent);
 background:linear-gradient(90deg,rgba(63,207,142,.05),transparent);border-radius:0 10px 10px 0}
-.epi-en{font-family:var(--serif);font-style:italic;font-size:15px}
-.epi-zh{font-family:var(--serif);font-size:13.5px;color:var(--dim);margin-top:8px}
+.epi-zh{font-family:var(--serif);font-size:17px;line-height:1.7;letter-spacing:.5px}
+.epi-en{font-family:var(--serif);font-style:italic;font-size:13px;color:var(--dim);margin-top:8px}
 .epi-by{font-size:11px;color:var(--faint);margin-top:10px;text-align:right;letter-spacing:1px}
-.section-label{font-size:11px;letter-spacing:2.5px;color:var(--dim);text-transform:uppercase;
-margin:34px 0 14px;display:flex;align-items:center;gap:12px}
+.section-label{font-size:12.5px;letter-spacing:2.5px;color:var(--dim);text-transform:uppercase;
+margin:36px 0 14px;display:flex;align-items:center;gap:12px}
 .section-label .sl-rule{flex:1;height:1px;background:var(--line)}
 .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px}
 .card{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:16px 18px}
-.card .k{font-size:10px;color:var(--dim);letter-spacing:1.5px;text-transform:uppercase}
-.card .v{font-size:22px;font-weight:700;margin-top:6px}
-.tbl{width:100%;border-collapse:collapse;font-size:13px}
-.tbl thead th{text-align:right;color:var(--dim);font-weight:500;font-size:10.5px;letter-spacing:1px;
+.card .k{font-size:11px;color:var(--dim);letter-spacing:1.5px;text-transform:uppercase}
+.card .v{font-size:25px;font-weight:700;margin-top:6px}
+.tbl{width:100%;border-collapse:collapse;font-size:14px}
+.tbl thead th{text-align:right;color:var(--dim);font-weight:500;font-size:11.5px;letter-spacing:1px;
 padding:10px 12px;border-bottom:1px solid var(--line);text-transform:uppercase;white-space:nowrap}
 .tbl thead th.l{text-align:left}
 .tbl tbody td{padding:11px 12px;text-align:right;border-bottom:1px solid rgba(34,45,61,.5)}
@@ -342,7 +495,16 @@ padding:10px 12px;border-bottom:1px solid var(--line);text-transform:uppercase;w
 .lamp.r{background:rgba(255,107,112,.15);color:var(--red);border:1px solid var(--red)}
 pre{background:var(--panel);border:1px solid var(--line);border-radius:10px;
 padding:16px 18px;font-size:12px;overflow-x:auto;color:var(--dim)}
-.note{color:var(--faint);font-size:11px;margin-top:8px;font-style:italic}
+.note{color:var(--faint);font-size:12.5px;margin-top:8px;font-style:italic}
+.sig{color:var(--green);font-weight:700}.insig{color:var(--faint)}
+.closing-poem{font-family:var(--serif);text-align:center;color:var(--dim);font-size:15px;
+line-height:2.1;margin:64px 0 10px;letter-spacing:1px}
+.epi-quote{margin-bottom:16px}.epi-quote:last-child{margin-bottom:0}
+.acct-tabs{display:flex;gap:8px;flex-wrap:wrap;margin:26px 0 0}
+.acct-tab{background:transparent;border:1px solid var(--line);color:var(--dim);
+padding:7px 16px;border-radius:8px;font-family:var(--mono);font-size:12.5px;cursor:pointer;transition:.15s}
+.acct-tab:hover{border-color:var(--accent);color:var(--accent)}
+.acct-tab.on{background:var(--accent);color:#06231a;border-color:var(--accent);font-weight:700}
 .lang-toggle{display:flex;border:1px solid var(--line);border-radius:7px;overflow:hidden}
 .lang-toggle button{background:transparent;color:var(--dim);border:0;padding:7px 15px;
 font-family:var(--mono);font-size:12px;cursor:pointer;letter-spacing:.5px;transition:.18s}
@@ -363,26 +525,34 @@ def _sec(title):
     return f'<div class="section-label"><span>{title}</span><span class="sl-rule"></span></div>'
 
 I18N_P = {
- "zh": {"title":"组合透视 · Portfolio X-Ray","sub":"两账户实时持仓","overview":"总览 · Overview",
-   "contracts":"合同审计 · Contracts","positions":"持仓 · Positions","hold":"持仓个股分析 · Holdings Analytics",
-   "themes":"主题权重 · Theme Weights","mcr":"边际风险贡献 · Marginal Risk Contribution",
-   "corr":"持仓相关性 · Correlation","attr":"因子暴露 · FF5+Mom","ledger":"Alpha 账本 · Alpha Ledger",
-   "k_total":"总市值","k_cash":"现金占比","k_bic":"β 含现金","k_bxc":"β 不含现金","k_rf":"无风险利率 (FRED)",
-   "n_beta":"β 含现金把全部现金按 β=0 计入——现金是仓位,不是缺席。",
-   "n_ledger":"pnl = β$ + α$:β$ 是市场给的,α$ 才是你挣(或亏)的。规则内 vs 自由裁量的分栏,是「系统大于冲动」的周度读数。",
-   "n_corr":"红=正相关,蓝=负相关(与 Screener 同色规)。满屏深红 = 分散是幻觉。",
-   "h_date":"日期","h_acct":"账户","h_rule":"规则","h_grade":"过程分","k_trades":"已平仓","k_pnl":"总盈亏",
-   "k_rule":"规则内盈亏","k_disc":"自由裁量盈亏","k_hit":"击中率"},
- "en": {"title":"Portfolio X-Ray","sub":"live holdings, both accounts","overview":"Overview",
-   "contracts":"Contracts","positions":"Positions","hold":"Holdings Analytics",
-   "themes":"Theme Weights","mcr":"Marginal Risk Contribution",
-   "corr":"Correlation","attr":"FF5+Mom Exposure","ledger":"Alpha Ledger",
-   "k_total":"Total Value","k_cash":"Cash Weight","k_bic":"β incl. cash","k_bxc":"β ex-cash","k_rf":"Risk-free (FRED)",
-   "n_beta":"β incl. cash counts all cash at β=0 — cash is a position, not an absence.",
-   "n_ledger":"pnl = β$ + α$: β$ is what the market gave; α$ is what you earned (or lost). Rule-based vs discretionary is the weekly read on system > impulse.",
-   "n_corr":"Red = positive corr, blue = negative (same ramp as the Screener). A wall of deep red means diversification is an illusion.",
-   "h_date":"Date","h_acct":"Acct","h_rule":"Rule","h_grade":"Grade","k_trades":"Closed","k_pnl":"Total P&L",
-   "k_rule":"Rule-based P&L","k_disc":"Discretionary P&L","k_hit":"Hit rate"}}
+ "zh": {"title":"一飞云霄夜航帆 - 股市持仓分析","sub":"CAPM, QVM+L, and Fama-French 量化分析 · 两账户实时持仓",
+   "overview":"总览","contracts":"合同审计","positions":"当前持仓","hold":"持仓个股指标",
+   "capm":"CAPM 归因(个股)","ff":"Fama-French 五因子 + 动量(个股)","qvml":"QVM+L 因子评分(持仓组内横截面)",
+   "themes":"主题权重","mcr":"边际风险贡献","corr":"持仓相关性","attr":"组合因子归因","ledger":"Alpha 账本",
+   "k_total":"组合总值","k_cash":"现金占比","k_bic":"组合 β(计入现金)","k_bxc":"组合 β(剔除现金)","k_rf":"无风险利率(FRED)",
+   "n_beta":"「计入现金」口径将全部现金按 β = 0 纳入组合权重——现金本身是一个仓位,而非缺席。",
+   "n_ledger":"盈亏 = β$ + α$:β$ 为市场暴露所致部分,α$ 为剔除暴露后的主动盈亏。「规则内」与「自由裁量」之分栏,构成「系统优于冲动」假说的周度检验。",
+   "n_corr":"红为正相关,蓝为负相关,色标与 Screener 一致。普遍的高正相关,意味着名义上的多标的持有并未带来有效分散。",
+   "n_capm":"对每只持仓的日度超额收益对市场超额收益做回归。α 年化为截距,|t| ≥ 2 视为统计显著;R² 为市场可解释比例。",
+   "n_ff":"在 CAPM 之上加入规模、价值、盈利、投资与动量五个系统性因子。若 α 不显著,则该股收益可由已知因子暴露完全解释。",
+   "n_qvml":"与 Screener 同一套因子构造(估值 V、质量 Q、动量 M、低波动 L),但仅在当前持仓内做横截面排名——分数为组内相对值,样本较小,宜作参考而非定论。",
+   "h_date":"日期","h_acct":"账户","h_rule":"规则","h_grade":"过程评分",
+   "k_trades":"已平仓笔数","k_pnl":"总盈亏","k_rule":"规则内盈亏","k_disc":"自由裁量盈亏","k_hit":"胜率",
+   "tab_all":"全部","tab_main":"主账户","tab_agentic":"Agentic 账户(由 Claude 操作)"},
+ "en": {"title":"Yifan the Nightfarer - Portfolio Holdings Analysis","sub":"CAPM, QVM+L, and Fama-French Quantitative Analysis · Live holdings across both accounts",
+   "overview":"Overview","contracts":"Contract Audit","positions":"Positions","hold":"Holdings Metrics",
+   "capm":"CAPM Attribution (per holding)","ff":"Fama-French 5 + Momentum (per holding)","qvml":"QVM+L Factor Scores (cross-section within holdings)",
+   "themes":"Theme Weights","mcr":"Marginal Risk Contribution","corr":"Holdings Correlation","attr":"Portfolio Factor Attribution","ledger":"Alpha Ledger",
+   "k_total":"Total Value","k_cash":"Cash Weight","k_bic":"Portfolio β (cash included)","k_bxc":"Portfolio β (ex cash)","k_rf":"Risk-free Rate (FRED)",
+   "n_beta":"The cash-included measure weights all cash at β = 0 — cash is itself a position, not an absence.",
+   "n_ledger":"P&L = β$ + α$: β$ is the component attributable to market exposure; α$ is the active residual. The rule-based vs discretionary split provides a weekly test of the system-over-impulse hypothesis.",
+   "n_corr":"Red denotes positive and blue negative correlation, on the same scale as the Screener. Pervasively high positive correlation indicates that holding many names has produced nominal rather than effective diversification.",
+   "n_capm":"Each holding's daily excess return is regressed on the market excess return. Annualized α is the intercept; |t| ≥ 2 is treated as statistically significant; R² is the share explained by the market.",
+   "n_ff":"Extends CAPM with size, value, profitability, investment, and momentum factors. An insignificant α implies the holding's return is fully explained by known factor exposures.",
+   "n_qvml":"Same factor construction as the Screener (Value, Quality, Momentum, Low-volatility), ranked cross-sectionally within current holdings only — scores are relative to this small set and should be read as indicative.",
+   "h_date":"Date","h_acct":"Account","h_rule":"Rule","h_grade":"Process Grade",
+   "k_trades":"Closed Trades","k_pnl":"Total P&L","k_rule":"Rule-based P&L","k_disc":"Discretionary P&L","k_hit":"Hit Rate",
+   "tab_all":"Combined","tab_main":"Main","tab_agentic":"Agentic (Claude-operated)"}}
 
 def _corr_color(v):
     """Same ramp as the screener's corrCellColor: blue(neg) -> dark grey(0) -> red(pos)."""
@@ -407,22 +577,32 @@ def build_portfolio_html(pa, ledger, contracts, out_path=HTML_OUT):
     h = [f"""<!DOCTYPE html><html lang="zh"><head><meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>Portfolio X-Ray · {now}</title><style>{_CSS}</style></head><body><div class="wrap">
-<header><div class="brand"><h1>Yifan the Starbound Nightfarer</h1>
+<header><div class="brand"><h1 data-i18n="title"></h1>
 <div class="sub" data-i18n="sub"></div></div>
 <div style="display:flex;align-items:center;gap:14px">
 <div class="lang-toggle"><button id="btn-zh" class="on" onclick="setLang('zh')">中文</button><button id="btn-en" onclick="setLang('en')">EN</button></div>
 <div class="gen">generated {now}</div></div></header>
 <div class="epigraph">
-<div class="epi-en">"All day he frets that his hoard is still too small; the day it is enough, his eyes close for good."</div>
+<div class="epi-quote">
 <div class="epi-zh">"终朝只恨聚无多,及到多时眼闭了。"</div>
-<div class="epi-by">— 曹雪芹《红楼梦 · 好了歌》</div></div>"""]
+<div class="epi-en">"All day he frets that his hoard is still too small; the day it is enough, his eyes close for good."</div>
+<div class="epi-by">— 曹雪芹《红楼梦 · 好了歌》</div></div>
+<div class="epi-quote">
+<div class="epi-zh">"这是尘寰中消长数应当,何必枉悲伤?"</div>
+<div class="epi-en">"Such waxing and waning is the appointed course of the mortal world — why grieve in vain?"</div>
+<div class="epi-by">— 曹雪芹《红楼梦 · 乐中悲》</div></div></div>
+<div class="acct-tabs">
+<button class="acct-tab on" id="atab-all" onclick="setScope('all')" data-i18n="tab_all"></button>
+<button class="acct-tab" id="atab-main" onclick="setScope('main')" data-i18n="tab_main"></button>
+<button class="acct-tab" id="atab-agentic" onclick="setScope('agentic')" data-i18n="tab_agentic"></button>
+</div>"""]
 
     h.append(sec("overview"))
     h.append('<div class="cards">')
-    h.append(card("k_total", f"${pa['total_value']:,.0f}"))
-    h.append(card("k_cash", f"{pa['cash_weight']*100:.1f}%"))
-    h.append(card("k_bic", f"{pa['port_beta_incl_cash']:.2f}"))
-    h.append(card("k_bxc", f"{pa['port_beta_ex_cash']:.2f}"))
+    h.append(card("k_total", f'<span id="ov_total">${pa["total_value"]:,.0f}</span>'))
+    h.append(card("k_cash", f'<span id="ov_cash">{pa["cash_weight"]*100:.1f}%</span>'))
+    h.append(card("k_bic", f'<span id="ov_bic">{pa["port_beta_incl_cash"]:.2f}</span>'))
+    h.append(card("k_bxc", f'<span id="ov_bxc">{pa["port_beta_ex_cash"]:.2f}</span>'))
     h.append(card("k_rf", f"{pa['rf']*100:.2f}%"))
     h.append('</div><div class="note" data-i18n="n_beta"></div>')
 
@@ -432,7 +612,7 @@ def build_portfolio_html(pa, ledger, contracts, out_path=HTML_OUT):
         for c in contracts.get("contracts", []):
             st = c.get("status", "")
             cls = "r" if ("VIOLATION" in st.upper()) else ("y" if ("PENDING" in st.upper() or "watch" in st) else "g")
-            h.append(f'<tr><td class="l sym">{c["id"]}</td><td class="l">{c.get("thesis_type","")}</td>'
+            h.append(f'<tr data-acct="{c.get("account","")}"><td class="l sym">{c["id"]}</td><td class="l">{c.get("thesis_type","")}</td>'
                      f'<td><span class="lamp {cls}">{st}</span></td></tr>')
         h.append('</tbody></table>')
 
@@ -441,7 +621,7 @@ def build_portfolio_html(pa, ledger, contracts, out_path=HTML_OUT):
              '<th>Qty</th><th>Cost</th><th>Price</th><th>Value</th><th>P&L</th><th>Weight</th><th>β</th><th class="l">Themes</th></tr></thead><tbody>')
     for _, r in pa["positions"].iterrows():
         beta_txt = "" if pd.isna(r["beta"]) else f'{r["beta"]:.2f}'
-        h.append(f'<tr><td class="l sym">{r["symbol"]}</td><td class="l">{r["account"]}</td>'
+        h.append(f'<tr data-acct="{r["account"]}"><td class="l sym">{r["symbol"]}</td><td class="l">{r["account"]}</td>'
                  f'<td>{r["qty"]:g}</td><td>{r["avg_cost"]:,.2f}</td><td>{r["price"]:,.2f}</td>'
                  f'<td>{r["value"]:,.2f}</td><td>{_fmt_pnl(r["pnl"])}</td>'
                  f'<td>{r["weight"]*100:.2f}%</td><td>{beta_txt}</td>'
@@ -460,44 +640,120 @@ def build_portfolio_html(pa, ledger, contracts, out_path=HTML_OUT):
             return f'<span class="{cls}">{v*100:+.1f}%</span>'
         for _, r in hd.iterrows():
             rv = "—" if pd.isna(r["rvol_rank"]) else f'{r["rvol_rank"]:.0f}'
-            h.append(f'<tr><td class="l sym">{r["symbol"]}</td><td>{pc(r["r_1m"])}</td><td>{pc(r["r_3m"])}</td>'
+            h.append(f'<tr data-acct="{pa.get("sym_accts",{}).get(r["symbol"],"")}"><td class="l sym">{r["symbol"]}</td><td>{pc(r["r_1m"])}</td><td>{pc(r["r_3m"])}</td>'
                      f'<td>{pc(r["r_6m"])}</td><td>{pc(r["r_12m"])}</td><td>{r["vol"]*100:.0f}%</td>'
                      f'<td>{pc(r["max_dd"])}</td><td>{pc(r["from_52w_high"])}</td><td>{rv}</td></tr>')
         h.append('</tbody></table>')
 
-    h.append(sec("themes"))
-    h.append('<table class="tbl"><tbody>')
-    maxw = max(pa["theme_weights"].max(), 1e-9)
-    for th, w in pa["theme_weights"].items():
-        h.append(f'<tr><td class="l sym" style="width:160px">{th}</td>'
-                 f'<td style="width:90px">{w*100:.1f}%</td>'
-                 f'<td class="l"><div class="bar"><i style="width:{w/maxw*100:.0f}%"></i></div></td></tr>')
-    h.append('</tbody></table>')
+    # --- CAPM per holding
+    capm = pa.get("capm")
+    if capm is not None and len(capm):
+        h.append(sec("capm"))
+        h.append('<table class="tbl"><thead><tr><th class="l">Symbol</th><th>α (ann.)</th><th>t(α)</th>'
+                 '<th>β</th><th>t(β)</th><th>R²</th><th>N</th></tr></thead><tbody>')
+        for _, r in capm.iterrows():
+            sig = abs(r["t_alpha"]) >= 2
+            acls = ("pos" if r["alpha_annual"] >= 0 else "neg") if sig else "insig"
+            h.append(f'<tr data-acct="{pa.get("sym_accts",{}).get(r["symbol"],"")}"><td class="l sym">{r["symbol"]}</td>'
+                     f'<td><span class="{acls}">{r["alpha_annual"]:+.1f}%</span></td>'
+                     f'<td class="{"sig" if sig else "insig"}">{r["t_alpha"]:.2f}</td>'
+                     f'<td>{r["beta"]:.2f}</td><td>{r["t_beta"]:.1f}</td>'
+                     f'<td>{r["r2"]:.2f}</td><td>{int(r["n"])}</td></tr>')
+        h.append('</tbody></table><div class="note" data-i18n="n_capm"></div>')
 
-    if len(pa["mcr"]):
-        h.append(sec("mcr"))
-        h.append('<table class="tbl"><tbody>')
-        for s_, v in pa["mcr"].items():
-            h.append(f'<tr><td class="l sym" style="width:160px">{s_}</td><td style="width:90px">{v*100:.1f}%</td>'
-                     f'<td class="l"><div class="bar"><i style="width:{max(v,0)/max(pa["mcr"].max(),1e-9)*100:.0f}%"></i></div></td></tr>')
-        h.append('</tbody></table>')
+    # --- FF5+Mom per holding
+    ffs = pa.get("ff_singles") or []
+    ffs = [r for r in ffs if isinstance(r, dict) and "betas" in r]
+    if ffs:
+        h.append(sec("ff"))
+        factors = list(ffs[0]["betas"].keys())
+        h.append('<table class="tbl"><thead><tr><th class="l">Symbol</th><th>α (ann.)</th><th>t(α)</th>'
+                 + "".join(f"<th>{f_}</th>" for f_ in factors) + '<th>R²</th></tr></thead><tbody>')
+        for r in ffs:
+            sig = abs(r.get("alpha_t", 0)) >= 2
+            acls = ("pos" if r.get("alpha_annual", 0) >= 0 else "neg") if sig else "insig"
+            cells = ""
+            for f_ in factors:
+                b = r["betas"].get(f_, {})
+                bsig = abs(b.get("t", 0)) >= 2
+                cells += f'<td class="{"sig" if bsig else "insig"}">{b.get("beta", float("nan")):+.2f}</td>'
+            h.append(f'<tr data-acct="{pa.get("sym_accts",{}).get(r.get("label",""),"")}"><td class="l sym">{r.get("label","")}</td>'
+                     f'<td><span class="{acls}">{r.get("alpha_annual",0):+.1f}%</span></td>'
+                     f'<td class="{"sig" if sig else "insig"}">{r.get("alpha_t",0):.2f}</td>'
+                     + cells + f'<td>{r.get("r2",float("nan")):.2f}</td></tr>')
+        h.append('</tbody></table><div class="note" data-i18n="n_ff"></div>')
 
-    # --- correlation heatmap
-    if isinstance(pa["corr"], pd.DataFrame) and not pa["corr"].empty:
-        h.append(sec("corr"))
-        syms = list(pa["corr"].columns)
-        h.append('<table class="hm"><thead><tr><th class="corner"></th>' + "".join(f"<th>{s_}</th>" for s_ in syms) + '</tr></thead><tbody>')
-        for a in syms:
+    # --- QVM+L within holdings
+    qv = pa.get("qvml")
+    if qv is not None and len(qv):
+        h.append(sec("qvml"))
+        h.append('<table class="tbl"><thead><tr><th class="l">Symbol</th><th>V</th><th>Q</th>'
+                 '<th>M</th><th>L</th><th>Composite</th></tr></thead><tbody>')
+        def _scell(v):
+            if v is None or (isinstance(v, float) and np.isnan(v)): return '<td>—</td>'
+            return (f'<td><span style="font-weight:600">{v:.0f}</span>'
+                    f'<div class="bar"><i style="width:{max(2,min(100,v)):.0f}%"></i></div></td>')
+        for sym_, r in qv.iterrows():
+            h.append(f'<tr data-acct="{pa.get("sym_accts",{}).get(sym_,"")}"><td class="l sym">{sym_}</td>' + _scell(r["V"]) + _scell(r["Q"])
+                     + _scell(r["M"]) + _scell(r["L"])
+                     + f'<td><span style="font-weight:700;font-size:16px">{r["composite"]:.0f}</span></td></tr>')
+        h.append('</tbody></table><div class="note" data-i18n="n_qvml"></div>')
+
+    scopes = pa.get("scopes") or {"all": {"theme_weights": pa["theme_weights"], "mcr": pa["mcr"], "corr": pa["corr"],
+                                          "total_value": pa["total_value"], "cash_weight": pa["cash_weight"],
+                                          "beta_incl": pa["port_beta_incl_cash"], "beta_ex": pa["port_beta_ex_cash"]}}
+
+    def _themes_tbl(tw):
+        out = ['<table class="tbl"><tbody>']
+        mx = max(tw.max(), 1e-9)
+        for th, w in tw.items():
+            out.append(f'<tr><td class="l sym" style="width:160px">{th}</td>'
+                       f'<td style="width:90px">{w*100:.1f}%</td>'
+                       f'<td class="l"><div class="bar"><i style="width:{w/mx*100:.0f}%"></i></div></td></tr>')
+        out.append('</tbody></table>')
+        return "".join(out)
+
+    def _mcr_tbl(mcr):
+        if not len(mcr): return ""
+        out = ['<table class="tbl"><tbody>']
+        for s_, v in mcr.items():
+            out.append(f'<tr><td class="l sym" style="width:160px">{s_}</td><td style="width:90px">{v*100:.1f}%</td>'
+                       f'<td class="l"><div class="bar"><i style="width:{max(v,0)/max(mcr.max(),1e-9)*100:.0f}%"></i></div></td></tr>')
+        out.append('</tbody></table>')
+        return "".join(out)
+
+    def _hm_tbl(corr):
+        if not isinstance(corr, pd.DataFrame) or corr.empty: return ""
+        syms_ = list(corr.columns)
+        out = ['<table class="hm"><thead><tr><th class="corner"></th>' + "".join(f"<th>{x}</th>" for x in syms_) + '</tr></thead><tbody>']
+        for a in syms_:
             cells = []
-            for b in syms:
-                v = float(pa["corr"].loc[a, b])
+            for b in syms_:
+                v = float(corr.loc[a, b])
                 if a == b:
                     cells.append(f'<td class="diag">{v:.2f}</td>')
                 else:
                     txtcol = "#fff" if abs(v) > 0.45 else "#0a0e14"
                     cells.append(f'<td style="background:{_corr_color(v)};color:{txtcol}">{v:.2f}</td>')
-            h.append(f'<tr><th>{a}</th>' + "".join(cells) + '</tr>')
-        h.append('</tbody></table><div class="note" data-i18n="n_corr"></div>')
+            out.append(f'<tr><th>{a}</th>' + "".join(cells) + '</tr>')
+        out.append('</tbody></table>')
+        return "".join(out)
+
+    h.append(sec("themes"))
+    for sc, d in scopes.items():
+        vis = "" if sc == "all" else ' style="display:none"'
+        h.append(f'<div class="scope-blk" data-scope="{sc}" data-kind="themes"{vis}>' + _themes_tbl(d["theme_weights"]) + '</div>')
+
+    h.append(sec("mcr"))
+    for sc, d in scopes.items():
+        vis = "" if sc == "all" else ' style="display:none"'
+        h.append(f'<div class="scope-blk" data-scope="{sc}" data-kind="mcr"{vis}>' + _mcr_tbl(d["mcr"]) + '</div>')
+
+    h.append(sec("corr"))
+    for sc, d in scopes.items():
+        vis = "" if sc == "all" else ' style="display:none"'
+        h.append(f'<div class="scope-blk" data-scope="{sc}" data-kind="corr"{vis}>' + _hm_tbl(d["corr"]) + '</div>')
+    h.append('<div class="note" data-i18n="n_corr"></div>')
 
     if pa.get("attribution"):
         h.append(sec("attr"))
@@ -508,7 +764,7 @@ def build_portfolio_html(pa, ledger, contracts, out_path=HTML_OUT):
         h.append('<table class="tbl"><thead><tr><th class="l" data-i18n="h_date"></th><th class="l" data-i18n="h_acct"></th><th class="l">Symbol</th>'
                  '<th>P&L $</th><th>β</th><th>β $</th><th>α $</th><th data-i18n="h_rule"></th><th class="l" data-i18n="h_grade"></th></tr></thead><tbody>')
         for _, r in ledger["trades"].iterrows():
-            h.append(f'<tr><td class="l">{r["date"]}</td><td class="l">{r["account"]}</td><td class="l sym">{r["symbol"]}</td>'
+            h.append(f'<tr data-acct="{r["account"]}"><td class="l">{r["date"]}</td><td class="l">{r["account"]}</td><td class="l sym">{r["symbol"]}</td>'
                      f'<td>{_fmt_pnl(r["pnl_$"])}</td><td>{r["beta"] if r["beta"] is not None else ""}</td>'
                      f'<td>{r["beta_$"] if r["beta_$"] is not None else ""}</td>'
                      f'<td>{r["alpha_$"] if r["alpha_$"] is not None else ""}</td>'
@@ -523,9 +779,35 @@ def build_portfolio_html(pa, ledger, contracts, out_path=HTML_OUT):
         h.append(card("k_hit", f"{a['hit_rate']*100:.0f}%"))
         h.append('</div><div class="note" data-i18n="n_ledger"></div>')
 
+    h.append('<div class="closing-poem">浮生着甚苦奔忙,盛席华筵终散场。<br>悲喜千般同幻渺,古今一梦尽荒唐。</div>')
+    scopes_js = {k: {"total": f"${v['total_value']:,.0f}", "cash": f"{v['cash_weight']*100:.1f}%",
+                     "bic": f"{v['beta_incl']:.2f}", "bxc": f"{v['beta_ex']:.2f}"}
+                 for k, v in scopes.items()}
     h.append(f"""</div>
 <script>
 const I18N = {json.dumps(I18N_P, ensure_ascii=False)};
+const SCOPES = {json.dumps(scopes_js, ensure_ascii=False)};
+let SCOPE = "all";
+function setScope(sc){{
+  if(!SCOPES[sc]) return;
+  SCOPE = sc;
+  ["all","main","agentic"].forEach(k=>{{
+    const b=document.getElementById("atab-"+k);
+    if(b) b.className = "acct-tab" + (k===sc ? " on" : "");
+  }});
+  const d=SCOPES[sc];
+  document.getElementById("ov_total").textContent=d.total;
+  document.getElementById("ov_cash").textContent=d.cash;
+  document.getElementById("ov_bic").textContent=d.bic;
+  document.getElementById("ov_bxc").textContent=d.bxc;
+  document.querySelectorAll("tr[data-acct]").forEach(tr=>{{
+    const a=tr.getAttribute("data-acct");
+    tr.style.display = (sc==="all" || a.split(",").includes(sc)) ? "" : "none";
+  }});
+  document.querySelectorAll(".scope-blk").forEach(el=>{{
+    el.style.display = (el.getAttribute("data-scope")===sc) ? "" : "none";
+  }});
+}}
 let LANG = "zh";
 function setLang(l){{
   LANG = l;
@@ -535,8 +817,7 @@ function setLang(l){{
     const k = el.getAttribute("data-i18n");
     if(I18N[l][k] !== undefined) el.textContent = I18N[l][k];
   }});
-  const epiZh = document.querySelector(".epi-zh");
-  if(epiZh) epiZh.style.display = (l==="en") ? "none" : "block";
+  document.querySelectorAll(".epi-zh").forEach(el=>{{ el.style.display = (l==="en") ? "none" : "block"; }});
 }}
 setLang("zh");
 </script></body></html>""")

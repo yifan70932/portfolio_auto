@@ -65,11 +65,11 @@ def load_manual_text():
 class App:
     def __init__(self, root):
         self.root = root
-        root.title("Yifan the Starbound Nightfarer - Quant Console v2")
+        root.title("Yifan the Nightfarer - Quant Console v2")
         root.geometry("520x760")
         root.configure(bg=BG)
 
-        tk.Label(root, text="Yifan the Starbound Nightfarer", bg=BG, fg=FG,
+        tk.Label(root, text="Yifan the Nightfarer", bg=BG, fg=FG,
                  font=("Consolas", 14, "bold")).pack(pady=(18, 2))
         tk.Label(root, text="Quant Console \u00b7 bridge-aware", bg=BG, fg=DIM,
                  font=("Consolas", 9)).pack(pady=(0, 10))

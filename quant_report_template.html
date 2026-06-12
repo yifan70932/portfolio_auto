@@ -33,8 +33,10 @@
   .brand .sub{color:var(--dim);font-size:12px;margin-top:7px;letter-spacing:.5px}
   .epigraph{margin:24px 0 8px;padding:18px 26px;border-left:3px solid var(--accent);
     background:linear-gradient(90deg,rgba(63,207,142,.05),transparent);border-radius:0 10px 10px 0}
-  .epigraph .epi-en{font-family:var(--serif);font-style:italic;font-size:15px;color:var(--ink);line-height:1.5}
-  .epigraph .epi-zh{font-family:var(--serif);font-size:13.5px;color:var(--dim);margin-top:8px;line-height:1.6}
+  .epigraph .epi-quote{margin-bottom:16px}
+  .epigraph .epi-quote:last-child{margin-bottom:0}
+  .epigraph .epi-zh{font-family:var(--serif);font-size:17px;color:var(--ink);line-height:1.7;letter-spacing:.5px}
+  .epigraph .epi-en{font-family:var(--serif);font-style:italic;font-size:13px;color:var(--dim);margin-top:8px;line-height:1.5}
   .epigraph .epi-by{font-size:11px;color:var(--faint);margin-top:10px;letter-spacing:1px;text-align:right}
   .controls{display:flex;align-items:center;gap:14px}
   .lang-toggle{display:flex;border:1px solid var(--line);border-radius:7px;overflow:hidden}
@@ -44,6 +46,8 @@
   }
   .lang-toggle button.on{background:var(--accent);color:#06231a;font-weight:700}
   .gen{color:var(--faint);font-size:11px}
+  .closing-poem{font-family:var(--serif);text-align:center;color:var(--dim);font-size:15px;
+    line-height:2.1;margin:64px 0 10px;letter-spacing:1px}
   .theme-tabs{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 14px}
   .theme-tab{background:transparent;border:1px solid var(--line);color:var(--dim);
     padding:6px 14px;border-radius:8px;font-family:var(--mono);font-size:11.5px;
@@ -397,7 +401,7 @@
   <header>
     <div class="brand">
       <h1 data-i18n="title">一飞云霄夜航帆</h1>
-      <div class="sub" data-i18n="subtitle">价值 · 质量 · 动量 · 低波动 + 期权信号</div>
+      <div class="sub" data-i18n="subtitle">CAPM, QVM+L, and Fama-French 量化分析</div>
     </div>
     <div class="controls">
       <button class="wl-btn" onclick="openWL()" data-i18n="edit_wl">✎ 编辑清单</button>
@@ -412,9 +416,16 @@
   <div class="main-col">
 
   <div class="epigraph">
-    <div class="epi-en">"All day he frets that his hoard is still too small; the day it is enough, his eyes close for good."</div>
-    <div class="epi-zh" data-i18n="epi_zh">"终朝只恨聚无多,及到多时眼闭了。"</div>
-    <div class="epi-by">— 曹雪芹《红楼梦 · 好了歌》</div>
+    <div class="epi-quote">
+      <div class="epi-zh">"终朝只恨聚无多,及到多时眼闭了。"</div>
+      <div class="epi-en">"All day he frets that his hoard is still too small; the day it is enough, his eyes close for good."</div>
+      <div class="epi-by">— 曹雪芹《红楼梦 · 好了歌》</div>
+    </div>
+    <div class="epi-quote">
+      <div class="epi-zh">"乱烘烘你方唱罢我登场,反认他乡是故乡。甚荒唐,到头来都是为他人作嫁衣裳。"</div>
+      <div class="epi-en">"In the tumult, one song ends and another takes the stage; a strange land is mistaken for home. How absurd — in the end, each labors only to sew another's wedding gown."</div>
+      <div class="epi-by">— 曹雪芹《红楼梦 · 好了歌注》</div>
+    </div>
   </div>
 
   <div class="section-label"><span data-i18n="rank_label">综合评分排序 · Composite Ranking</span><span class="sl-rule"></span><button class="explain-btn" onclick="toggleExplain('rank',this)" data-i18n="explain_btn">说明</button><button class="bg-btn" onclick="toggleBg('rank',this)" data-i18n="bg_btn">背景</button></div>
@@ -454,6 +465,12 @@
       <span data-i18n="corr_pos">+1 同向</span>
     </div>
     <div class="corr-note" id="corrNote"></div>
+  </div>
+
+  <div id="capmSection" style="display:none">
+    <div class="section-label"><span data-i18n="capm_label">CAPM 归因 · CAPM ATTRIBUTION</span><span class="sl-rule"></span></div>
+    <div class="bg-lead" id="capmLead"></div>
+    <div id="capmBox"></div>
   </div>
 
   <div id="attrSection" style="display:none">
@@ -511,9 +528,11 @@
     </div>
   </div>
 
+  <div class="closing-poem">浮生着甚苦奔忙,盛席华筵终散场。<br>悲喜千般同幻渺,古今一梦尽荒唐。</div>
+
   <footer>
     <span data-i18n="footer">生成于</span> <span id="genTime">__GENERATED__</span>
-    · <span id="footerName">Yifan the Starbound Nightfarer</span> · <span data-i18n="not_advice">非投资建议 / Not investment advice</span>
+    · <span id="footerName">Yifan the Nightfarer</span> · <span data-i18n="not_advice">非投资建议 / Not investment advice</span>
   </footer>
 </div>
 
@@ -999,8 +1018,8 @@ const GLOSSARY = {
 
 const I18N = {
   zh:{
-    title:"一飞云霄夜航帆", subtitle:"价值 · 质量 · 动量 · 低波动 + 期权信号",
-    epi_zh:"\"终朝只恨聚无多,及到多时眼闭了。\"",
+    title:"一飞云霄夜航帆 - 股市量化分析", subtitle:"CAPM, QVM+L, and Fama-French 量化分析",
+    epi_zh:"\"终朝只恨聚无多,及到多时眼闭了。\"<br>\"乱烘烘你方唱罢我登场,反认他乡是故乡。甚荒唐,到头来都是为他人作嫁衣裳。\"",
     rank_label:"综合评分排序 · COMPOSITE RANKING",
     th_rank:"#", th_sym:"标的", th_price:"价格", th_v:"价值 V", th_q:"质量 Q",
     th_m:"动量 M", th_l:"低波 L", th_comp:"综合", th_ivr:"IV分位*",
@@ -1022,6 +1041,9 @@ const I18N = {
     wl_copied:"已复制!",
     corr_note:"相关性接近 +1 说明这些股票同涨同跌——若一篮子股票彼此高度相关,组合是<b>表面分散、实则集中押注同一风险</b>。真正的分散需要低相关甚至负相关的标的。",
     attr_label:"因子归因 · FAMA-FRENCH ATTRIBUTION",
+    capm_label:"CAPM 归因 · CAPM",
+    capm_lead:"对每只股票的日度超额收益对市场超额收益(SPY)做回归。α 年化为截距,|t| ≥ 2 视为统计显著;β 为市场敏感度,R² 为市场可解释比例。",
+    capm_alpha:"α 年化", capm_ta:"t(α)", capm_beta:"β", capm_tb:"t(β)", capm_r2:"R²", capm_n:"样本日数",
     attr_intro:"把每只股票(及等权组合)的超额收益,对 Fama-French 五因子 + 动量回归。<b>Alpha(α)是扣除所有已知因子暴露后剩下的真超额收益</b>;若 α 不显著(|t|<2),说明该股表现可被市场/规模/价值/盈利/投资/动量等已知风险<b>完全解释,没有真正的 alpha</b>——它只是隐性承担了这些因子暴露。R² 越高,说明收益越能被因子解释。",
     attr_note:"<b>关键认识</b>:大多数个股的 α 在统计上并不显著——这正是有效市场的常态。能持续产生显著正 α 的极少。本归因基于历史日收益,<b>过去的 α 不保证未来</b>,且单股回归噪声大,样本期与因子构造都会影响结果。这是检验「我的选股到底有没有真本事」的工具,不是预测工具。",
     alpha_ann:"年化 α", alpha_t:"t 值", r2_lbl:"R²", n_days:"样本天数",
@@ -1061,7 +1083,7 @@ const I18N = {
     no_opt:"无可用期权数据"
   },
   en:{
-    title:"Yifan the Starbound Nightfarer", subtitle:"Value · Quality · Momentum · Low-Vol + Options Signals",
+    title:"Yifan the Nightfarer - Quantitative Market Analysis", subtitle:"CAPM, QVM+L, and Fama-French Quantitative Analysis",
     epi_zh:"",
     rank_label:"COMPOSITE RANKING",
     th_rank:"#", th_sym:"Symbol", th_price:"Price", th_v:"Value V", th_q:"Quality Q",
@@ -1084,6 +1106,9 @@ const I18N = {
     wl_copied:"Copied!",
     corr_note:"Correlation near +1 means these names move together — a basket of highly correlated stocks is <b>diversified in appearance only, but concentrated on the same risk</b>. True diversification needs low- or negatively-correlated assets.",
     attr_label:"FAMA-FRENCH FACTOR ATTRIBUTION",
+    capm_label:"CAPM ATTRIBUTION",
+    capm_lead:"Each stock's daily excess return is regressed on the market excess return (SPY). Annualized α is the intercept; |t| ≥ 2 is treated as statistically significant; β is market sensitivity; R² is the share explained by the market.",
+    capm_alpha:"α (ann.)", capm_ta:"t(α)", capm_beta:"β", capm_tb:"t(β)", capm_r2:"R²", capm_n:"N (days)",
     attr_intro:"Regresses each stock's (and an equal-weight portfolio's) excess return on the Fama-French 5 factors + momentum. <b>Alpha (α) is the true excess return left after removing all known factor exposures.</b> If α is insignificant (|t|<2), the stock's performance is <b>fully explained by known risks</b> (market/size/value/profitability/investment/momentum) — there is no real alpha, just implicit factor exposure. Higher R² means returns are more explained by the factors.",
     attr_note:"<b>Key takeaway</b>: most individual stocks show statistically insignificant α — that is the efficient-market norm. Persistent significant positive α is rare. This attribution uses historical daily returns; <b>past α does not guarantee future α</b>, single-stock regressions are noisy, and results depend on the sample window and factor construction. This is a tool to test whether your stock-picking has real edge, not a forecasting tool.",
     alpha_ann:"Ann. α", alpha_t:"t-stat", r2_lbl:"R²", n_days:"Sample days",
@@ -1175,21 +1200,29 @@ function sectorBadge(r){
   const cls = isEtf ? "badge-etf" : "badge-sector";
   return `<span class="${cls}">${r.sector}</span>`;
 }
-let ACTIVE_THEME = "ALL";
+let ACTIVE_THEME = (THEMES && Object.keys(THEMES).length) ? Object.keys(THEMES)[0] : null;
+function inTheme(sym){
+  if(!THEMES || !ACTIVE_THEME || !THEMES[ACTIVE_THEME]) return true;
+  return THEMES[ACTIVE_THEME].includes(sym);
+}
 function renderThemeTabs(){
   const bar = document.getElementById("themeTabs");
   if(!bar) return;
   if(!THEMES){ bar.style.display="none"; return; }
-  const names = ["ALL", ...Object.keys(THEMES)];
+  const names = Object.keys(THEMES);
   bar.innerHTML = names.map(n=>{
-    const cnt = n==="ALL" ? DATA.length : DATA.filter(r=>THEMES[n].includes(r.symbol)).length;
+    const cnt = DATA.filter(r=>THEMES[n].includes(r.symbol)).length;
     return `<button class="theme-tab ${n===ACTIVE_THEME?"on":""}" onclick="setTheme('${n.replace(/'/g,"\\'")}')">${n}<span class="cnt">${cnt}</span></button>`;
   }).join("");
 }
-function setTheme(n){ ACTIVE_THEME=n; openSym=null; document.getElementById("detail").className="detail"; renderThemeTabs(); renderTable(); renderHeatmap(); }
+function setTheme(n){
+  ACTIVE_THEME=n; openSym=null;
+  document.getElementById("detail").className="detail";
+  renderThemeTabs(); renderTable(); renderHeatmap(); renderCapm(); renderAttribution(); renderSandbox();
+}
 function themeRows(){
-  if(!THEMES || ACTIVE_THEME==="ALL") return DATA;
-  return DATA.filter(r=>THEMES[ACTIVE_THEME].includes(r.symbol));
+  if(!THEMES) return DATA;
+  return DATA.filter(r=>inTheme(r.symbol));
 }
 function renderTable(){
   const t = I18N[LANG];
@@ -1386,10 +1419,7 @@ function renderHeatmap(){
   sec.style.display="block";
   const S=CORR.symbols, M=CORR.matrix;
   // follow the active theme tab: filter both rows and columns
-  let IDX = S.map((s,i)=>i);
-  if(typeof THEMES!=="undefined" && THEMES && typeof ACTIVE_THEME!=="undefined" && ACTIVE_THEME!=="ALL"){
-    IDX = IDX.filter(i=>THEMES[ACTIVE_THEME].includes(S[i]));
-  }
+  let IDX = S.map((s,i)=>i).filter(i=>inTheme(S[i]));
   if(IDX.length<2){ sec.style.display="none"; return; }
   let html="<table class='heat'><tr><th class='corner'></th>"+IDX.map(i=>`<th>${S[i]}</th>`).join("")+"</tr>";
   for(const i of IDX){
@@ -1407,6 +1437,25 @@ function renderHeatmap(){
   document.getElementById("corrNote").innerHTML=t.corr_note;
 }
 
+function renderCapm(){
+  const t=I18N[LANG];
+  const sec=document.getElementById("capmSection");
+  const rows=DATA.filter(r=>r.capm && inTheme(r.symbol));
+  if(!rows.length){ sec.style.display="none"; return; }
+  sec.style.display="block";
+  document.getElementById("capmLead").innerHTML=t.capm_lead;
+  let html=`<table class="tbl"><thead><tr><th class="l">Symbol</th><th>${t.capm_alpha}</th><th>${t.capm_ta}</th><th>${t.capm_beta}</th><th>${t.capm_tb}</th><th>${t.capm_r2}</th><th>${t.capm_n}</th></tr></thead><tbody>`;
+  for(const r of rows){
+    const c=r.capm, sig=Math.abs(c.t_alpha)>=2;
+    const aCol = !sig ? "var(--faint)" : (c.alpha_annual>=0 ? "var(--green)" : "var(--red)");
+    html+=`<tr><td class="l"><span class="sym">${r.symbol}</span></td>
+      <td style="color:${aCol};font-weight:700">${c.alpha_annual>=0?"+":""}${c.alpha_annual.toFixed(1)}%</td>
+      <td style="color:${sig?aCol:"var(--faint)"}">${c.t_alpha.toFixed(2)}</td>
+      <td>${c.beta.toFixed(2)}</td><td style="color:${Math.abs(c.t_beta)>=2?"var(--blue)":"var(--faint)"}">${c.t_beta.toFixed(1)}</td>
+      <td>${c.r2.toFixed(2)}</td><td class="rk">${c.n}</td></tr>`;
+  }
+  document.getElementById("capmBox").innerHTML=html+"</tbody></table>";
+}
 function attrCard(res, isPort, t){
   const sig = Math.abs(res.alpha_t) >= 2;
   const aPos = res.alpha_annual >= 0;
@@ -1443,7 +1492,7 @@ function renderAttribution(){
   document.getElementById("attrIntro").innerHTML=t.attr_intro;
   let html="";
   if(ATTR.portfolio) html+=attrCard(ATTR.portfolio, true, t);
-  (ATTR.singles||[]).forEach(s=> html+=attrCard(s, false, t));
+  (ATTR.singles||[]).filter(x=>inTheme(x.label)).forEach(s=> html+=attrCard(s, false, t));
   document.getElementById("attrBox").innerHTML=html;
   let note=t.attr_note;
   if(ATTR.window_start) note+=`<br><span style="color:var(--faint)">${t.attr_window}: ${ATTR.window_start} → ${ATTR.window_end}</span>`;
@@ -1467,7 +1516,7 @@ const BACKGROUND = {
   // ===== 综合评分排序 =====
   rank: {
     zh:{
-      lead:"这张表用四个「因子」给股票打分。因子是什么、为什么用它?点「背景」。",
+      lead:"本表对候选股票进行四因子横截面评分;因子的定义、构造与选用依据,见「背景」。",
       body:[
         "【要解决的困惑】最朴素的问题是:为什么有的股票长期回报更高?早期的理论(CAPM)说,只有一个原因——你承担了多少「市场风险」。但学者们盯着几十年的真实数据发现:事情没这么简单。有些类型的股票,系统性地比别的赚得多,而且这种规律稳定到不像是运气。",
         "【什么是「因子」】「因子」就是这些被反复验证的、能解释回报差异的「共同特征」。比如:便宜的股票(价值)长期跑赢贵的;近期涨得好的(动量)倾向于继续涨;质量高、波动低的也各有规律。每个因子背后都有大量论文。把股票在这些特征上打分、排序,就是「因子投资」的核心做法。",
@@ -1477,7 +1526,7 @@ const BACKGROUND = {
       ]
     },
     en:{
-      lead:"This table scores stocks using four 'factors'. What is a factor, and why use it? Tap 'Background'.",
+      lead:"Cross-sectional four-factor scoring of the candidate universe. For factor definitions, construction, and rationale, see Background.",
       body:[
         "[The puzzle] The plainest question: why do some stocks earn higher long-run returns? Early theory (CAPM) said there was only one reason — how much 'market risk' you bore. But studying decades of real data, scholars found it wasn't that simple. Certain TYPES of stocks systematically earned more, with a regularity too stable to be luck.",
         "[What a 'factor' is] A 'factor' is one of these repeatedly-verified shared characteristics that explain return differences. E.g.: cheap stocks (value) tend to beat expensive ones long-term; recent winners (momentum) tend to keep winning; high-quality and low-volatility names have their own regularities. Each factor rests on a large body of papers. Scoring and ranking stocks on these traits is the core of 'factor investing'.",
@@ -1491,7 +1540,7 @@ const BACKGROUND = {
   // ===== 相关性矩阵 =====
   corr: {
     zh:{
-      lead:"这张热图看股票「是否一起涨跌」。它揭穿一种假分散。点「背景」。",
+      lead:"本热图度量两两收益相关性;持有多只高度同向波动的标的,仅构成名义分散而非有效分散。详见「背景」。",
       body:[
         "【要解决的困惑】「不要把鸡蛋放一个篮子」——分散投资能降风险,这是常识。但有个陷阱:如果你买了10只股票,它们却总是同涨同跌,那你其实只是把同一个鸡蛋装进了10个看起来不同的篮子。风险根本没分散。",
         "【什么是相关性】相关性衡量两只股票的涨跌「有多同步」。+1=完全同步(一起涨一起跌),0=毫无关系,−1=完全相反(一个涨另一个必跌)。真正能降风险的分散,需要的是低相关、甚至负相关的资产。",
@@ -1501,7 +1550,7 @@ const BACKGROUND = {
       ]
     },
     en:{
-      lead:"This heatmap shows whether stocks move together. It exposes fake diversification. Tap 'Background'.",
+      lead:"Pairwise return correlations. Holding many co-moving names constitutes nominal, not effective, diversification. See Background.",
       body:[
         "[The puzzle] 'Don't put all your eggs in one basket' — diversification reduces risk, common sense. But here's the trap: if you buy 10 stocks that always rise and fall together, you've merely put the same egg into 10 baskets that only look different. Risk isn't diversified at all.",
         "[What correlation is] Correlation measures how synchronized two stocks' moves are. +1 = perfectly in sync (up together, down together), 0 = unrelated, -1 = perfectly opposite. Real risk-reducing diversification needs low- or even negatively-correlated assets.",
@@ -1515,7 +1564,7 @@ const BACKGROUND = {
   // ===== 因子归因 =====
   attr: {
     zh:{
-      lead:"Fama-French 是什么?它检验你的收益是「真本事」还是「运气/风口」。点「背景」。",
+      lead:"Fama-French 归因将收益分解为系统性因子暴露与残差 α,以区分风险补偿与超额技能。详见「背景」。",
       body:[
         "【要解决的困惑】假设一只股票去年涨了40%。这很厉害吗?不一定。如果当年整个市场都涨了35%,那它其实只比大盘多赚5%,剩下的35%只是「随大流」。更进一步:如果它属于某类天然高回报的股票(比如小盘股、价值股),那这「多赚的」可能也只是吃了某个已知规律的红利,而不是选股人有眼光。问题是:怎么把「真本事」和「风口」拆开?",
         "【Fama-French 做了什么】Eugene Fama(后来拿了诺贝尔奖)和 Kenneth French 提出:一只股票的回报,可以拆解成几个「因子」的贡献之和。最初是三个(1993):市场、规模(小盘 vs 大盘)、价值(便宜 vs 贵);后来扩成五个(2015),加上盈利能力和投资风格;再加上动量(Carhart 1997),一共六个。这套框架成了金融学界检验「超额收益从哪来」的标准工具。",
@@ -1526,7 +1575,7 @@ const BACKGROUND = {
       ]
     },
     en:{
-      lead:"What is Fama-French? It tests whether your returns are real skill or just luck/a tailwind. Tap 'Background'.",
+      lead:"Fama-French attribution decomposes returns into systematic factor exposures and residual alpha, separating risk compensation from skill. See Background.",
       body:[
         "[The puzzle] Say a stock rose 40% last year. Impressive? Not necessarily. If the whole market rose 35% that year, it only beat the market by 5% — the other 35% was just 'going with the flow'. Further: if it belongs to a naturally high-returning type (small-caps, value stocks), even that 'extra' may just be harvesting a known regularity, not stock-picking skill. The problem: how do you separate real skill from a tailwind?",
         "[What Fama-French did] Eugene Fama (later a Nobel laureate) and Kenneth French proposed that a stock's return can be decomposed into the sum of contributions from several 'factors'. First three (1993): market, size (small vs large), value (cheap vs expensive); later five (2015), adding profitability and investment style; plus momentum (Carhart 1997) makes six. This framework became the standard academic tool for testing 'where excess return comes from'.",
@@ -1541,7 +1590,7 @@ const BACKGROUND = {
   // ===== 回测 =====
   bt: {
     zh:{
-      lead:"回测=在历史上模拟策略。但它最容易骗人。点「背景」看为什么。",
+      lead:"回测在历史样本上模拟策略表现;结果对过拟合与前视偏差高度敏感,解读须谨慎。详见「背景」。",
       body:[
         "【要解决的困惑】你有了一套选股规则(比如「买因子分最高的几只」),怎么知道它好不好?最直接的想法:拿过去几年的数据跑一遍,看看赚不赚。这就是「回测」。",
         "【为什么回测是把双刃剑】问题在于:只要你不停调参数(调仓频率、买几只、用哪些因子),总能在历史数据里「凑」出一条漂亮的收益曲线——哪怕这套规则其实毫无道理。这叫「过拟合」:你不是发现了规律,而是把历史的噪声当成了规律。一旦用真钱、面对未来,它立刻失效。这是量化投资里最常见、也最致命的自欺。",
@@ -1551,7 +1600,7 @@ const BACKGROUND = {
       ]
     },
     en:{
-      lead:"A backtest simulates a strategy on history. But it's the easiest thing to fool yourself with. Tap 'Background'.",
+      lead:"A backtest simulates strategy performance on historical data; results are highly sensitive to overfitting and look-ahead bias. See Background.",
       body:[
         "[The puzzle] You have a stock-picking rule (e.g. 'buy the highest factor-scored names'). How do you know if it's any good? The obvious idea: run it over the past few years and see if it made money. That's a 'backtest'.",
         "[Why it's a double-edged sword] The catch: if you keep tweaking parameters (rebalance frequency, how many to hold, which factors), you can always 'fit' a pretty return curve out of historical data — even when the rule is meaningless. This is 'overfitting': you didn't find a pattern, you mistook historical noise for one. The moment you use real money against the future, it fails. It's the most common and most fatal self-deception in quant investing.",
@@ -1565,7 +1614,7 @@ const BACKGROUND = {
   // ===== 组合沙盘 =====
   sandbox: {
     zh:{
-      lead:"自己分配权重,看后果。它教你「分散」的真相和「下行风险」。点「背景」。",
+      lead:"在交互式沙盘中自行设定组合权重,并观察其对风险收益、有效分散度与历史回撤的影响。详见「背景」。",
       body:[
         "【要解决的困惑】你有一笔钱、几只看上的股票,该怎么分配?各买多少?这个决定的后果——整个组合会有多波动、最坏能亏多少——光靠直觉是想不清楚的。",
         "【核心洞察:组合 ≠ 个股的简单相加】一个组合的风险,不等于把每只股票的风险加起来。因为它们的涨跌会相互抵消(如果不同步)或相互放大(如果同步)。这就是为什么相关性那么重要(见相关性板块)。一组高度同步的股票,凑成的组合几乎和单押一只一样危险。",
@@ -1575,7 +1624,7 @@ const BACKGROUND = {
       ]
     },
     en:{
-      lead:"Set weights yourself, see the consequences. It teaches the truth about diversification and downside. Tap 'Background'.",
+      lead:"Set portfolio weights interactively and observe the effect on risk/return, effective diversification, and historical drawdown. See Background.",
       body:[
         "[The puzzle] You have some money and a few stocks you like. How should you split it? How much of each? The consequences of that choice — how volatile the whole portfolio is, how much you could lose at worst — can't be reasoned out by intuition alone.",
         "[Core insight: a portfolio is NOT the simple sum of its stocks] A portfolio's risk does not equal the sum of each stock's risk, because their moves cancel out (if unsynchronized) or amplify (if synchronized). That's why correlation matters so much (see the Correlation panel). A set of highly-synchronized stocks forms a portfolio nearly as risky as betting on one alone.",
@@ -1753,7 +1802,7 @@ function sbInit(){
 }
 function sbPortfolioReturns(weights){
   // 按权重合成组合日收益序列
-  const syms = RP.symbols, n = RP.dates.length;
+  const syms = sbSyms(), n = RP.dates.length;
   const out = new Array(n).fill(0);
   for(const s of syms){
     const w = weights[s]||0, r = RP.returns[s];
@@ -1778,7 +1827,7 @@ function sbMetrics(rets){
 function sbEffectiveN(weights){
   // 有效分散度:用组合方差 vs 加权个股方差,结合相关性。
   // 近似:有效独立股票数 = (Σw·σ)² / 组合方差  —— 衡量相关性吃掉了多少分散
-  const syms=RP.symbols;
+  const syms=sbSyms();
   const vars={}, sds={};
   for(const s of syms){
     const r=RP.returns[s], m=r.reduce((a,b)=>a+b,0)/r.length;
@@ -1796,13 +1845,14 @@ function sbEffectiveN(weights){
   const effN = portSD>0 ? Math.pow(weightedSD/portSD,2) : 1;
   return effN;
 }
+function sbSyms(){ return (RP && RP.symbols) ? RP.symbols.filter(inTheme) : []; }
 function renderSandbox(){
   const t=I18N[LANG];
   const sec=document.getElementById("sandboxSection");
-  if(!sbInit()){ sec.style.display="none"; return; }
+  if(!sbInit() || sbSyms().length<2){ sec.style.display="none"; return; }
   sec.style.display="block";
   document.getElementById("sbIntro").innerHTML=t.sb_intro;
-  const syms=RP.symbols;
+  const syms=sbSyms();
   // 左:输入面板
   const sliders=syms.map(s=>{
     const w=SB_STATE.weights[s]||0;
@@ -1828,7 +1878,7 @@ function renderSandbox(){
   sbRenderResult();
 }
 function normWeights(){
-  const syms=RP.symbols;
+  const syms=sbSyms();
   const total=syms.reduce((a,s)=>a+(SB_STATE.weights[s]||0),0);
   const w={};
   syms.forEach(s=> w[s] = total>0 ? (SB_STATE.weights[s]||0)/total : 1/syms.length);
@@ -1841,15 +1891,15 @@ function sbRenderResult(){
   const m=sbMetrics(rets);
   const effN=sbEffectiveN(w);
   // 等权基准
-  const eqW={}; RP.symbols.forEach(s=>eqW[s]=1/RP.symbols.length);
+  const eqW={}; sbSyms().forEach(s=>eqW[s]=1/sbSyms().length);
   const benchM=sbMetrics(sbPortfolioReturns(eqW));
   const dollarDD=Math.round(SB_STATE.amount * Math.abs(m.maxdd)/100);
   // 集中度检查
   let maxSym=null,maxW=0;
-  for(const s of RP.symbols){ if(w[s]>maxW){maxW=w[s];maxSym=s;} }
+  for(const s of sbSyms()){ if(w[s]>maxW){maxW=w[s];maxSym=s;} }
   let flags="";
   if(maxW>0.5){ flags+=`<div class="sb-flag">${t.sb_flag_conc.replace('{sym}',maxSym).replace('{pct}',Math.round(maxW*100))}</div>`; }
-  if(effN < RP.symbols.length*0.5){ flags+=`<div class="sb-flag warn">${t.sb_flag_div.replace('{n}',effN.toFixed(1)).replace('{total}',RP.symbols.length)}</div>`; }
+  if(effN < sbSyms().length*0.5){ flags+=`<div class="sb-flag warn">${t.sb_flag_div.replace('{n}',effN.toFixed(1)).replace('{total}',sbSyms().length)}</div>`; }
   if(!flags){ flags=`<div class="sb-flag ok">${t.sb_flag_ok}</div>`; }
   const box=document.getElementById("sbResult");
   if(!box) return;
@@ -1863,7 +1913,7 @@ function sbRenderResult(){
       <div class="sb-metric"><div class="sml">${t.sb_sharpe}</div>
         <div class="smv" style="color:${m.sharpe>=0?'var(--green)':'var(--red)'}">${m.sharpe!==null?m.sharpe.toFixed(2):'—'}</div></div>
       <div class="sb-metric"><div class="sml">${t.sb_divscore}</div>
-        <div class="smv">${effN.toFixed(1)} / ${RP.symbols.length}</div>
+        <div class="smv">${effN.toFixed(1)} / ${sbSyms().length}</div>
         <div class="smt">${t.sb_teach_div}</div></div>
     </div>
     <div class="sb-metric" style="margin-bottom:14px">
@@ -1892,13 +1942,13 @@ function sbSetWeight(s, val){
   SB_STATE.weights[s]=val/100;
   document.getElementById("wpct_"+s).textContent=Math.round(val);
   document.getElementById("wdol_"+s).textContent=Math.round((val/100)*SB_STATE.amount);
-  const total=RP.symbols.reduce((a,x)=>a+(SB_STATE.weights[x]||0),0);
+  const total=sbSyms().reduce((a,x)=>a+(SB_STATE.weights[x]||0),0);
   document.getElementById("sbTotalW").textContent=Math.round(total*100)+"%";
   sbRenderResult();
 }
 function sbSetAmount(val){
   SB_STATE.amount=parseFloat(val)||0;
-  RP.symbols.forEach(s=>{ const el=document.getElementById("wdol_"+s);
+  sbSyms().forEach(s=>{ const el=document.getElementById("wdol_"+s);
     if(el) el.textContent=Math.round((SB_STATE.weights[s]||0)*SB_STATE.amount); });
   sbRenderResult();
 }
@@ -2154,11 +2204,11 @@ function setLang(l){
   });
   document.getElementById("noteBox").innerHTML=I18N[l].note;
   // 英文模式隐藏名言的中文译文行
-  const epiZh=document.querySelector(".epi-zh");
-  if(epiZh) epiZh.style.display = (l==="en") ? "none" : "block";
+  document.querySelectorAll(".epi-zh").forEach(el=>{ el.style.display = (l==="en") ? "none" : "block"; });
   renderThemeTabs();
   renderTable();
   renderHeatmap();
+  renderCapm();
   renderAttribution();
   renderBacktest();
   renderSandbox();

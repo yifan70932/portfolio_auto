@@ -1,19 +1,20 @@
   FF factors ready: 15813 trading days, columns=['MKT', 'SMB', 'HML', 'RMW', 'CMA', 'MOM', 'RF']
+  FF factors ready: 15813 trading days, columns=['MKT', 'SMB', 'HML', 'RMW', 'CMA', 'MOM', 'RF']
 ================================================================
 PORTFOLIO X-RAY  (live holdings, both accounts)
 ================================================================
-total value $15,152.63   cash 86.5%   rf(FRED) 4.50%
+total value $15,350.00   cash 86.7%   rf(FRED) 4.50%
 portfolio beta INCL cash: 0.19    ex-cash: 1.43
 
 -- theme weights --
-cash     86.5
-etf      10.9
-semis     1.6
+cash     86.7
+etf      10.8
+semis     1.5
 core      1.0
 
 -- positions --
 account symbol   qty  avg_cost   price    value    pnl  weight   beta themes
-   main    VOO 2.000    671.28  678.23 1356.460 13.900   0.090  1.002    etf
+   main    VOO 2.000    671.28  678.23 1356.460 13.900   0.088  1.002    etf
    main   QQQM 1.000    289.24  295.02  295.020  5.780   0.019  1.319    etf
    main   SNDK 0.100   1861.00 1881.51  188.151  2.051   0.012  3.706  semis
    main   HOOD 1.000     88.24   92.23   92.230  3.990   0.006  3.246   core

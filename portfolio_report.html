@@ -1,6 +1,6 @@
 <!DOCTYPE html><html lang="zh"><head><meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>Portfolio X-Ray · 2026-06-12 01:55</title><style>
+<title>Portfolio X-Ray · 2026-06-12 02:51</title><style>
 :root{--bg:#131a26;--panel:#1b2433;--panel2:#222d3f;--line:#374559;--ink:#e3eaf5;
 --dim:#94a2ba;--faint:#5a6880;--green:#4ade9a;--red:#ff6b70;--amber:#f5bd3f;--blue:#6bb3ff;
 --accent:#4ade9a;--mono:'JetBrains Mono','SF Mono',ui-monospace,Menlo,Consolas,monospace;
@@ -12,23 +12,23 @@ color:var(--ink);font-family:var(--mono);font-feature-settings:"tnum" 1;line-hei
 .wrap{max-width:1280px;margin:0 auto;padding:0 40px}
 header{display:flex;align-items:flex-end;justify-content:space-between;padding:38px 0 22px;
 border-bottom:1px solid var(--line);flex-wrap:wrap;gap:16px}
-.brand h1{font-family:var(--serif);font-weight:600;font-size:30px}
-.brand .sub{color:var(--dim);font-size:12px;margin-top:7px;letter-spacing:.5px}
+.brand h1{font-family:var(--serif);font-weight:600;font-size:32px}
+.brand .sub{color:var(--dim);font-size:13px;margin-top:7px;letter-spacing:.5px}
 .gen{color:var(--faint);font-size:11px}
 .epigraph{margin:24px 0 8px;padding:18px 26px;border-left:3px solid var(--accent);
 background:linear-gradient(90deg,rgba(63,207,142,.05),transparent);border-radius:0 10px 10px 0}
-.epi-en{font-family:var(--serif);font-style:italic;font-size:15px}
-.epi-zh{font-family:var(--serif);font-size:13.5px;color:var(--dim);margin-top:8px}
+.epi-zh{font-family:var(--serif);font-size:17px;line-height:1.7;letter-spacing:.5px}
+.epi-en{font-family:var(--serif);font-style:italic;font-size:13px;color:var(--dim);margin-top:8px}
 .epi-by{font-size:11px;color:var(--faint);margin-top:10px;text-align:right;letter-spacing:1px}
-.section-label{font-size:11px;letter-spacing:2.5px;color:var(--dim);text-transform:uppercase;
-margin:34px 0 14px;display:flex;align-items:center;gap:12px}
+.section-label{font-size:12.5px;letter-spacing:2.5px;color:var(--dim);text-transform:uppercase;
+margin:36px 0 14px;display:flex;align-items:center;gap:12px}
 .section-label .sl-rule{flex:1;height:1px;background:var(--line)}
 .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px}
 .card{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:16px 18px}
-.card .k{font-size:10px;color:var(--dim);letter-spacing:1.5px;text-transform:uppercase}
-.card .v{font-size:22px;font-weight:700;margin-top:6px}
-.tbl{width:100%;border-collapse:collapse;font-size:13px}
-.tbl thead th{text-align:right;color:var(--dim);font-weight:500;font-size:10.5px;letter-spacing:1px;
+.card .k{font-size:11px;color:var(--dim);letter-spacing:1.5px;text-transform:uppercase}
+.card .v{font-size:25px;font-weight:700;margin-top:6px}
+.tbl{width:100%;border-collapse:collapse;font-size:14px}
+.tbl thead th{text-align:right;color:var(--dim);font-weight:500;font-size:11.5px;letter-spacing:1px;
 padding:10px 12px;border-bottom:1px solid var(--line);text-transform:uppercase;white-space:nowrap}
 .tbl thead th.l{text-align:left}
 .tbl tbody td{padding:11px 12px;text-align:right;border-bottom:1px solid rgba(34,45,61,.5)}
@@ -43,7 +43,16 @@ padding:10px 12px;border-bottom:1px solid var(--line);text-transform:uppercase;w
 .lamp.r{background:rgba(255,107,112,.15);color:var(--red);border:1px solid var(--red)}
 pre{background:var(--panel);border:1px solid var(--line);border-radius:10px;
 padding:16px 18px;font-size:12px;overflow-x:auto;color:var(--dim)}
-.note{color:var(--faint);font-size:11px;margin-top:8px;font-style:italic}
+.note{color:var(--faint);font-size:12.5px;margin-top:8px;font-style:italic}
+.sig{color:var(--green);font-weight:700}.insig{color:var(--faint)}
+.closing-poem{font-family:var(--serif);text-align:center;color:var(--dim);font-size:15px;
+line-height:2.1;margin:64px 0 10px;letter-spacing:1px}
+.epi-quote{margin-bottom:16px}.epi-quote:last-child{margin-bottom:0}
+.acct-tabs{display:flex;gap:8px;flex-wrap:wrap;margin:26px 0 0}
+.acct-tab{background:transparent;border:1px solid var(--line);color:var(--dim);
+padding:7px 16px;border-radius:8px;font-family:var(--mono);font-size:12.5px;cursor:pointer;transition:.15s}
+.acct-tab:hover{border-color:var(--accent);color:var(--accent)}
+.acct-tab.on{background:var(--accent);color:#06231a;border-color:var(--accent);font-weight:700}
 .lang-toggle{display:flex;border:1px solid var(--line);border-radius:7px;overflow:hidden}
 .lang-toggle button{background:transparent;color:var(--dim);border:0;padding:7px 15px;
 font-family:var(--mono);font-size:12px;cursor:pointer;letter-spacing:.5px;transition:.18s}
@@ -55,83 +64,99 @@ font-family:var(--mono);font-size:12px;cursor:pointer;letter-spacing:.5px;transi
 .hm .corner{width:62px}
 .hm .diag{color:var(--faint);background:var(--panel2)!important}
 </style></head><body><div class="wrap">
-<header><div class="brand"><h1>Yifan the Starbound Nightfarer</h1>
+<header><div class="brand"><h1 data-i18n="title"></h1>
 <div class="sub" data-i18n="sub"></div></div>
 <div style="display:flex;align-items:center;gap:14px">
 <div class="lang-toggle"><button id="btn-zh" class="on" onclick="setLang('zh')">中文</button><button id="btn-en" onclick="setLang('en')">EN</button></div>
-<div class="gen">generated 2026-06-12 01:55</div></div></header>
+<div class="gen">generated 2026-06-12 02:51</div></div></header>
 <div class="epigraph">
-<div class="epi-en">"All day he frets that his hoard is still too small; the day it is enough, his eyes close for good."</div>
+<div class="epi-quote">
 <div class="epi-zh">"终朝只恨聚无多,及到多时眼闭了。"</div>
+<div class="epi-en">"All day he frets that his hoard is still too small; the day it is enough, his eyes close for good."</div>
 <div class="epi-by">— 曹雪芹《红楼梦 · 好了歌》</div></div>
+<div class="epi-quote">
+<div class="epi-zh">"这是尘寰中消长数应当,何必枉悲伤?"</div>
+<div class="epi-en">"Such waxing and waning is the appointed course of the mortal world — why grieve in vain?"</div>
+<div class="epi-by">— 曹雪芹《红楼梦 · 乐中悲》</div></div></div>
+<div class="acct-tabs">
+<button class="acct-tab on" id="atab-all" onclick="setScope('all')" data-i18n="tab_all"></button>
+<button class="acct-tab" id="atab-main" onclick="setScope('main')" data-i18n="tab_main"></button>
+<button class="acct-tab" id="atab-agentic" onclick="setScope('agentic')" data-i18n="tab_agentic"></button>
+</div>
 <div class="section-label"><span data-i18n="overview"></span><span class="sl-rule"></span></div>
 <div class="cards">
-<div class="card"><div class="k" data-i18n="k_total"></div><div class="v">$15,153</div></div>
-<div class="card"><div class="k" data-i18n="k_cash"></div><div class="v">86.5%</div></div>
-<div class="card"><div class="k" data-i18n="k_bic"></div><div class="v">0.19</div></div>
-<div class="card"><div class="k" data-i18n="k_bxc"></div><div class="v">1.43</div></div>
+<div class="card"><div class="k" data-i18n="k_total"></div><div class="v"><span id="ov_total">$15,350</span></div></div>
+<div class="card"><div class="k" data-i18n="k_cash"></div><div class="v"><span id="ov_cash">86.7%</span></div></div>
+<div class="card"><div class="k" data-i18n="k_bic"></div><div class="v"><span id="ov_bic">0.19</span></div></div>
+<div class="card"><div class="k" data-i18n="k_bxc"></div><div class="v"><span id="ov_bxc">1.43</span></div></div>
 <div class="card"><div class="k" data-i18n="k_rf"></div><div class="v">4.50%</div></div>
 </div><div class="note" data-i18n="n_beta"></div>
 <div class="section-label"><span data-i18n="contracts"></span><span class="sl-rule"></span></div>
 <table class="tbl"><thead><tr><th class="l">ID</th><th class="l">Thesis</th><th>Status</th></tr></thead><tbody>
-<tr><td class="l sym">SMCI-AGENTIC-2026-06-11</td><td class="l">event</td><td><span class="lamp g">OPEN, healthy</span></td></tr>
-<tr><td class="l sym">COO-AGENTIC-LEGACY</td><td class="l">defensive (failing)</td><td><span class="lamp y">OPEN, thesis-watch</span></td></tr>
-<tr><td class="l sym">SMCI-MAIN-2026-06-11</td><td class="l">event</td><td><span class="lamp y">OPEN, CONTRACT PENDING</span></td></tr>
-<tr><td class="l sym">SNDK-MAIN-2026-06-11</td><td class="l">UNDECLARED</td><td><span class="lamp r">OPEN, VIOLATION (no contract at entry)</span></td></tr>
+<tr data-acct="agentic"><td class="l sym">SMCI-AGENTIC-2026-06-11</td><td class="l">event</td><td><span class="lamp g">OPEN, healthy</span></td></tr>
+<tr data-acct="agentic"><td class="l sym">COO-AGENTIC-LEGACY</td><td class="l">defensive (failing)</td><td><span class="lamp y">OPEN, thesis-watch</span></td></tr>
+<tr data-acct="main"><td class="l sym">SMCI-MAIN-2026-06-11</td><td class="l">event</td><td><span class="lamp y">OPEN, CONTRACT PENDING</span></td></tr>
+<tr data-acct="main"><td class="l sym">SNDK-MAIN-2026-06-11</td><td class="l">UNDECLARED</td><td><span class="lamp r">OPEN, VIOLATION (no contract at entry)</span></td></tr>
 </tbody></table>
 <div class="section-label"><span data-i18n="positions"></span><span class="sl-rule"></span></div>
 <table class="tbl"><thead><tr><th class="l">Symbol</th><th class="l">Acct</th><th>Qty</th><th>Cost</th><th>Price</th><th>Value</th><th>P&L</th><th>Weight</th><th>β</th><th class="l">Themes</th></tr></thead><tbody>
-<tr><td class="l sym">VOO</td><td class="l">main</td><td>2</td><td>671.28</td><td>678.23</td><td>1,356.46</td><td><span class="pos">+13.90</span></td><td>8.95%</td><td>1.00</td><td class="l" style="color:var(--dim);font-size:11px">etf</td></tr>
-<tr><td class="l sym">QQQM</td><td class="l">main</td><td>1</td><td>289.24</td><td>295.02</td><td>295.02</td><td><span class="pos">+5.78</span></td><td>1.95%</td><td>1.32</td><td class="l" style="color:var(--dim);font-size:11px">etf</td></tr>
-<tr><td class="l sym">SNDK</td><td class="l">main</td><td>0.1</td><td>1,861.00</td><td>1,881.51</td><td>188.15</td><td><span class="pos">+2.05</span></td><td>1.24%</td><td>3.71</td><td class="l" style="color:var(--dim);font-size:11px">semis</td></tr>
-<tr><td class="l sym">HOOD</td><td class="l">main</td><td>1</td><td>88.24</td><td>92.23</td><td>92.23</td><td><span class="pos">+3.99</span></td><td>0.61%</td><td>3.25</td><td class="l" style="color:var(--dim);font-size:11px">core</td></tr>
-<tr><td class="l sym">KO</td><td class="l">main</td><td>0.5</td><td>83.22</td><td>82.53</td><td>41.26</td><td><span class="neg">-0.35</span></td><td>0.27%</td><td>-0.22</td><td class="l" style="color:var(--dim);font-size:11px">core</td></tr>
-<tr><td class="l sym">SMCI</td><td class="l">main</td><td>1</td><td>30.01</td><td>31.97</td><td>31.97</td><td><span class="pos">+1.96</span></td><td>0.21%</td><td>3.55</td><td class="l" style="color:var(--dim);font-size:11px">semis</td></tr>
-<tr><td class="l sym">COO</td><td class="l">agentic</td><td>0.261248</td><td>68.90</td><td>67.51</td><td>17.64</td><td><span class="neg">-0.36</span></td><td>0.12%</td><td>0.63</td><td class="l" style="color:var(--dim);font-size:11px">core</td></tr>
-<tr><td class="l sym">SMCI</td><td class="l">agentic</td><td>0.5</td><td>30.36</td><td>31.97</td><td>15.98</td><td><span class="pos">+0.80</span></td><td>0.11%</td><td>3.55</td><td class="l" style="color:var(--dim);font-size:11px">semis</td></tr>
+<tr data-acct="main"><td class="l sym">VOO</td><td class="l">main</td><td>2</td><td>671.28</td><td>678.23</td><td>1,356.46</td><td><span class="pos">+13.90</span></td><td>8.84%</td><td>1.00</td><td class="l" style="color:var(--dim);font-size:11px">etf</td></tr>
+<tr data-acct="main"><td class="l sym">QQQM</td><td class="l">main</td><td>1</td><td>289.24</td><td>295.02</td><td>295.02</td><td><span class="pos">+5.78</span></td><td>1.92%</td><td>1.32</td><td class="l" style="color:var(--dim);font-size:11px">etf</td></tr>
+<tr data-acct="main"><td class="l sym">SNDK</td><td class="l">main</td><td>0.1</td><td>1,861.00</td><td>1,881.51</td><td>188.15</td><td><span class="pos">+2.05</span></td><td>1.23%</td><td>3.71</td><td class="l" style="color:var(--dim);font-size:11px">semis</td></tr>
+<tr data-acct="main"><td class="l sym">HOOD</td><td class="l">main</td><td>1</td><td>88.24</td><td>92.23</td><td>92.23</td><td><span class="pos">+3.99</span></td><td>0.60%</td><td>3.25</td><td class="l" style="color:var(--dim);font-size:11px">core</td></tr>
+<tr data-acct="main"><td class="l sym">KO</td><td class="l">main</td><td>0.5</td><td>83.22</td><td>82.53</td><td>41.26</td><td><span class="neg">-0.35</span></td><td>0.27%</td><td>-0.22</td><td class="l" style="color:var(--dim);font-size:11px">core</td></tr>
+<tr data-acct="main"><td class="l sym">SMCI</td><td class="l">main</td><td>1</td><td>30.01</td><td>31.97</td><td>31.97</td><td><span class="pos">+1.96</span></td><td>0.21%</td><td>3.55</td><td class="l" style="color:var(--dim);font-size:11px">semis</td></tr>
+<tr data-acct="agentic"><td class="l sym">COO</td><td class="l">agentic</td><td>0.261248</td><td>68.90</td><td>67.51</td><td>17.64</td><td><span class="neg">-0.36</span></td><td>0.11%</td><td>0.63</td><td class="l" style="color:var(--dim);font-size:11px">core</td></tr>
+<tr data-acct="agentic"><td class="l sym">SMCI</td><td class="l">agentic</td><td>0.5</td><td>30.36</td><td>31.97</td><td>15.98</td><td><span class="pos">+0.80</span></td><td>0.10%</td><td>3.55</td><td class="l" style="color:var(--dim);font-size:11px">semis</td></tr>
 </tbody></table>
 <div class="section-label"><span data-i18n="hold"></span><span class="sl-rule"></span></div>
 <table class="tbl"><thead><tr><th class="l">Symbol</th><th>1M</th><th>3M</th><th>6M</th><th>12M</th><th>Vol (ann.)</th><th>Max DD</th><th>vs 52W High</th><th>RVol Rank</th></tr></thead><tbody>
-<tr><td class="l sym">COO</td><td><span class="pos">+13.5%</span></td><td><span class="neg">-3.4%</span></td><td><span class="neg">-16.4%</span></td><td>—</td><td>30%</td><td><span class="neg">-30.1%</span></td><td><span class="neg">-19.9%</span></td><td>15</td></tr>
-<tr><td class="l sym">HOOD</td><td><span class="pos">+20.2%</span></td><td><span class="pos">+25.7%</span></td><td><span class="neg">-32.0%</span></td><td>—</td><td>70%</td><td><span class="neg">-57.3%</span></td><td><span class="neg">-39.5%</span></td><td>15</td></tr>
-<tr><td class="l sym">KO</td><td><span class="pos">+2.8%</span></td><td><span class="pos">+6.7%</span></td><td><span class="pos">+18.4%</span></td><td>—</td><td>17%</td><td><span class="neg">-7.9%</span></td><td><span class="neg">-1.3%</span></td><td>1</td></tr>
-<tr><td class="l sym">QQQM</td><td><span class="pos">+0.3%</span></td><td><span class="pos">+20.9%</span></td><td><span class="pos">+14.5%</span></td><td>—</td><td>17%</td><td><span class="neg">-12.0%</span></td><td><span class="neg">-4.0%</span></td><td>0</td></tr>
-<tr><td class="l sym">SMCI</td><td><span class="neg">-0.1%</span></td><td><span class="pos">+4.0%</span></td><td><span class="neg">-8.4%</span></td><td>—</td><td>85%</td><td><span class="neg">-66.2%</span></td><td><span class="neg">-47.3%</span></td><td>0</td></tr>
-<tr><td class="l sym">SNDK</td><td><span class="pos">+30.0%</span></td><td><span class="pos">+184.4%</span></td><td><span class="pos">+708.0%</span></td><td>—</td><td>100%</td><td><span class="neg">-31.3%</span></td><td><span class="pos">+0.0%</span></td><td>61</td></tr>
-<tr><td class="l sym">VOO</td><td><span class="neg">-0.6%</span></td><td><span class="pos">+11.7%</span></td><td><span class="pos">+7.9%</span></td><td>—</td><td>12%</td><td><span class="neg">-8.9%</span></td><td><span class="neg">-2.9%</span></td><td>10</td></tr>
+<tr data-acct="agentic"><td class="l sym">COO</td><td><span class="pos">+13.5%</span></td><td><span class="neg">-3.4%</span></td><td><span class="neg">-16.4%</span></td><td>—</td><td>30%</td><td><span class="neg">-30.1%</span></td><td><span class="neg">-19.9%</span></td><td>15</td></tr>
+<tr data-acct="main"><td class="l sym">HOOD</td><td><span class="pos">+20.2%</span></td><td><span class="pos">+25.7%</span></td><td><span class="neg">-32.0%</span></td><td>—</td><td>70%</td><td><span class="neg">-57.3%</span></td><td><span class="neg">-39.5%</span></td><td>15</td></tr>
+<tr data-acct="main"><td class="l sym">KO</td><td><span class="pos">+2.8%</span></td><td><span class="pos">+6.7%</span></td><td><span class="pos">+18.4%</span></td><td>—</td><td>17%</td><td><span class="neg">-7.9%</span></td><td><span class="neg">-1.3%</span></td><td>1</td></tr>
+<tr data-acct="main"><td class="l sym">QQQM</td><td><span class="pos">+0.3%</span></td><td><span class="pos">+20.9%</span></td><td><span class="pos">+14.5%</span></td><td>—</td><td>17%</td><td><span class="neg">-12.0%</span></td><td><span class="neg">-4.0%</span></td><td>0</td></tr>
+<tr data-acct="agentic,main"><td class="l sym">SMCI</td><td><span class="neg">-0.1%</span></td><td><span class="pos">+4.0%</span></td><td><span class="neg">-8.4%</span></td><td>—</td><td>85%</td><td><span class="neg">-66.2%</span></td><td><span class="neg">-47.3%</span></td><td>0</td></tr>
+<tr data-acct="main"><td class="l sym">SNDK</td><td><span class="pos">+30.0%</span></td><td><span class="pos">+184.4%</span></td><td><span class="pos">+708.0%</span></td><td>—</td><td>100%</td><td><span class="neg">-31.3%</span></td><td><span class="pos">+0.0%</span></td><td>61</td></tr>
+<tr data-acct="main"><td class="l sym">VOO</td><td><span class="neg">-0.6%</span></td><td><span class="pos">+11.7%</span></td><td><span class="pos">+7.9%</span></td><td>—</td><td>12%</td><td><span class="neg">-8.9%</span></td><td><span class="neg">-2.9%</span></td><td>10</td></tr>
 </tbody></table>
+<div class="section-label"><span data-i18n="capm"></span><span class="sl-rule"></span></div>
+<table class="tbl"><thead><tr><th class="l">Symbol</th><th>α (ann.)</th><th>t(α)</th><th>β</th><th>t(β)</th><th>R²</th><th>N</th></tr></thead><tbody>
+<tr data-acct="agentic"><td class="l sym">COO</td><td><span class="insig">-15.8%</span></td><td class="insig">-0.53</td><td>0.63</td><td>4.1</td><td>0.06</td><td>250</td></tr>
+<tr data-acct="main"><td class="l sym">HOOD</td><td><span class="insig">-15.1%</span></td><td class="insig">-0.26</td><td>3.23</td><td>11.0</td><td>0.33</td><td>250</td></tr>
+<tr data-acct="main"><td class="l sym">KO</td><td><span class="insig">+17.0%</span></td><td class="insig">1.01</td><td>-0.22</td><td>-2.5</td><td>0.02</td><td>250</td></tr>
+<tr data-acct="main"><td class="l sym">QQQM</td><td><span class="insig">+4.1%</span></td><td class="insig">0.71</td><td>1.31</td><td>44.8</td><td>0.89</td><td>250</td></tr>
+<tr data-acct="agentic,main"><td class="l sym">SMCI</td><td><span class="insig">-58.9%</span></td><td class="insig">-0.79</td><td>3.53</td><td>9.3</td><td>0.26</td><td>250</td></tr>
+<tr data-acct="main"><td class="l sym">SNDK</td><td><span class="pos">+366.8%</span></td><td class="sig">4.09</td><td>3.69</td><td>8.1</td><td>0.21</td><td>250</td></tr>
+<tr data-acct="main"><td class="l sym">VOO</td><td><span class="insig">+0.1%</span></td><td class="insig">0.39</td><td>1.00</td><td>735.0</td><td>1.00</td><td>250</td></tr>
+</tbody></table><div class="note" data-i18n="n_capm"></div>
+<div class="section-label"><span data-i18n="qvml"></span><span class="sl-rule"></span></div>
+<table class="tbl"><thead><tr><th class="l">Symbol</th><th>V</th><th>Q</th><th>M</th><th>L</th><th>Composite</th></tr></thead><tbody>
+<tr data-acct="main"><td class="l sym">VOO</td><td><span style="font-weight:600">62</span><div class="bar"><i style="width:62%"></i></div></td><td>—</td><td>—</td><td><span style="font-weight:600">86</span><div class="bar"><i style="width:86%"></i></div></td><td><span style="font-weight:700;font-size:16px">74</span></td></tr>
+<tr data-acct="main"><td class="l sym">KO</td><td><span style="font-weight:600">44</span><div class="bar"><i style="width:44%"></i></div></td><td><span style="font-weight:600">60</span><div class="bar"><i style="width:60%"></i></div></td><td>—</td><td><span style="font-weight:600">71</span><div class="bar"><i style="width:71%"></i></div></td><td><span style="font-weight:700;font-size:16px">58</span></td></tr>
+<tr data-acct="main"><td class="l sym">QQQM</td><td><span style="font-weight:600">43</span><div class="bar"><i style="width:43%"></i></div></td><td>—</td><td>—</td><td><span style="font-weight:600">57</span><div class="bar"><i style="width:57%"></i></div></td><td><span style="font-weight:700;font-size:16px">50</span></td></tr>
+<tr data-acct="agentic"><td class="l sym">COO</td><td><span style="font-weight:600">49</span><div class="bar"><i style="width:49%"></i></div></td><td><span style="font-weight:600">40</span><div class="bar"><i style="width:40%"></i></div></td><td>—</td><td><span style="font-weight:600">43</span><div class="bar"><i style="width:43%"></i></div></td><td><span style="font-weight:700;font-size:16px">44</span></td></tr>
+<tr data-acct="agentic,main"><td class="l sym">SMCI</td><td><span style="font-weight:600">68</span><div class="bar"><i style="width:68%"></i></div></td><td><span style="font-weight:600">33</span><div class="bar"><i style="width:33%"></i></div></td><td>—</td><td><span style="font-weight:600">14</span><div class="bar"><i style="width:14%"></i></div></td><td><span style="font-weight:700;font-size:16px">38</span></td></tr>
+<tr data-acct="main"><td class="l sym">HOOD</td><td><span style="font-weight:600">31</span><div class="bar"><i style="width:31%"></i></div></td><td><span style="font-weight:600">53</span><div class="bar"><i style="width:53%"></i></div></td><td>—</td><td><span style="font-weight:600">29</span><div class="bar"><i style="width:29%"></i></div></td><td><span style="font-weight:700;font-size:16px">38</span></td></tr>
+<tr data-acct="main"><td class="l sym">SNDK</td><td><span style="font-weight:600">0</span><div class="bar"><i style="width:2%"></i></div></td><td><span style="font-weight:600">80</span><div class="bar"><i style="width:80%"></i></div></td><td>—</td><td><span style="font-weight:600">0</span><div class="bar"><i style="width:2%"></i></div></td><td><span style="font-weight:700;font-size:16px">27</span></td></tr>
+</tbody></table><div class="note" data-i18n="n_qvml"></div>
 <div class="section-label"><span data-i18n="themes"></span><span class="sl-rule"></span></div>
-<table class="tbl"><tbody>
-<tr><td class="l sym" style="width:160px">cash</td><td style="width:90px">86.5%</td><td class="l"><div class="bar"><i style="width:100%"></i></div></td></tr>
-<tr><td class="l sym" style="width:160px">etf</td><td style="width:90px">10.9%</td><td class="l"><div class="bar"><i style="width:13%"></i></div></td></tr>
-<tr><td class="l sym" style="width:160px">semis</td><td style="width:90px">1.6%</td><td class="l"><div class="bar"><i style="width:2%"></i></div></td></tr>
-<tr><td class="l sym" style="width:160px">core</td><td style="width:90px">1.0%</td><td class="l"><div class="bar"><i style="width:1%"></i></div></td></tr>
-</tbody></table>
+<div class="scope-blk" data-scope="all" data-kind="themes"><table class="tbl"><tbody><tr><td class="l sym" style="width:160px">cash</td><td style="width:90px">86.7%</td><td class="l"><div class="bar"><i style="width:100%"></i></div></td></tr><tr><td class="l sym" style="width:160px">etf</td><td style="width:90px">10.8%</td><td class="l"><div class="bar"><i style="width:12%"></i></div></td></tr><tr><td class="l sym" style="width:160px">semis</td><td style="width:90px">1.5%</td><td class="l"><div class="bar"><i style="width:2%"></i></div></td></tr><tr><td class="l sym" style="width:160px">core</td><td style="width:90px">1.0%</td><td class="l"><div class="bar"><i style="width:1%"></i></div></td></tr></tbody></table></div>
+<div class="scope-blk" data-scope="main" data-kind="themes" style="display:none"><table class="tbl"><tbody><tr><td class="l sym" style="width:160px">cash</td><td style="width:90px">86.8%</td><td class="l"><div class="bar"><i style="width:100%"></i></div></td></tr><tr><td class="l sym" style="width:160px">etf</td><td style="width:90px">10.9%</td><td class="l"><div class="bar"><i style="width:13%"></i></div></td></tr><tr><td class="l sym" style="width:160px">semis</td><td style="width:90px">1.5%</td><td class="l"><div class="bar"><i style="width:2%"></i></div></td></tr><tr><td class="l sym" style="width:160px">core</td><td style="width:90px">0.9%</td><td class="l"><div class="bar"><i style="width:1%"></i></div></td></tr></tbody></table></div>
+<div class="scope-blk" data-scope="agentic" data-kind="themes" style="display:none"><table class="tbl"><tbody><tr><td class="l sym" style="width:160px">cash</td><td style="width:90px">83.2%</td><td class="l"><div class="bar"><i style="width:100%"></i></div></td></tr><tr><td class="l sym" style="width:160px">core</td><td style="width:90px">8.8%</td><td class="l"><div class="bar"><i style="width:11%"></i></div></td></tr><tr><td class="l sym" style="width:160px">semis</td><td style="width:90px">8.0%</td><td class="l"><div class="bar"><i style="width:10%"></i></div></td></tr></tbody></table></div>
 <div class="section-label"><span data-i18n="mcr"></span><span class="sl-rule"></span></div>
-<table class="tbl"><tbody>
-<tr><td class="l sym" style="width:160px">VOO</td><td style="width:90px">37.2%</td><td class="l"><div class="bar"><i style="width:100%"></i></div></td></tr>
-<tr><td class="l sym" style="width:160px">SNDK</td><td style="width:90px">36.4%</td><td class="l"><div class="bar"><i style="width:98%"></i></div></td></tr>
-<tr><td class="l sym" style="width:160px">QQQM</td><td style="width:90px">11.4%</td><td class="l"><div class="bar"><i style="width:31%"></i></div></td></tr>
-<tr><td class="l sym" style="width:160px">HOOD</td><td style="width:90px">9.7%</td><td class="l"><div class="bar"><i style="width:26%"></i></div></td></tr>
-<tr><td class="l sym" style="width:160px">SMCI</td><td style="width:90px">5.4%</td><td class="l"><div class="bar"><i style="width:15%"></i></div></td></tr>
-<tr><td class="l sym" style="width:160px">COO</td><td style="width:90px">0.3%</td><td class="l"><div class="bar"><i style="width:1%"></i></div></td></tr>
-<tr><td class="l sym" style="width:160px">KO</td><td style="width:90px">-0.3%</td><td class="l"><div class="bar"><i style="width:0%"></i></div></td></tr>
-</tbody></table>
+<div class="scope-blk" data-scope="all" data-kind="mcr"><table class="tbl"><tbody><tr><td class="l sym" style="width:160px">VOO</td><td style="width:90px">37.2%</td><td class="l"><div class="bar"><i style="width:100%"></i></div></td></tr><tr><td class="l sym" style="width:160px">SNDK</td><td style="width:90px">36.4%</td><td class="l"><div class="bar"><i style="width:98%"></i></div></td></tr><tr><td class="l sym" style="width:160px">QQQM</td><td style="width:90px">11.4%</td><td class="l"><div class="bar"><i style="width:31%"></i></div></td></tr><tr><td class="l sym" style="width:160px">HOOD</td><td style="width:90px">9.7%</td><td class="l"><div class="bar"><i style="width:26%"></i></div></td></tr><tr><td class="l sym" style="width:160px">SMCI</td><td style="width:90px">5.4%</td><td class="l"><div class="bar"><i style="width:15%"></i></div></td></tr><tr><td class="l sym" style="width:160px">COO</td><td style="width:90px">0.3%</td><td class="l"><div class="bar"><i style="width:1%"></i></div></td></tr><tr><td class="l sym" style="width:160px">KO</td><td style="width:90px">-0.3%</td><td class="l"><div class="bar"><i style="width:0%"></i></div></td></tr></tbody></table></div>
+<div class="scope-blk" data-scope="main" data-kind="mcr" style="display:none"><table class="tbl"><tbody><tr><td class="l sym" style="width:160px">VOO</td><td style="width:90px">37.8%</td><td class="l"><div class="bar"><i style="width:100%"></i></div></td></tr><tr><td class="l sym" style="width:160px">SNDK</td><td style="width:90px">37.5%</td><td class="l"><div class="bar"><i style="width:99%"></i></div></td></tr><tr><td class="l sym" style="width:160px">QQQM</td><td style="width:90px">11.6%</td><td class="l"><div class="bar"><i style="width:31%"></i></div></td></tr><tr><td class="l sym" style="width:160px">HOOD</td><td style="width:90px">9.9%</td><td class="l"><div class="bar"><i style="width:26%"></i></div></td></tr><tr><td class="l sym" style="width:160px">SMCI</td><td style="width:90px">3.5%</td><td class="l"><div class="bar"><i style="width:9%"></i></div></td></tr><tr><td class="l sym" style="width:160px">KO</td><td style="width:90px">-0.4%</td><td class="l"><div class="bar"><i style="width:0%"></i></div></td></tr></tbody></table></div>
+<div class="scope-blk" data-scope="agentic" data-kind="mcr" style="display:none"><table class="tbl"><tbody><tr><td class="l sym" style="width:160px">SMCI</td><td style="width:90px">84.8%</td><td class="l"><div class="bar"><i style="width:100%"></i></div></td></tr><tr><td class="l sym" style="width:160px">COO</td><td style="width:90px">15.2%</td><td class="l"><div class="bar"><i style="width:18%"></i></div></td></tr></tbody></table></div>
 <div class="section-label"><span data-i18n="corr"></span><span class="sl-rule"></span></div>
-<table class="hm"><thead><tr><th class="corner"></th><th>COO</th><th>HOOD</th><th>KO</th><th>QQQM</th><th>SMCI</th><th>SNDK</th><th>VOO</th></tr></thead><tbody>
-<tr><th>COO</th><td class="diag">1.00</td><td style="background:rgb(66,54,70);color:#0a0e14">0.14</td><td style="background:rgb(67,54,70);color:#0a0e14">0.15</td><td style="background:rgb(55,51,68);color:#0a0e14">0.09</td><td style="background:rgb(50,50,67);color:#0a0e14">0.07</td><td style="background:rgb(51,50,67);color:#0a0e14">0.07</td><td style="background:rgb(90,61,75);color:#0a0e14">0.25</td></tr>
-<tr><th>HOOD</th><td style="background:rgb(66,54,70);color:#0a0e14">0.14</td><td class="diag">1.00</td><td style="background:rgb(51,76,108);color:#0a0e14">-0.23</td><td style="background:rgb(160,80,91);color:#fff">0.57</td><td style="background:rgb(112,67,80);color:#0a0e14">0.35</td><td style="background:rgb(83,59,74);color:#0a0e14">0.22</td><td style="background:rgb(160,80,91);color:#fff">0.57</td></tr>
-<tr><th>KO</th><td style="background:rgb(67,54,70);color:#0a0e14">0.15</td><td style="background:rgb(51,76,108);color:#0a0e14">-0.23</td><td class="diag">1.00</td><td style="background:rgb(52,78,110);color:#0a0e14">-0.25</td><td style="background:rgb(50,74,104);color:#0a0e14">-0.21</td><td style="background:rgb(44,64,90);color:#0a0e14">-0.14</td><td style="background:rgb(45,66,93);color:#0a0e14">-0.16</td></tr>
-<tr><th>QQQM</th><td style="background:rgb(55,51,68);color:#0a0e14">0.09</td><td style="background:rgb(160,80,91);color:#fff">0.57</td><td style="background:rgb(52,78,110);color:#0a0e14">-0.25</td><td class="diag">1.00</td><td style="background:rgb(150,78,89);color:#fff">0.53</td><td style="background:rgb(147,77,88);color:#fff">0.51</td><td style="background:rgb(243,104,109);color:#fff">0.94</td></tr>
-<tr><th>SMCI</th><td style="background:rgb(50,50,67);color:#0a0e14">0.07</td><td style="background:rgb(112,67,80);color:#0a0e14">0.35</td><td style="background:rgb(50,74,104);color:#0a0e14">-0.21</td><td style="background:rgb(150,78,89);color:#fff">0.53</td><td class="diag">1.00</td><td style="background:rgb(79,58,73);color:#0a0e14">0.21</td><td style="background:rgb(147,77,88);color:#fff">0.51</td></tr>
-<tr><th>SNDK</th><td style="background:rgb(51,50,67);color:#0a0e14">0.07</td><td style="background:rgb(83,59,74);color:#0a0e14">0.22</td><td style="background:rgb(44,64,90);color:#0a0e14">-0.14</td><td style="background:rgb(147,77,88);color:#fff">0.51</td><td style="background:rgb(79,58,73);color:#0a0e14">0.21</td><td class="diag">1.00</td><td style="background:rgb(135,73,85);color:#fff">0.46</td></tr>
-<tr><th>VOO</th><td style="background:rgb(90,61,75);color:#0a0e14">0.25</td><td style="background:rgb(160,80,91);color:#fff">0.57</td><td style="background:rgb(45,66,93);color:#0a0e14">-0.16</td><td style="background:rgb(243,104,109);color:#fff">0.94</td><td style="background:rgb(147,77,88);color:#fff">0.51</td><td style="background:rgb(135,73,85);color:#fff">0.46</td><td class="diag">1.00</td></tr>
-</tbody></table><div class="note" data-i18n="n_corr"></div>
+<div class="scope-blk" data-scope="all" data-kind="corr"><table class="hm"><thead><tr><th class="corner"></th><th>COO</th><th>HOOD</th><th>KO</th><th>QQQM</th><th>SMCI</th><th>SNDK</th><th>VOO</th></tr></thead><tbody><tr><th>COO</th><td class="diag">1.00</td><td style="background:rgb(66,54,70);color:#0a0e14">0.14</td><td style="background:rgb(67,54,70);color:#0a0e14">0.15</td><td style="background:rgb(55,51,68);color:#0a0e14">0.09</td><td style="background:rgb(50,50,67);color:#0a0e14">0.07</td><td style="background:rgb(51,50,67);color:#0a0e14">0.07</td><td style="background:rgb(90,61,75);color:#0a0e14">0.25</td></tr><tr><th>HOOD</th><td style="background:rgb(66,54,70);color:#0a0e14">0.14</td><td class="diag">1.00</td><td style="background:rgb(51,76,108);color:#0a0e14">-0.23</td><td style="background:rgb(160,80,91);color:#fff">0.57</td><td style="background:rgb(112,67,80);color:#0a0e14">0.35</td><td style="background:rgb(83,59,74);color:#0a0e14">0.22</td><td style="background:rgb(160,80,91);color:#fff">0.57</td></tr><tr><th>KO</th><td style="background:rgb(67,54,70);color:#0a0e14">0.15</td><td style="background:rgb(51,76,108);color:#0a0e14">-0.23</td><td class="diag">1.00</td><td style="background:rgb(52,78,110);color:#0a0e14">-0.25</td><td style="background:rgb(50,74,104);color:#0a0e14">-0.21</td><td style="background:rgb(44,64,90);color:#0a0e14">-0.14</td><td style="background:rgb(45,66,93);color:#0a0e14">-0.16</td></tr><tr><th>QQQM</th><td style="background:rgb(55,51,68);color:#0a0e14">0.09</td><td style="background:rgb(160,80,91);color:#fff">0.57</td><td style="background:rgb(52,78,110);color:#0a0e14">-0.25</td><td class="diag">1.00</td><td style="background:rgb(150,78,89);color:#fff">0.53</td><td style="background:rgb(147,77,88);color:#fff">0.51</td><td style="background:rgb(243,104,109);color:#fff">0.94</td></tr><tr><th>SMCI</th><td style="background:rgb(50,50,67);color:#0a0e14">0.07</td><td style="background:rgb(112,67,80);color:#0a0e14">0.35</td><td style="background:rgb(50,74,104);color:#0a0e14">-0.21</td><td style="background:rgb(150,78,89);color:#fff">0.53</td><td class="diag">1.00</td><td style="background:rgb(79,58,73);color:#0a0e14">0.21</td><td style="background:rgb(147,77,88);color:#fff">0.51</td></tr><tr><th>SNDK</th><td style="background:rgb(51,50,67);color:#0a0e14">0.07</td><td style="background:rgb(83,59,74);color:#0a0e14">0.22</td><td style="background:rgb(44,64,90);color:#0a0e14">-0.14</td><td style="background:rgb(147,77,88);color:#fff">0.51</td><td style="background:rgb(79,58,73);color:#0a0e14">0.21</td><td class="diag">1.00</td><td style="background:rgb(135,73,85);color:#fff">0.46</td></tr><tr><th>VOO</th><td style="background:rgb(90,61,75);color:#0a0e14">0.25</td><td style="background:rgb(160,80,91);color:#fff">0.57</td><td style="background:rgb(45,66,93);color:#0a0e14">-0.16</td><td style="background:rgb(243,104,109);color:#fff">0.94</td><td style="background:rgb(147,77,88);color:#fff">0.51</td><td style="background:rgb(135,73,85);color:#fff">0.46</td><td class="diag">1.00</td></tr></tbody></table></div>
+<div class="scope-blk" data-scope="main" data-kind="corr" style="display:none"><table class="hm"><thead><tr><th class="corner"></th><th>HOOD</th><th>KO</th><th>QQQM</th><th>SMCI</th><th>SNDK</th><th>VOO</th></tr></thead><tbody><tr><th>HOOD</th><td class="diag">1.00</td><td style="background:rgb(51,76,108);color:#0a0e14">-0.23</td><td style="background:rgb(160,80,91);color:#fff">0.57</td><td style="background:rgb(112,67,80);color:#0a0e14">0.35</td><td style="background:rgb(83,59,74);color:#0a0e14">0.22</td><td style="background:rgb(160,80,91);color:#fff">0.57</td></tr><tr><th>KO</th><td style="background:rgb(51,76,108);color:#0a0e14">-0.23</td><td class="diag">1.00</td><td style="background:rgb(52,78,110);color:#0a0e14">-0.25</td><td style="background:rgb(50,74,104);color:#0a0e14">-0.21</td><td style="background:rgb(44,64,90);color:#0a0e14">-0.14</td><td style="background:rgb(45,66,93);color:#0a0e14">-0.16</td></tr><tr><th>QQQM</th><td style="background:rgb(160,80,91);color:#fff">0.57</td><td style="background:rgb(52,78,110);color:#0a0e14">-0.25</td><td class="diag">1.00</td><td style="background:rgb(150,78,89);color:#fff">0.53</td><td style="background:rgb(147,77,88);color:#fff">0.51</td><td style="background:rgb(243,104,109);color:#fff">0.94</td></tr><tr><th>SMCI</th><td style="background:rgb(112,67,80);color:#0a0e14">0.35</td><td style="background:rgb(50,74,104);color:#0a0e14">-0.21</td><td style="background:rgb(150,78,89);color:#fff">0.53</td><td class="diag">1.00</td><td style="background:rgb(79,58,73);color:#0a0e14">0.21</td><td style="background:rgb(147,77,88);color:#fff">0.51</td></tr><tr><th>SNDK</th><td style="background:rgb(83,59,74);color:#0a0e14">0.22</td><td style="background:rgb(44,64,90);color:#0a0e14">-0.14</td><td style="background:rgb(147,77,88);color:#fff">0.51</td><td style="background:rgb(79,58,73);color:#0a0e14">0.21</td><td class="diag">1.00</td><td style="background:rgb(135,73,85);color:#fff">0.46</td></tr><tr><th>VOO</th><td style="background:rgb(160,80,91);color:#fff">0.57</td><td style="background:rgb(45,66,93);color:#0a0e14">-0.16</td><td style="background:rgb(243,104,109);color:#fff">0.94</td><td style="background:rgb(147,77,88);color:#fff">0.51</td><td style="background:rgb(135,73,85);color:#fff">0.46</td><td class="diag">1.00</td></tr></tbody></table></div>
+<div class="scope-blk" data-scope="agentic" data-kind="corr" style="display:none"><table class="hm"><thead><tr><th class="corner"></th><th>COO</th><th>SMCI</th></tr></thead><tbody><tr><th>COO</th><td class="diag">1.00</td><td style="background:rgb(50,50,67);color:#0a0e14">0.07</td></tr><tr><th>SMCI</th><td style="background:rgb(50,50,67);color:#0a0e14">0.07</td><td class="diag">1.00</td></tr></tbody></table></div>
+<div class="note" data-i18n="n_corr"></div>
 <div class="section-label"><span data-i18n="ledger"></span><span class="sl-rule"></span></div>
 <table class="tbl"><thead><tr><th class="l" data-i18n="h_date"></th><th class="l" data-i18n="h_acct"></th><th class="l">Symbol</th><th>P&L $</th><th>β</th><th>β $</th><th>α $</th><th data-i18n="h_rule"></th><th class="l" data-i18n="h_grade"></th></tr></thead><tbody>
-<tr><td class="l">2026-06-10</td><td class="l">agentic</td><td class="l sym">DAL</td><td><span class="neg">-0.23</span></td><td>1.94</td><td>0.0</td><td>-0.23</td><td>✓</td><td class="l">A</td></tr>
-<tr><td class="l">2026-06-11</td><td class="l">main</td><td class="l sym">SNDK</td><td><span class="neg">-50.00</span></td><td>3.71</td><td>0.0</td><td>-50.0</td><td>✗</td><td class="l">F-entry/A-exit</td></tr>
-<tr><td class="l">2026-06-11</td><td class="l">main</td><td class="l sym">MU</td><td><span class="pos">+20.00</span></td><td>2.96</td><td>0.0</td><td>20.0</td><td>✗</td><td class="l">C-entry/A-exit</td></tr>
+<tr data-acct="agentic"><td class="l">2026-06-10</td><td class="l">agentic</td><td class="l sym">DAL</td><td><span class="neg">-0.23</span></td><td>1.94</td><td>0.0</td><td>-0.23</td><td>✓</td><td class="l">A</td></tr>
+<tr data-acct="main"><td class="l">2026-06-11</td><td class="l">main</td><td class="l sym">SNDK</td><td><span class="neg">-50.00</span></td><td>3.71</td><td>0.0</td><td>-50.0</td><td>✗</td><td class="l">F-entry/A-exit</td></tr>
+<tr data-acct="main"><td class="l">2026-06-11</td><td class="l">main</td><td class="l sym">MU</td><td><span class="pos">+20.00</span></td><td>2.96</td><td>0.0</td><td>20.0</td><td>✗</td><td class="l">C-entry/A-exit</td></tr>
 </tbody></table>
 <div class="cards" style="margin-top:14px">
 <div class="card"><div class="k" data-i18n="k_trades"></div><div class="v">3</div></div>
@@ -140,9 +165,32 @@ font-family:var(--mono);font-size:12px;cursor:pointer;letter-spacing:.5px;transi
 <div class="card"><div class="k" data-i18n="k_disc"></div><div class="v">$-30.00</div></div>
 <div class="card"><div class="k" data-i18n="k_hit"></div><div class="v">33%</div></div>
 </div><div class="note" data-i18n="n_ledger"></div>
+<div class="closing-poem">浮生着甚苦奔忙,盛席华筵终散场。<br>悲喜千般同幻渺,古今一梦尽荒唐。</div>
 </div>
 <script>
-const I18N = {"zh": {"title": "组合透视 · Portfolio X-Ray", "sub": "两账户实时持仓", "overview": "总览 · Overview", "contracts": "合同审计 · Contracts", "positions": "持仓 · Positions", "hold": "持仓个股分析 · Holdings Analytics", "themes": "主题权重 · Theme Weights", "mcr": "边际风险贡献 · Marginal Risk Contribution", "corr": "持仓相关性 · Correlation", "attr": "因子暴露 · FF5+Mom", "ledger": "Alpha 账本 · Alpha Ledger", "k_total": "总市值", "k_cash": "现金占比", "k_bic": "β 含现金", "k_bxc": "β 不含现金", "k_rf": "无风险利率 (FRED)", "n_beta": "β 含现金把全部现金按 β=0 计入——现金是仓位,不是缺席。", "n_ledger": "pnl = β$ + α$:β$ 是市场给的,α$ 才是你挣(或亏)的。规则内 vs 自由裁量的分栏,是「系统大于冲动」的周度读数。", "n_corr": "红=正相关,蓝=负相关(与 Screener 同色规)。满屏深红 = 分散是幻觉。", "h_date": "日期", "h_acct": "账户", "h_rule": "规则", "h_grade": "过程分", "k_trades": "已平仓", "k_pnl": "总盈亏", "k_rule": "规则内盈亏", "k_disc": "自由裁量盈亏", "k_hit": "击中率"}, "en": {"title": "Portfolio X-Ray", "sub": "live holdings, both accounts", "overview": "Overview", "contracts": "Contracts", "positions": "Positions", "hold": "Holdings Analytics", "themes": "Theme Weights", "mcr": "Marginal Risk Contribution", "corr": "Correlation", "attr": "FF5+Mom Exposure", "ledger": "Alpha Ledger", "k_total": "Total Value", "k_cash": "Cash Weight", "k_bic": "β incl. cash", "k_bxc": "β ex-cash", "k_rf": "Risk-free (FRED)", "n_beta": "β incl. cash counts all cash at β=0 — cash is a position, not an absence.", "n_ledger": "pnl = β$ + α$: β$ is what the market gave; α$ is what you earned (or lost). Rule-based vs discretionary is the weekly read on system > impulse.", "n_corr": "Red = positive corr, blue = negative (same ramp as the Screener). A wall of deep red means diversification is an illusion.", "h_date": "Date", "h_acct": "Acct", "h_rule": "Rule", "h_grade": "Grade", "k_trades": "Closed", "k_pnl": "Total P&L", "k_rule": "Rule-based P&L", "k_disc": "Discretionary P&L", "k_hit": "Hit rate"}};
+const I18N = {"zh": {"title": "一飞云霄夜航帆 - 股市持仓分析", "sub": "CAPM, QVM+L, and Fama-French 量化分析 · 两账户实时持仓", "overview": "总览", "contracts": "合同审计", "positions": "当前持仓", "hold": "持仓个股指标", "capm": "CAPM 归因(个股)", "ff": "Fama-French 五因子 + 动量(个股)", "qvml": "QVM+L 因子评分(持仓组内横截面)", "themes": "主题权重", "mcr": "边际风险贡献", "corr": "持仓相关性", "attr": "组合因子归因", "ledger": "Alpha 账本", "k_total": "组合总值", "k_cash": "现金占比", "k_bic": "组合 β(计入现金)", "k_bxc": "组合 β(剔除现金)", "k_rf": "无风险利率(FRED)", "n_beta": "「计入现金」口径将全部现金按 β = 0 纳入组合权重——现金本身是一个仓位,而非缺席。", "n_ledger": "盈亏 = β$ + α$:β$ 为市场暴露所致部分,α$ 为剔除暴露后的主动盈亏。「规则内」与「自由裁量」之分栏,构成「系统优于冲动」假说的周度检验。", "n_corr": "红为正相关,蓝为负相关,色标与 Screener 一致。普遍的高正相关,意味着名义上的多标的持有并未带来有效分散。", "n_capm": "对每只持仓的日度超额收益对市场超额收益做回归。α 年化为截距,|t| ≥ 2 视为统计显著;R² 为市场可解释比例。", "n_ff": "在 CAPM 之上加入规模、价值、盈利、投资与动量五个系统性因子。若 α 不显著,则该股收益可由已知因子暴露完全解释。", "n_qvml": "与 Screener 同一套因子构造(估值 V、质量 Q、动量 M、低波动 L),但仅在当前持仓内做横截面排名——分数为组内相对值,样本较小,宜作参考而非定论。", "h_date": "日期", "h_acct": "账户", "h_rule": "规则", "h_grade": "过程评分", "k_trades": "已平仓笔数", "k_pnl": "总盈亏", "k_rule": "规则内盈亏", "k_disc": "自由裁量盈亏", "k_hit": "胜率", "tab_all": "全部", "tab_main": "主账户", "tab_agentic": "Agentic 账户(由 Claude 操作)"}, "en": {"title": "Yifan the Starbound Nightfarer - Portfolio Holdings Analysis", "sub": "CAPM, QVM+L, and Fama-French Quantitative Analysis · Live holdings across both accounts", "overview": "Overview", "contracts": "Contract Audit", "positions": "Positions", "hold": "Holdings Metrics", "capm": "CAPM Attribution (per holding)", "ff": "Fama-French 5 + Momentum (per holding)", "qvml": "QVM+L Factor Scores (cross-section within holdings)", "themes": "Theme Weights", "mcr": "Marginal Risk Contribution", "corr": "Holdings Correlation", "attr": "Portfolio Factor Attribution", "ledger": "Alpha Ledger", "k_total": "Total Value", "k_cash": "Cash Weight", "k_bic": "Portfolio β (cash included)", "k_bxc": "Portfolio β (ex cash)", "k_rf": "Risk-free Rate (FRED)", "n_beta": "The cash-included measure weights all cash at β = 0 — cash is itself a position, not an absence.", "n_ledger": "P&L = β$ + α$: β$ is the component attributable to market exposure; α$ is the active residual. The rule-based vs discretionary split provides a weekly test of the system-over-impulse hypothesis.", "n_corr": "Red denotes positive and blue negative correlation, on the same scale as the Screener. Pervasively high positive correlation indicates that holding many names has produced nominal rather than effective diversification.", "n_capm": "Each holding's daily excess return is regressed on the market excess return. Annualized α is the intercept; |t| ≥ 2 is treated as statistically significant; R² is the share explained by the market.", "n_ff": "Extends CAPM with size, value, profitability, investment, and momentum factors. An insignificant α implies the holding's return is fully explained by known factor exposures.", "n_qvml": "Same factor construction as the Screener (Value, Quality, Momentum, Low-volatility), ranked cross-sectionally within current holdings only — scores are relative to this small set and should be read as indicative.", "h_date": "Date", "h_acct": "Account", "h_rule": "Rule", "h_grade": "Process Grade", "k_trades": "Closed Trades", "k_pnl": "Total P&L", "k_rule": "Rule-based P&L", "k_disc": "Discretionary P&L", "k_hit": "Hit Rate", "tab_all": "Combined", "tab_main": "Main", "tab_agentic": "Agentic (Claude-operated)"}};
+const SCOPES = {"all": {"total": "$15,350", "cash": "86.7%", "bic": "0.19", "bxc": "1.43"}, "main": {"total": "$15,150", "cash": "86.8%", "bic": "0.19", "bxc": "1.42"}, "agentic": {"total": "$200", "cash": "83.2%", "bic": "0.34", "bxc": "2.02"}};
+let SCOPE = "all";
+function setScope(sc){
+  if(!SCOPES[sc]) return;
+  SCOPE = sc;
+  ["all","main","agentic"].forEach(k=>{
+    const b=document.getElementById("atab-"+k);
+    if(b) b.className = "acct-tab" + (k===sc ? " on" : "");
+  });
+  const d=SCOPES[sc];
+  document.getElementById("ov_total").textContent=d.total;
+  document.getElementById("ov_cash").textContent=d.cash;
+  document.getElementById("ov_bic").textContent=d.bic;
+  document.getElementById("ov_bxc").textContent=d.bxc;
+  document.querySelectorAll("tr[data-acct]").forEach(tr=>{
+    const a=tr.getAttribute("data-acct");
+    tr.style.display = (sc==="all" || a.split(",").includes(sc)) ? "" : "none";
+  });
+  document.querySelectorAll(".scope-blk").forEach(el=>{
+    el.style.display = (el.getAttribute("data-scope")===sc) ? "" : "none";
+  });
+}
 let LANG = "zh";
 function setLang(l){
   LANG = l;
@@ -152,8 +200,7 @@ function setLang(l){
     const k = el.getAttribute("data-i18n");
     if(I18N[l][k] !== undefined) el.textContent = I18N[l][k];
   });
-  const epiZh = document.querySelector(".epi-zh");
-  if(epiZh) epiZh.style.display = (l==="en") ? "none" : "block";
+  document.querySelectorAll(".epi-zh").forEach(el=>{ el.style.display = (l==="en") ? "none" : "block"; });
 }
 setLang("zh");
 </script></body></html>
