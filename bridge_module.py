@@ -471,7 +471,7 @@ _CSS = """
 *{box-sizing:border-box;margin:0;padding:0}
 body{background:radial-gradient(1000px 560px at 85% -10%,rgba(74,222,154,.08),transparent),
 radial-gradient(760px 440px at 0% 110%,rgba(107,179,255,.06),transparent),var(--bg);
-color:var(--ink);font-family:var(--mono);font-feature-settings:"tnum" 1;line-height:1.5;padding:0 0 80px}
+color:var(--ink);font-family:var(--mono);font-feature-settings:"tnum" 1;line-height:1.62;padding:0 0 80px}
 .wrap{max-width:1280px;margin:0 auto;padding:0 40px}
 header{display:flex;align-items:flex-end;justify-content:space-between;padding:38px 0 22px;
 border-bottom:1px solid var(--line);flex-wrap:wrap;gap:16px}
@@ -483,7 +483,7 @@ background:linear-gradient(90deg,rgba(63,207,142,.05),transparent);border-radius
 .epi-zh{font-family:var(--serif);font-size:17px;line-height:1.7;letter-spacing:.5px}
 .epi-en{font-family:var(--serif);font-style:italic;font-size:13px;color:var(--dim);margin-top:8px}
 .epi-by{font-size:11px;color:var(--faint);margin-top:10px;text-align:right;letter-spacing:1px}
-.section-label{font-size:12.5px;letter-spacing:2.5px;color:var(--dim);text-transform:uppercase;
+.section-label{font-size:12.5px;letter-spacing:1.8px;color:var(--dim);text-transform:uppercase;
 margin:36px 0 14px;display:flex;align-items:center;gap:12px}
 .section-label .sl-rule{flex:1;height:1px;background:var(--line)}
 .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px}
@@ -506,7 +506,7 @@ padding:10px 12px;border-bottom:1px solid var(--line);text-transform:uppercase;w
 .lamp.r{background:rgba(255,107,112,.15);color:var(--red);border:1px solid var(--red)}
 pre{background:var(--panel);border:1px solid var(--line);border-radius:10px;
 padding:16px 18px;font-size:12px;overflow-x:auto;color:var(--dim)}
-.note{color:var(--faint);font-size:12.5px;margin-top:8px;font-style:italic}
+.note{color:var(--faint);font-size:12.5px;margin-top:8px}
 .sig{color:var(--green);font-weight:700}.insig{color:var(--faint)}
 .closing-poem{font-family:var(--serif);text-align:center;color:var(--dim);font-size:15px;
 line-height:2.1;margin:64px 0 10px;letter-spacing:1px}
@@ -538,21 +538,21 @@ def _sec(title):
     return f'<div class="section-label"><span>{title}</span><span class="sl-rule"></span></div>'
 
 I18N_P = {
- "zh": {"title":"一飞重洋夜航帆 - 股市持仓分析","sub":"CAPM, QVM+L, and Fama-French 量化分析 · 两账户实时持仓",
+ "zh": {"title":"一飞重洋夜航帆 · 股市持仓分析","sub":"CAPM, QVM+L, and Fama-French 量化分析 · 两账户实时持仓",
    "overview":"总览","contracts":"合同审计","positions":"当前持仓","hold":"持仓个股指标",
    "capm":"CAPM 归因(个股)","ff":"Fama-French 五因子 + 动量(个股)","qvml":"QVM+L 因子评分(持仓组内横截面)",
    "themes":"主题权重","mcr":"边际风险贡献","corr":"持仓相关性","attr":"组合因子归因","ledger":"Alpha 账本",
    "k_total":"组合总值","k_cash":"现金占比","k_bic":"组合 β(计入现金)","k_bxc":"组合 β(剔除现金)","k_rf":"无风险利率(FRED)",
-   "n_beta":"「计入现金」口径将全部现金按 β = 0 纳入组合权重——现金本身是一个仓位,而非缺席。",
-   "n_ledger":"盈亏 = β$ + α$:β$ 为市场暴露所致部分,α$ 为剔除暴露后的主动盈亏。「规则内」与「自由裁量」之分栏,构成「系统优于冲动」假说的周度检验。",
-   "n_corr":"红为正相关,蓝为负相关,色标与 Screener 一致。普遍的高正相关,意味着名义上的多标的持有并未带来有效分散。",
-   "n_capm":"对每只持仓的日度超额收益对市场超额收益做回归。α 年化为截距,|t| ≥ 2 视为统计显著;R² 为市场可解释比例。",
-   "n_ff":"在 CAPM 之上加入规模、价值、盈利、投资与动量五个系统性因子。若 α 不显著,则该股收益可由已知因子暴露完全解释。",
-   "n_qvml":"与 Screener 同一套因子构造(估值 V、质量 Q、动量 M、低波动 L),但仅在当前持仓内做横截面排名——分数为组内相对值,样本较小,宜作参考而非定论。",
+   "n_beta":"「计入现金」口径将全部现金按 β = 0 纳入组合权重——现金本身是一个仓位，而非缺席。",
+   "n_ledger":"盈亏 = β$ + α$:β$ 为市场暴露所致部分，α$ 为剔除暴露后的主动盈亏。「规则内」与「自由裁量」之分栏，构成「系统优于冲动」假说的周度检验。",
+   "n_corr":"红为正相关，蓝为负相关，色标与 Screener 一致。普遍的高正相关，意味着名义上的多标的持有并未带来有效分散。",
+   "n_capm":"对每只持仓的日度超额收益对市场超额收益做回归。α 年化为截距，|t| ≥ 2 视为统计显著；R² 为市场可解释比例。",
+   "n_ff":"在 CAPM 之上加入规模、价值、盈利、投资与动量五个系统性因子。若 α 不显著，则该股收益可由已知因子暴露完全解释。",
+   "n_qvml":"与 Screener 同一套因子构造(估值 V、质量 Q、动量 M、低波动 L)，但仅在当前持仓内做横截面排名——分数为组内相对值，样本较小，宜作参考而非定论。",
    "h_date":"日期","h_acct":"账户","h_rule":"规则","h_grade":"过程评分",
    "k_trades":"已平仓笔数","k_pnl":"总盈亏","k_rule":"规则内盈亏","k_disc":"自由裁量盈亏","k_hit":"胜率",
-   "tab_all":"全部","tab_main":"主账户","tab_agentic":"Agentic 账户(由 Claude 操作)"},
- "en": {"title":"Yifan the Nightfarer - Portfolio Holdings Analysis","sub":"CAPM, QVM+L, and Fama-French Quantitative Analysis · Live holdings across both accounts",
+   "gen":"生成于","tab_all":"全部","tab_main":"主账户","tab_agentic":"Agentic 账户(由 Claude 操作)"},
+ "en": {"title":"Yifan the Nightfarer · Portfolio Holdings Analysis","sub":"CAPM, QVM+L, and Fama-French Quantitative Analysis · Live holdings across both accounts",
    "overview":"Overview","contracts":"Contract Audit","positions":"Positions","hold":"Holdings Metrics",
    "capm":"CAPM Attribution (per holding)","ff":"Fama-French 5 + Momentum (per holding)","qvml":"QVM+L Factor Scores (cross-section within holdings)",
    "themes":"Theme Weights","mcr":"Marginal Risk Contribution","corr":"Holdings Correlation","attr":"Portfolio Factor Attribution","ledger":"Alpha Ledger",
@@ -565,7 +565,7 @@ I18N_P = {
    "n_qvml":"Same factor construction as the Screener (Value, Quality, Momentum, Low-volatility), ranked cross-sectionally within current holdings only — scores are relative to this small set and should be read as indicative.",
    "h_date":"Date","h_acct":"Account","h_rule":"Rule","h_grade":"Process Grade",
    "k_trades":"Closed Trades","k_pnl":"Total P&L","k_rule":"Rule-based P&L","k_disc":"Discretionary P&L","k_hit":"Hit Rate",
-   "tab_all":"Combined","tab_main":"Main","tab_agentic":"Agentic (Claude-operated)"}}
+   "gen":"generated","tab_all":"Combined","tab_main":"Main","tab_agentic":"Agentic (Claude-operated)"}}
 
 def _corr_color(v):
     """Same ramp as the screener's corrCellColor: blue(neg) -> dark grey(0) -> red(pos)."""
@@ -594,15 +594,15 @@ def build_portfolio_html(pa, ledger, contracts, out_path=HTML_OUT):
 <div class="sub" data-i18n="sub"></div></div>
 <div style="display:flex;align-items:center;gap:14px">
 <div class="lang-toggle"><button id="btn-zh" class="on" onclick="setLang('zh')">中文</button><button id="btn-en" onclick="setLang('en')">EN</button></div>
-<div class="gen">generated {now}</div></div></header>
+<div class="gen"><span data-i18n="gen"></span> {now}</div></div></header>
 <div class="epigraph">
 <div class="epi-quote">
-<div class="epi-zh">"终朝只恨聚无多,及到多时眼闭了。"</div>
-<div class="epi-en">"All day he frets that his hoard is still too small; the day it is enough, his eyes close for good."</div>
+<div class="epi-zh">终朝只恨聚无多，及到多时眼闭了。</div>
+<div class="epi-en">All day he frets that his hoard is still too small; the day it is enough, his eyes close for good.</div>
 <div class="epi-by">— 曹雪芹《红楼梦 · 好了歌》</div></div>
 <div class="epi-quote">
-<div class="epi-zh">"这是尘寰中消长数应当,何必枉悲伤?"</div>
-<div class="epi-en">"Such waxing and waning is the appointed course of the mortal world — why grieve in vain?"</div>
+<div class="epi-zh">这是尘寰中消长数应当，何必枉悲伤？</div>
+<div class="epi-en">Such waxing and waning is the appointed course of the mortal world — why grieve in vain?</div>
 <div class="epi-by">— 曹雪芹《红楼梦 · 乐中悲》</div></div></div>
 <div class="acct-tabs">
 <button class="acct-tab on" id="atab-all" onclick="setScope('all')" data-i18n="tab_all"></button>
@@ -795,7 +795,7 @@ def build_portfolio_html(pa, ledger, contracts, out_path=HTML_OUT):
         h.append(card("k_hit", f"{a['hit_rate']*100:.0f}%"))
         h.append('</div><div class="note" data-i18n="n_ledger"></div>')
 
-    h.append('<div class="closing-poem">浮生着甚苦奔忙,盛席华筵终散场。<br>悲喜千般同幻渺,古今一梦尽荒唐。</div>')
+    h.append('<div class="closing-poem">浮生着甚苦奔忙，盛席华筵终散场。<br>悲喜千般同幻渺，古今一梦尽荒唐。</div>')
     scopes_js = {k: {"total": f"${v['total_value']:,.0f}", "cash": f"{v['cash_weight']*100:.1f}%",
                      "bic": f"{v['beta_incl']:.2f}", "bxc": f"{v['beta_ex']:.2f}"}
                  for k, v in scopes.items()}

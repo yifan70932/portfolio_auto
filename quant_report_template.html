@@ -76,7 +76,7 @@
     cursor:pointer;transition:.15s;white-space:nowrap;text-transform:uppercase;margin-left:6px}
   .bg-btn:hover{border-color:var(--blue);color:var(--blue)}
   .bg-btn.on{background:var(--blue);color:#06223f;border-color:var(--blue);font-weight:700}
-  .bg-lead{color:var(--dim);font-size:12px;line-height:1.6;margin:-6px 0 14px;
+  .bg-lead{font-style:normal;color:var(--dim);font-size:12px;line-height:1.6;margin:-6px 0 14px;
     padding-left:12px;border-left:2px solid var(--line);font-style:italic}
   .bg-panel{max-height:0;overflow:hidden;transition:max-height .4s ease;margin-bottom:0}
   .bg-panel.open{max-height:4000px;margin-bottom:18px}
@@ -177,7 +177,7 @@
   }
   .verdict .vt{color:var(--accent);font-size:11px;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:7px}
 
-  .note{margin-top:30px;padding:16px 18px;border:1px dashed var(--line);border-radius:8px;
+  .note{font-style:normal;margin-top:30px;padding:16px 18px;border:1px dashed var(--line);border-radius:8px;
     color:var(--dim);font-size:11.5px;line-height:1.7}
   .note b{color:var(--amber)}
   .hint{color:var(--faint);font-size:11px;margin-top:8px;text-align:center}
@@ -400,7 +400,7 @@
 <div class="wrap">
   <header>
     <div class="brand">
-      <h1 data-i18n="title">一飞重洋夜航帆</h1>
+      <h1 data-i18n="title">一飞重洋夜航帆 · 股市量化分析</h1>
       <div class="sub" data-i18n="subtitle">CAPM, QVM+L, and Fama-French 量化分析</div>
     </div>
     <div class="controls">
@@ -417,18 +417,18 @@
 
   <div class="epigraph">
     <div class="epi-quote">
-      <div class="epi-zh">"终朝只恨聚无多,及到多时眼闭了。"</div>
-      <div class="epi-en">"All day he frets that his hoard is still too small; the day it is enough, his eyes close for good."</div>
+      <div class="epi-zh">终朝只恨聚无多，及到多时眼闭了。</div>
+      <div class="epi-en">All day he frets that his hoard is still too small; the day it is enough, his eyes close for good.</div>
       <div class="epi-by">— 曹雪芹《红楼梦 · 好了歌》</div>
     </div>
     <div class="epi-quote">
-      <div class="epi-zh">"乱烘烘你方唱罢我登场,反认他乡是故乡。甚荒唐,到头来都是为他人作嫁衣裳。"</div>
-      <div class="epi-en">"In the tumult, one song ends and another takes the stage; a strange land is mistaken for home. How absurd — in the end, each labors only to sew another's wedding gown."</div>
+      <div class="epi-zh">乱烘烘你方唱罢我登场，反认他乡是故乡。甚荒唐，到头来都是为他人作嫁衣裳。</div>
+      <div class="epi-en">In the tumult, one song ends and another takes the stage; a strange land is mistaken for home. How absurd — in the end, each labors only to sew another's wedding gown.</div>
       <div class="epi-by">— 曹雪芹《红楼梦 · 好了歌注》</div>
     </div>
   </div>
 
-  <div class="section-label"><span data-i18n="rank_label">综合评分排序 · Composite Ranking</span><span class="sl-rule"></span><button class="explain-btn" onclick="toggleExplain('rank',this)" data-i18n="explain_btn">说明</button><button class="bg-btn" onclick="toggleBg('rank',this)" data-i18n="bg_btn">背景</button></div>
+  <div class="section-label"><span data-i18n="rank_label">综合评分排序</span><span class="sl-rule"></span><button class="explain-btn" onclick="toggleExplain('rank',this)" data-i18n="explain_btn">说明</button><button class="bg-btn" onclick="toggleBg('rank',this)" data-i18n="bg_btn">背景</button></div>
   <div class="theme-tabs" id="themeTabs"></div>
   <div class="bg-lead" id="bglead_rank"></div>
   <div class="bg-panel" id="bg_rank"><div class="bg-inner" id="bg_rank_inner"></div></div>
@@ -454,7 +454,7 @@
   <div id="detail" class="detail"></div>
 
   <div id="corrSection" style="display:none">
-    <div class="section-label"><span data-i18n="corr_label">相关性矩阵 · CORRELATION</span><span class="sl-rule"></span><button class="explain-btn" onclick="toggleExplain('corr',this)" data-i18n="explain_btn">说明</button><button class="bg-btn" onclick="toggleBg('corr',this)" data-i18n="bg_btn">背景</button></div>
+    <div class="section-label"><span data-i18n="corr_label">相关性矩阵</span><span class="sl-rule"></span><button class="explain-btn" onclick="toggleExplain('corr',this)" data-i18n="explain_btn">说明</button><button class="bg-btn" onclick="toggleBg('corr',this)" data-i18n="bg_btn">背景</button></div>
     <div class="bg-lead" id="bglead_corr"></div>
     <div class="bg-panel" id="bg_corr"><div class="bg-inner" id="bg_corr_inner"></div></div>
     <div class="explain-panel" id="explain_corr"><div class="explain-inner" id="explain_corr_inner"></div></div>
@@ -468,13 +468,13 @@
   </div>
 
   <div id="capmSection" style="display:none">
-    <div class="section-label"><span data-i18n="capm_label">CAPM 归因 · CAPM ATTRIBUTION</span><span class="sl-rule"></span></div>
+    <div class="section-label"><span data-i18n="capm_label">CAPM 归因</span><span class="sl-rule"></span></div>
     <div class="bg-lead" id="capmLead"></div>
     <div id="capmBox"></div>
   </div>
 
   <div id="attrSection" style="display:none">
-    <div class="section-label"><span data-i18n="attr_label">因子归因 · FAMA-FRENCH ATTRIBUTION</span><span class="sl-rule"></span><button class="explain-btn" onclick="toggleExplain('attr',this)" data-i18n="explain_btn">说明</button><button class="bg-btn" onclick="toggleBg('attr',this)" data-i18n="bg_btn">背景</button></div>
+    <div class="section-label"><span data-i18n="attr_label">因子归因</span><span class="sl-rule"></span><button class="explain-btn" onclick="toggleExplain('attr',this)" data-i18n="explain_btn">说明</button><button class="bg-btn" onclick="toggleBg('attr',this)" data-i18n="bg_btn">背景</button></div>
     <div class="bg-lead" id="bglead_attr"></div>
     <div class="bg-panel" id="bg_attr"><div class="bg-inner" id="bg_attr_inner"></div></div>
     <div class="explain-panel" id="explain_attr"><div class="explain-inner" id="explain_attr_inner"></div></div>
@@ -484,7 +484,7 @@
   </div>
 
   <div id="btSection" style="display:none">
-    <div class="section-label"><span data-i18n="bt_label">策略回测 · BACKTEST</span><span class="sl-rule"></span><button class="explain-btn" onclick="toggleExplain('bt',this)" data-i18n="explain_btn">说明</button><button class="bg-btn" onclick="toggleBg('bt',this)" data-i18n="bg_btn">背景</button></div>
+    <div class="section-label"><span data-i18n="bt_label">策略回测</span><span class="sl-rule"></span><button class="explain-btn" onclick="toggleExplain('bt',this)" data-i18n="explain_btn">说明</button><button class="bg-btn" onclick="toggleBg('bt',this)" data-i18n="bg_btn">背景</button></div>
     <div class="bg-lead" id="bglead_bt"></div>
     <div class="bg-panel" id="bg_bt"><div class="bg-inner" id="bg_bt_inner"></div></div>
     <div class="explain-panel" id="explain_bt"><div class="explain-inner" id="explain_bt_inner"></div></div>
@@ -493,7 +493,7 @@
   </div>
 
   <div id="sandboxSection" style="display:none">
-    <div class="section-label"><span data-i18n="sb_label">组合沙盘 · PORTFOLIO SANDBOX</span><span class="sl-rule"></span><button class="explain-btn" onclick="toggleExplain('sandbox',this)" data-i18n="explain_btn">说明</button><button class="bg-btn" onclick="toggleBg('sandbox',this)" data-i18n="bg_btn">背景</button></div>
+    <div class="section-label"><span data-i18n="sb_label">组合沙盘</span><span class="sl-rule"></span><button class="explain-btn" onclick="toggleExplain('sandbox',this)" data-i18n="explain_btn">说明</button><button class="bg-btn" onclick="toggleBg('sandbox',this)" data-i18n="bg_btn">背景</button></div>
     <div class="bg-lead" id="bglead_sandbox"></div>
     <div class="bg-panel" id="bg_sandbox"><div class="bg-inner" id="bg_sandbox_inner"></div></div>
     <div class="explain-panel" id="explain_sandbox"><div class="explain-inner" id="explain_sandbox_inner"></div></div>
@@ -513,7 +513,7 @@
   <div class="modal" id="wlModal">
     <div class="modal-card">
       <h2 data-i18n="wl_title">编辑 Watchlist</h2>
-      <div class="mdesc" data-i18n="wl_desc">增删股票后,复制下方清单,存成 watchlist.txt,重跑脚本即可更新数据。</div>
+      <div class="mdesc" data-i18n="wl_desc">增删股票后，复制下方清单，存成 watchlist.txt，重跑脚本即可更新数据。</div>
       <div class="wl-tags" id="wlTags"></div>
       <div class="wl-input-row">
         <input id="wlInput" placeholder="TICKER" maxlength="8"
@@ -528,7 +528,7 @@
     </div>
   </div>
 
-  <div class="closing-poem">浮生着甚苦奔忙,盛席华筵终散场。<br>悲喜千般同幻渺,古今一梦尽荒唐。</div>
+  <div class="closing-poem">浮生着甚苦奔忙，盛席华筵终散场。<br>悲喜千般同幻渺，古今一梦尽荒唐。</div>
 
   <footer>
     <span data-i18n="footer">生成于</span> <span id="genTime">__GENERATED__</span>
@@ -549,20 +549,20 @@ try { THEMES = JSON.parse('__THEMES__'); } catch(e) { THEMES = null; }
 
 // ===== 指标词典数据 =====
 // glossary.js —— 指标词典数据(中英双语)
-// 每条:{ term_zh, term_en, def, calc, read, horizon, pitfall, source }
+// 每条：{ term_zh, term_en, def, calc, read, horizon, pitfall, source }
 // def=是什么 calc=怎么算 read=怎么读 horizon=长期vs短线 pitfall=坑 source=文献出处
-// 用于:① 行内小问号 tooltip(只显示 def 一句话)② 底部词典(全部字段)
+// 用于：① 行内小问号 tooltip(只显示 def 一句话)② 底部词典(全部字段)
 
 const GLOSSARY = {
   // ===== 因子 / Factors =====
   value: {
     zh:{ term:"价值因子 Value (V)",
       def:"衡量股票相对其基本面是否便宜。",
-      calc:"本工具取市盈率(P/E)与市净率(P/B)的横截面百分位分,等权平均。分数越高=越便宜。",
-      read:"高分=估值低、相对便宜;低分=估值高、相对贵。注意「便宜」不等于「该买」,可能是基本面恶化的廉价陷阱(value trap)。",
-      horizon:"长期(桶A):价值是经典的长期超额来源,低估值组合长期跑赢。短线(桶C):几乎无用,短线由情绪和动量主导,估值便宜的票可以连跌数月。",
-      pitfall:"小样本下百分位不稳;P/E 为负(亏损公司)会失真,本工具对缺失值给中性 50 分。",
-      source:"Fama & French (1992, 1993) 三因子模型 HML 因子;Graham & Dodd 价值投资传统。" },
+      calc:"本工具取市盈率(P/E)与市净率(P/B)的横截面百分位分，等权平均。分数越高=越便宜。",
+      read:"高分=估值低、相对便宜；低分=估值高、相对贵。注意「便宜」不等于「该买」，可能是基本面恶化的廉价陷阱(value trap)。",
+      horizon:"长期(桶A)：价值是经典的长期超额来源，低估值组合长期跑赢。短线(桶C)：几乎无用，短线由情绪和动量主导，估值便宜的票可以连跌数月。",
+      pitfall:"小样本下百分位不稳；P/E 为负(亏损公司)会失真，本工具对缺失值给中性 50 分。",
+      source:"Fama & French (1992, 1993) 三因子模型 HML 因子；Graham & Dodd 价值投资传统。" },
     en:{ term:"Value Factor (V)",
       def:"Measures whether a stock is cheap relative to its fundamentals.",
       calc:"Equal-weight average of cross-sectional percentile ranks of P/E and P/B. Higher = cheaper.",
@@ -575,10 +575,10 @@ const GLOSSARY = {
     zh:{ term:"质量因子 Quality (Q)",
       def:"衡量公司盈利能力强、财务健康的程度。",
       calc:"取净资产收益率(ROE)、净利率、低负债率(D/E)三者的百分位分等权合成。高分=高盈利、低杠杆。",
-      read:"高分=赚钱能力强、负债可控;低分=盈利弱或杠杆高、脆弱。",
-      horizon:"长期(桶A):高质量公司长期风险调整收益更优,是穿越周期的压舱石。短线(桶C):基本无关,短线不看公司质地。",
-      pitfall:"本工具的三指标等权是任意选择,非学科规范;Asness 的 QMJ 用更复杂的盈利/成长/安全三大类。",
-      source:"Novy-Marx (2013) 盈利能力因子;Fama-French (2015) 五因子 RMW;Asness et al. (2019) 「Quality Minus Junk」。" }
+      read:"高分=赚钱能力强、负债可控；低分=盈利弱或杠杆高、脆弱。",
+      horizon:"长期(桶A)：高质量公司长期风险调整收益更优，是穿越周期的压舱石。短线(桶C)：基本无关，短线不看公司质地。",
+      pitfall:"本工具的三指标等权是任意选择，非学科规范；Asness 的 QMJ 用更复杂的盈利/成长/安全三大类。",
+      source:"Novy-Marx (2013) 盈利能力因子；Fama-French (2015) 五因子 RMW;Asness et al. (2019) 「Quality Minus Junk」。" }
     ,en:{ term:"Quality Factor (Q)",
       def:"Measures how profitable and financially healthy a company is.",
       calc:"Equal-weight composite of percentile ranks of ROE, profit margin, and low leverage (D/E). Higher = more profitable, less levered.",
@@ -590,10 +590,10 @@ const GLOSSARY = {
   momentum: {
     zh:{ term:"动量因子 Momentum (M)",
       def:"衡量股票近期的相对强弱(强者恒强)。",
-      calc:"用 12-1 动量:过去12个月收益剔除最近1个月,取百分位分。剔除最近1个月是为避开短期反转效应。",
-      read:"高分=近一年涨势强劲;低分=弱势或下跌。",
-      horizon:"长期(桶A):动量是经检验的稳健因子,但换手率高、有交易成本。短线(桶C):短线最关注的就是动量与趋势,但极易追高被套。",
-      pitfall:"动量在市场反转点会剧烈失效(momentum crash),2009 反弹中动量策略巨亏;高换手吃成本。",
+      calc:"用 12-1 动量：过去12个月收益剔除最近1个月，取百分位分。剔除最近1个月是为避开短期反转效应。",
+      read:"高分=近一年涨势强劲；低分=弱势或下跌。",
+      horizon:"长期(桶A)：动量是经检验的稳健因子，但换手率高、有交易成本。短线(桶C)：短线最关注的就是动量与趋势，但极易追高被套。",
+      pitfall:"动量在市场反转点会剧烈失效(momentum crash),2009 反弹中动量策略巨亏；高换手吃成本。",
       source:"Jegadeesh & Titman (1993);Carhart (1997) 四因子 UMD。" }
     ,en:{ term:"Momentum Factor (M)",
       def:"Measures a stock's recent relative strength (winners keep winning).",
@@ -606,10 +606,10 @@ const GLOSSARY = {
   lowvol: {
     zh:{ term:"低波动因子 Low-Vol (L)",
       def:"衡量股票价格波动的低/稳程度。",
-      calc:"取近一年已实现波动率(日收益年化标准差)的百分位,反向计分:波动越低,分越高。",
-      read:"高分=价格稳;低分=剧烈波动。",
-      horizon:"长期(桶A):低波动异象——低波动股的风险调整后收益反而更优,违反CAPM。短线(桶C):反而偏好高波动(有波动才有短线价差),读法完全相反。",
-      pitfall:"这是同一个指标对两个桶读法相反的典型例子:桶A要高分(稳),桶C的投机者要低分(能动)。",
+      calc:"取近一年已实现波动率(日收益年化标准差)的百分位，反向计分：波动越低，分越高。",
+      read:"高分=价格稳；低分=剧烈波动。",
+      horizon:"长期(桶A)：低波动异象——低波动股的风险调整后收益反而更优，违反CAPM。短线(桶C)：反而偏好高波动(有波动才有短线价差)，读法完全相反。",
+      pitfall:"这是同一个指标对两个桶读法相反的典型例子：桶A要高分(稳)，桶C的投机者要低分(能动)。",
       source:"Ang, Hodrick, Xing & Zhang (2006);Baker, Bradley & Wurgler (2011) 低波动异象。" }
     ,en:{ term:"Low-Volatility Factor (L)",
       def:"Measures how low/stable a stock's price volatility is.",
@@ -622,11 +622,11 @@ const GLOSSARY = {
   composite: {
     zh:{ term:"综合评分 Composite",
       def:"四因子(V/Q/M/L)加权合成的总分。",
-      calc:"本工具默认四因子各占25%等权。权重是可调的默认值,无理论规定必须等权。",
-      read:"组内相对排名,非绝对买卖信号。高分=在这组里综合因子暴露更优。",
-      horizon:"主要服务长期(桶A)的横截面比较;对短线(桶C)无直接意义。",
-      pitfall:"⚠ 关键:此分从未经回测验证,不知是否能预测未来收益;且四因子等权是任意选择。详见因子归因板块——它检验这些分里有多少是真alpha。",
-      source:"多因子合成思路源自因子投资文献;等权为本工具的实现简化。" }
+      calc:"本工具默认四因子各占25%等权。权重是可调的默认值，无理论规定必须等权。",
+      read:"组内相对排名，非绝对买卖信号。高分=在这组里综合因子暴露更优。",
+      horizon:"主要服务长期(桶A)的横截面比较；对短线(桶C)无直接意义。",
+      pitfall:"⚠ 关键：此分从未经回测验证，不知是否能预测未来收益；且四因子等权是任意选择。详见因子归因板块——它检验这些分里有多少是真alpha。",
+      source:"多因子合成思路源自因子投资文献；等权为本工具的实现简化。" }
     ,en:{ term:"Composite Score",
       def:"Weighted blend of the four factors (V/Q/M/L).",
       calc:"Default equal weight 25% each. Weights are an adjustable default; no theory mandates equal weighting.",
@@ -639,12 +639,12 @@ const GLOSSARY = {
   // ===== 基本面 / Fundamentals =====
   pe: {
     zh:{ term:"市盈率 P/E",
-      def:"股价 ÷ 每股收益,市场为每1元盈利付多少钱。",
-      calc:"Price / Earnings per share(本工具用 trailing P/E,基于过去12个月盈利)。",
-      read:"高=市场预期高增长或估值贵;低=便宜或市场悲观。须同业比较,跨行业不可比。",
-      horizon:"长期(桶A):核心估值锚。短线(桶C):基本不看。",
-      pitfall:"亏损公司 P/E 为负或无意义;不同行业基准差异极大(科技 vs 公用事业)。",
-      source:"基础财务比率;Graham 价值分析传统。" }
+      def:"股价 ÷ 每股收益，市场为每1元盈利付多少钱。",
+      calc:"Price / Earnings per share(本工具用 trailing P/E，基于过去12个月盈利)。",
+      read:"高=市场预期高增长或估值贵；低=便宜或市场悲观。须同业比较，跨行业不可比。",
+      horizon:"长期(桶A)：核心估值锚。短线(桶C)：基本不看。",
+      pitfall:"亏损公司 P/E 为负或无意义；不同行业基准差异极大(科技 vs 公用事业)。",
+      source:"基础财务比率；Graham 价值分析传统。" }
     ,en:{ term:"P/E Ratio",
       def:"Price ÷ earnings per share — how much you pay per $1 of profit.",
       calc:"Price / EPS (trailing P/E, based on last 12 months).",
@@ -655,11 +655,11 @@ const GLOSSARY = {
   },
   pb: {
     zh:{ term:"市净率 P/B",
-      def:"股价 ÷ 每股净资产,市场为每1元账面净资产付多少钱。",
+      def:"股价 ÷ 每股净资产，市场为每1元账面净资产付多少钱。",
       calc:"Price / Book value per share。",
-      read:"低=接近或低于账面价值;高=市场给予大量无形/成长溢价。",
-      horizon:"长期(桶A):价值因子核心组件。短线:无关。",
-      pitfall:"对轻资产公司(软件)失真——账面价值不反映真实价值;银行/地产更适用。",
+      read:"低=接近或低于账面价值；高=市场给予大量无形/成长溢价。",
+      horizon:"长期(桶A)：价值因子核心组件。短线：无关。",
+      pitfall:"对轻资产公司(软件)失真——账面价值不反映真实价值；银行/地产更适用。",
       source:"Fama-French HML 的经典定义即用账面市值比 B/M。" }
     ,en:{ term:"P/B Ratio",
       def:"Price ÷ book value per share.",
@@ -671,12 +671,12 @@ const GLOSSARY = {
   },
   roe: {
     zh:{ term:"净资产收益率 ROE",
-      def:"净利润 ÷ 股东权益,股东每1元投入赚回多少。",
+      def:"净利润 ÷ 股东权益，股东每1元投入赚回多少。",
       calc:"Net income / shareholder equity。",
-      read:"高=资本效率高、赚钱能力强;但要警惕高杠杆人为抬高 ROE。",
-      horizon:"长期(桶A):质量因子核心。短线:无关。",
-      pitfall:"杜邦分解显示高ROE可能来自高杠杆而非真盈利;负权益时失真。",
-      source:"杜邦分析;Novy-Marx 盈利能力因子相关。" }
+      read:"高=资本效率高、赚钱能力强；但要警惕高杠杆人为抬高 ROE。",
+      horizon:"长期(桶A)：质量因子核心。短线：无关。",
+      pitfall:"杜邦分解显示高ROE可能来自高杠杆而非真盈利；负权益时失真。",
+      source:"杜邦分析；Novy-Marx 盈利能力因子相关。" }
     ,en:{ term:"Return on Equity (ROE)",
       def:"Net income ÷ shareholder equity.",
       calc:"Net income / shareholder equity.",
@@ -687,12 +687,12 @@ const GLOSSARY = {
   },
   de: {
     zh:{ term:"负债权益比 D/E",
-      def:"总负债 ÷ 股东权益,衡量财务杠杆。",
+      def:"总负债 ÷ 股东权益，衡量财务杠杆。",
       calc:"Total debt / equity(数据源常以百分数给出)。",
-      read:"高=杠杆重、财务脆弱、利率敏感;低=稳健。",
-      horizon:"长期(桶A):质量/安全的核心,加息周期尤其重要(呼应利率对股市的影响)。短线:无关。",
-      pitfall:"行业差异大(公用事业天然高杠杆);不含表外负债。",
-      source:"基础杠杆比率;Asness QMJ 的 safety 维度。" }
+      read:"高=杠杆重、财务脆弱、利率敏感；低=稳健。",
+      horizon:"长期(桶A)：质量/安全的核心，加息周期尤其重要(呼应利率对股市的影响)。短线：无关。",
+      pitfall:"行业差异大(公用事业天然高杠杆)；不含表外负债。",
+      source:"基础杠杆比率；Asness QMJ 的 safety 维度。" }
     ,en:{ term:"Debt/Equity (D/E)",
       def:"Total debt ÷ equity — financial leverage.",
       calc:"Total debt / equity (data source often gives a percentage).",
@@ -703,12 +703,12 @@ const GLOSSARY = {
   },
   ev_ebitda: {
     zh:{ term:"EV/EBITDA",
-      def:"企业价值 ÷ 息税折旧摊销前利润,剔除资本结构影响的估值。",
+      def:"企业价值 ÷ 息税折旧摊销前利润，剔除资本结构影响的估值。",
       calc:"Enterprise Value / EBITDA。EV=市值+净负债。",
-      read:"比 P/E 更能跨资本结构比较,常用于并购估值;低=相对便宜。",
-      horizon:"长期(桶A):估值参考。短线:无关。",
-      pitfall:"EBITDA 忽略资本开支,重资产行业会美化;Buffett 批评其掩盖真实成本。",
-      source:"企业估值标准指标;并购实务常用。" }
+      read:"比 P/E 更能跨资本结构比较，常用于并购估值；低=相对便宜。",
+      horizon:"长期(桶A)：估值参考。短线：无关。",
+      pitfall:"EBITDA 忽略资本开支，重资产行业会美化；Buffett 批评其掩盖真实成本。",
+      source:"企业估值标准指标；并购实务常用。" }
     ,en:{ term:"EV/EBITDA",
       def:"Enterprise value ÷ EBITDA — valuation stripped of capital structure.",
       calc:"EV / EBITDA. EV = market cap + net debt.",
@@ -719,11 +719,11 @@ const GLOSSARY = {
   },
   pm: {
     zh:{ term:"净利率 Profit Margin",
-      def:"净利润 ÷ 营收,每1元收入最终留下多少利润。",
+      def:"净利润 ÷ 营收，每1元收入最终留下多少利润。",
       calc:"Net income / revenue。",
-      read:"高=定价权强、成本控制好;低=薄利或竞争激烈。",
-      horizon:"长期(桶A):质量因子组件。短线:无关。",
-      pitfall:"行业差异巨大(软件高、零售低),只能同业比。",
+      read:"高=定价权强、成本控制好；低=薄利或竞争激烈。",
+      horizon:"长期(桶A)：质量因子组件。短线：无关。",
+      pitfall:"行业差异巨大(软件高、零售低)，只能同业比。",
       source:"基础盈利能力指标。" }
     ,en:{ term:"Profit Margin",
       def:"Net income ÷ revenue.",
@@ -739,9 +739,9 @@ const GLOSSARY = {
     zh:{ term:"12-1 动量",
       def:"过去12个月剔除最近1个月的累计收益。",
       calc:"P(t-1月) / P(t-12月) − 1。剔除最近1月以避开短期反转。",
-      read:"正=趋势向上;负=下跌趋势。",
-      horizon:"长期(桶A):动量因子原料。短线(桶C):趋势交易的依据,但要防追高。",
-      pitfall:"转折点失效(动量崩溃);与「低波动」可能冲突——强动量常伴高波动。",
+      read:"正=趋势向上；负=下跌趋势。",
+      horizon:"长期(桶A)：动量因子原料。短线(桶C)：趋势交易的依据，但要防追高。",
+      pitfall:"转折点失效(动量崩溃)；与「低波动」可能冲突——强动量常伴高波动。",
       source:"Jegadeesh & Titman (1993)。" }
     ,en:{ term:"12-1 Momentum",
       def:"Trailing 12-month return excluding the most recent month.",
@@ -755,10 +755,10 @@ const GLOSSARY = {
     zh:{ term:"已实现波动率 Realized Vol",
       def:"过去实际价格波动的年化标准差(历史波动率 HV)。",
       calc:"日对数收益的标准差 × √252。",
-      read:"高=过去波动剧烈;与隐含波动率(IV,市场对未来的预期)对比,差距本身有信息。",
-      horizon:"长期(桶A):风险度量,越低越稳。短线(桶C):越高越有可操作空间。读法相反。",
-      pitfall:"是回看的(已发生),不预示未来;与 IV 混淆是常见错误——一个是过去,一个是预期。",
-      source:"波动率建模基础;对照 Black-Scholes 的常数波动率假设。" }
+      read:"高=过去波动剧烈；与隐含波动率(IV，市场对未来的预期)对比，差距本身有信息。",
+      horizon:"长期(桶A)：风险度量，越低越稳。短线(桶C)：越高越有可操作空间。读法相反。",
+      pitfall:"是回看的(已发生)，不预示未来；与 IV 混淆是常见错误——一个是过去，一个是预期。",
+      source:"波动率建模基础；对照 Black-Scholes 的常数波动率假设。" }
     ,en:{ term:"Realized Volatility",
       def:"Annualized std of past actual price moves (historical vol, HV).",
       calc:"Std of daily log returns × √252.",
@@ -769,12 +769,12 @@ const GLOSSARY = {
   },
   drawdown: {
     zh:{ term:"回撤 Drawdown",
-      def:"价格从峰值下跌的幅度。当前回撤=距历史最高点;最大回撤=区间内最深的一次。",
-      calc:"DD(t) = P(t)/历史峰值 − 1;最大回撤=该序列最小值。",
+      def:"价格从峰值下跌的幅度。当前回撤=距历史最高点；最大回撤=区间内最深的一次。",
+      calc:"DD(t) = P(t)/历史峰值 − 1；最大回撤=该序列最小值。",
       read:"绝对值越大=跌得越狠。最大回撤决定你能否扛住不割肉离场。",
-      horizon:"长期(桶A):衡量你心理能承受的痛;能扛住大回撤是长期持有的前提。短线(桶C):止损纪律的参照。",
-      pitfall:"只看回撤幅度不看时长会误判;深而短 vs 浅而长,体验完全不同。",
-      source:"风险管理标准指标;Calmar 比率即年化收益/最大回撤。" }
+      horizon:"长期(桶A)：衡量你心理能承受的痛；能扛住大回撤是长期持有的前提。短线(桶C)：止损纪律的参照。",
+      pitfall:"只看回撤幅度不看时长会误判；深而短 vs 浅而长，体验完全不同。",
+      source:"风险管理标准指标；Calmar 比率即年化收益/最大回撤。" }
     ,en:{ term:"Drawdown",
       def:"Decline from a peak. Current DD = from all-time high; max DD = deepest in the window.",
       calc:"DD(t) = P(t)/running-max − 1; max DD = min of that series.",
@@ -788,10 +788,10 @@ const GLOSSARY = {
   iv: {
     zh:{ term:"隐含波动率 IV",
       def:"从期权价格反推出的、市场对标的未来波动幅度的预期。",
-      calc:"用 Black-Scholes 反解:让模型价等于市场价的那个波动率。本工具用 scipy 自行反解,绕开数据源崩坏值。",
-      read:"只讲幅度不讲方向。高IV=市场预期剧烈波动(常因事件/财报),期权贵;低IV=预期平静,期权便宜。",
-      horizon:"长期(桶A):基本不交易期权,IV参考意义有限。短线/期权(桶C):核心——买期权=买波动率,高IV时买入有vega逆风。",
-      pitfall:"绝对值无意义,须看IV Rank;事件后IV暴跌(IV crush)是方向对了仍亏钱的经典陷阱。",
+      calc:"用 Black-Scholes 反解：让模型价等于市场价的那个波动率。本工具用 scipy 自行反解，绕开数据源崩坏值。",
+      read:"只讲幅度不讲方向。高IV=市场预期剧烈波动(常因事件/财报)，期权贵；低IV=预期平静，期权便宜。",
+      horizon:"长期(桶A)：基本不交易期权，IV参考意义有限。短线/期权(桶C)：核心——买期权=买波动率，高IV时买入有vega逆风。",
+      pitfall:"绝对值无意义，须看IV Rank；事件后IV暴跌(IV crush)是方向对了仍亏钱的经典陷阱。",
       source:"Black & Scholes (1973);Merton (1973)。" }
     ,en:{ term:"Implied Volatility (IV)",
       def:"The market's expectation of future volatility, backed out of option prices.",
@@ -803,12 +803,12 @@ const GLOSSARY = {
   },
   iv_rank: {
     zh:{ term:"IV 分位(代理)IV Rank Proxy",
-      def:"当前波动率在近一年区间中的百分位,用于判断期权「贵不贵」。",
-      calc:"⚠ 本工具是代理值:用近一年滚动已实现波动率的分位近似。真正的IV Rank需历史隐含波动率(付费数据如OptionMetrics)。",
-      read:"接近100=波动处于一年高位,期权贵,买方逆风;接近0=便宜,买方有利。",
-      horizon:"长期(桶A):无关。短线/期权(桶C):决定该当买方还是卖方——高分位时卖方占优。",
-      pitfall:"⚠ 这是用已实现波动率冒充隐含波动率的妥协,和Barchart的真IV Rank不是一回事;务必知道其局限。",
-      source:"IV Rank 概念为期权交易实务标准;本代理为数据受限下的简化。" }
+      def:"当前波动率在近一年区间中的百分位，用于判断期权「贵不贵」。",
+      calc:"⚠ 本工具是代理值：用近一年滚动已实现波动率的分位近似。真正的IV Rank需历史隐含波动率(付费数据如OptionMetrics)。",
+      read:"接近100=波动处于一年高位，期权贵，买方逆风；接近0=便宜，买方有利。",
+      horizon:"长期(桶A)：无关。短线/期权(桶C)：决定该当买方还是卖方——高分位时卖方占优。",
+      pitfall:"⚠ 这是用已实现波动率冒充隐含波动率的妥协，和Barchart的真IV Rank不是一回事；务必知道其局限。",
+      source:"IV Rank 概念为期权交易实务标准；本代理为数据受限下的简化。" }
     ,en:{ term:"IV Rank (Proxy)",
       def:"Where current vol sits in its 1-year range — gauges whether options are cheap or expensive.",
       calc:"⚠ A PROXY here: percentile of trailing-1y rolling realized vol. True IV Rank needs historical implied vol (paid data like OptionMetrics).",
@@ -821,9 +821,9 @@ const GLOSSARY = {
     zh:{ term:"预期波动 Expected Move",
       def:"市场隐含的、标的到期前的一个标准差波动幅度。",
       calc:"≈ 现价 × IV × √(到期天数/365)。约68%概率落在 现价±此值 之内。",
-      read:"给出市场预期的价格区间,而非方向。区间越宽=市场越不确定。",
-      horizon:"短线/期权(桶C):判断行权价、盈亏平衡的关键。长期(桶A):无关。",
-      pitfall:"是风险中性预期,非真实概率;基于当前IV,IV变则区间变。",
+      read:"给出市场预期的价格区间，而非方向。区间越宽=市场越不确定。",
+      horizon:"短线/期权(桶C)：判断行权价、盈亏平衡的关键。长期(桶A)：无关。",
+      pitfall:"是风险中性预期，非真实概率；基于当前IV,IV变则区间变。",
       source:"由Black-Scholes的对数正态假设导出的标准近似。" }
     ,en:{ term:"Expected Move",
       def:"The market-implied one-standard-deviation move by expiry.",
@@ -835,12 +835,12 @@ const GLOSSARY = {
   },
   skew: {
     zh:{ term:"波动率偏斜 Skew",
-      def:"不同行权价的IV差异,反映市场往哪个方向更恐惧。",
+      def:"不同行权价的IV差异，反映市场往哪个方向更恐惧。",
       calc:"本工具取价外put与价外call的IV差(正值=put skew)。",
-      read:"正(put skew)=市场为下跌保护付更高溢价、偏向怕跌(股市常态);负(call skew)=抢涨,见于逼空/并购传闻。",
-      horizon:"短线/期权(桶C):少数能透出方向性情绪的指标。长期(桶A):无关。",
-      pitfall:"它的存在本身推翻了Black-Scholes的常数波动率假设——市场不信正态分布,认为肥尾(尤其暴跌)更可能。",
-      source:"波动率微笑/偏斜文献;1987股灾后put skew成为常态。" }
+      read:"正(put skew)=市场为下跌保护付更高溢价、偏向怕跌(股市常态)；负(call skew)=抢涨，见于逼空/并购传闻。",
+      horizon:"短线/期权(桶C)：少数能透出方向性情绪的指标。长期(桶A)：无关。",
+      pitfall:"它的存在本身推翻了Black-Scholes的常数波动率假设——市场不信正态分布，认为肥尾(尤其暴跌)更可能。",
+      source:"波动率微笑/偏斜文献；1987股灾后put skew成为常态。" }
     ,en:{ term:"Volatility Skew",
       def:"The difference in IV across strikes — shows which direction the market fears.",
       calc:"Here: IV of OTM put minus OTM call (positive = put skew).",
@@ -851,12 +851,12 @@ const GLOSSARY = {
   },
   pc: {
     zh:{ term:"Put/Call 持仓比",
-      def:"未平仓的put数量 ÷ call数量,衡量情绪偏向。",
+      def:"未平仓的put数量 ÷ call数量，衡量情绪偏向。",
       calc:"Σ put open interest / Σ call open interest。",
-      read:">1=put多、偏避险/看跌;<1=call多、偏看涨。常被当反向指标:极端值往往是情绪顶/底。",
-      horizon:"短线/期权(桶C):情绪温度计。长期(桶A):无关。",
-      pitfall:"噪音大,需结合背景;机械使用易误判。",
-      source:"市场情绪指标实务;常用作逆向指标。" }
+      read:">1=put多、偏避险/看跌；<1=call多、偏看涨。常被当反向指标：极端值往往是情绪顶/底。",
+      horizon:"短线/期权(桶C)：情绪温度计。长期(桶A)：无关。",
+      pitfall:"噪音大，需结合背景；机械使用易误判。",
+      source:"市场情绪指标实务；常用作逆向指标。" }
     ,en:{ term:"Put/Call OI Ratio",
       def:"Open-interest puts ÷ calls — a sentiment gauge.",
       calc:"Σ put OI / Σ call OI.",
@@ -869,11 +869,11 @@ const GLOSSARY = {
   // ===== 归因 / Attribution =====
   alpha: {
     zh:{ term:"Alpha (α)",
-      def:"扣除所有已知因子暴露后,剩下的真超额收益。",
-      calc:"FF五因子+动量回归的截距项,年化(×252)。",
-      read:"显著正α=有无法被已知风险解释的真本事;不显著(|t|<2)=表现可被市场/规模/价值/动量等完全解释,没有真alpha。",
+      def:"扣除所有已知因子暴露后，剩下的真超额收益。",
+      calc:"FF五因子+动量回归的截距项，年化(×252)。",
+      read:"显著正α=有无法被已知风险解释的真本事；不显著(|t|<2)=表现可被市场/规模/价值/动量等完全解释，没有真alpha。",
       horizon:"这是检验「我的选股有没有edge」的核心(服务目标2学习)。对所有桶都是清醒剂。",
-      pitfall:"⚠ 过去的α不保证未来;单股回归噪声大;多数个股α不显著正是有效市场常态。",
+      pitfall:"⚠ 过去的α不保证未来；单股回归噪声大；多数个股α不显著正是有效市场常态。",
       source:"Jensen (1968) alpha;CAPM/因子模型残差。" }
     ,en:{ term:"Alpha (α)",
       def:"The true excess return left after removing all known factor exposures.",
@@ -888,9 +888,9 @@ const GLOSSARY = {
       def:"α的统计显著性。衡量α是真信号还是噪声。",
       calc:"α估计值 / 其标准误。",
       read:"经验法则 |t|≥2(约95%置信)才算显著。|t|<2 的α实质上与「零α」无法区分。",
-      horizon:"判读α时的必备配套;只看α数值不看t值会被噪声欺骗。",
-      pitfall:"多重检验问题:测足够多股票,总有几个偶然t>2,需校正(Lopez de Prado警告)。",
-      source:"统计假设检验;Harvey-Liu-Zhu (2016) 因子多重检验。" }
+      horizon:"判读α时的必备配套；只看α数值不看t值会被噪声欺骗。",
+      pitfall:"多重检验问题：测足够多股票，总有几个偶然t>2，需校正(Lopez de Prado警告)。",
+      source:"统计假设检验；Harvey-Liu-Zhu (2016) 因子多重检验。" }
     ,en:{ term:"t-stat (alpha)",
       def:"Statistical significance of α — signal vs noise.",
       calc:"α estimate / its standard error.",
@@ -903,9 +903,9 @@ const GLOSSARY = {
     zh:{ term:"R²",
       def:"收益被因子模型解释的比例(0–1)。",
       calc:"回归的决定系数。",
-      read:"高(如0.7+)=收益大多由因子驱动,个性少;低=因子解释力弱、特异性强。",
+      read:"高(如0.7+)=收益大多由因子驱动，个性少；低=因子解释力弱、特异性强。",
       horizon:"理解一只股票「有多像市场/因子的组合」。",
-      pitfall:"高R²不代表α显著——可以完全被因子解释(高R²)且α为零;两者独立。",
+      pitfall:"高R²不代表α显著——可以完全被因子解释(高R²)且α为零；两者独立。",
       source:"回归分析基础。" }
     ,en:{ term:"R²",
       def:"Fraction of return variance explained by the factor model (0–1).",
@@ -921,7 +921,7 @@ const GLOSSARY = {
       calc:"回归中各因子的系数。如MKT beta=1.5表示市场涨1%该股约涨1.5%。",
       read:"绝对值越大=对该因子越敏感。带t值看显著性(|t|≥2才可信)。",
       horizon:"揭示你真正在承担什么风险。如一篮子股MKT beta都很高=你其实在重押市场方向(呼应相关性热图的「假分散」)。",
-      pitfall:"beta是历史估计,会随时间漂移;高市场beta意味着加杠杆式承担系统风险。",
+      pitfall:"beta是历史估计，会随时间漂移；高市场beta意味着加杠杆式承担系统风险。",
       source:"CAPM β;Fama-French/Carhart 多因子β。" }
     ,en:{ term:"Factor Beta (β)",
       def:"A stock's sensitivity to a given factor.",
@@ -935,11 +935,11 @@ const GLOSSARY = {
   // ===== 回测 / Backtest =====
   sharpe: {
     zh:{ term:"夏普比率 Sharpe Ratio",
-      def:"每承担一单位波动风险换来的超额收益,量化的核心KPI。",
+      def:"每承担一单位波动风险换来的超额收益，量化的核心KPI。",
       calc:"(策略年化收益 − 无风险利率) / 年化波动率。",
-      read:">1 尚可,>2 优秀,<0 亏钱。但它把上涨波动也当风险罚,是其缺陷。",
-      horizon:"长期(桶A):衡量策略风险调整后的效率。短线(桶C):单笔投机谈不上Sharpe。",
-      pitfall:"对非正态收益(肥尾、偏斜)失真;可被杠杆和挑选样本期美化;须看样本外的Sharpe。",
+      read:">1 尚可，>2 优秀，<0 亏钱。但它把上涨波动也当风险罚，是其缺陷。",
+      horizon:"长期(桶A)：衡量策略风险调整后的效率。短线(桶C)：单笔投机谈不上Sharpe。",
+      pitfall:"对非正态收益(肥尾、偏斜)失真；可被杠杆和挑选样本期美化；须看样本外的Sharpe。",
       source:"Sharpe (1966, 1994)。" }
     ,en:{ term:"Sharpe Ratio",
       def:"Excess return per unit of volatility risk — the core quant KPI.",
@@ -954,8 +954,8 @@ const GLOSSARY = {
       def:"只惩罚下行波动的Sharpe改良版。",
       calc:"(年化收益 − 无风险利率) / 下行波动率(只算负收益的标准差)。",
       read:"比Sharpe更合理——你不该讨厌「涨得太猛」。值越高越好。",
-      horizon:"长期(桶A):更贴近你真正怕的下行风险。短线:无关。",
-      pitfall:"下行样本少时不稳;阈值(MAR)选择影响结果。",
+      horizon:"长期(桶A)：更贴近你真正怕的下行风险。短线：无关。",
+      pitfall:"下行样本少时不稳；阈值(MAR)选择影响结果。",
       source:"Sortino & Price (1994)。" }
     ,en:{ term:"Sortino Ratio",
       def:"A Sharpe variant that penalizes only downside volatility.",
@@ -970,8 +970,8 @@ const GLOSSARY = {
       def:"把「赚多少」和「最痛时多痛」挂钩。",
       calc:"年化收益 / 最大回撤的绝对值。",
       read:"越高=用越小的最大回撤换来越高收益。直接关系你能否扛住不割肉。",
-      horizon:"长期(桶A):对你最重要——决定情绪能否撑过低谷。短线:用最大回撤做止损参照。",
-      pitfall:"只看单一最大回撤点,忽略回撤的频率与时长。",
+      horizon:"长期(桶A)：对你最重要——决定情绪能否撑过低谷。短线：用最大回撤做止损参照。",
+      pitfall:"只看单一最大回撤点，忽略回撤的频率与时长。",
       source:"Young (1991)。" }
     ,en:{ term:"Calmar Ratio",
       def:"Links 'how much you earn' to 'how much it hurts at worst'.",
@@ -983,12 +983,12 @@ const GLOSSARY = {
   },
   backtest_method: {
     zh:{ term:"回测方法论 Backtest Method",
-      def:"在历史数据上模拟策略表现,检验「这套打分有没有用」。",
-      calc:"本工具:每个调仓日仅用当日及之前数据重算因子分(无前瞻)→ 买高分组 → 扣交易成本 → 对比等权基准。",
-      read:"只看「样本外」结果;样本内表现好可能只是过拟合。三道安全锁:样本外切分、交易成本、参数敏感性。",
+      def:"在历史数据上模拟策略表现，检验「这套打分有没有用」。",
+      calc:"本工具：每个调仓日仅用当日及之前数据重算因子分(无前瞻)→ 买高分组 → 扣交易成本 → 对比等权基准。",
+      read:"只看「样本外」结果；样本内表现好可能只是过拟合。三道安全锁：样本外切分、交易成本、参数敏感性。",
       horizon:"服务目标2(学习)与目标1(检验长期策略)。短线无关。",
-      pitfall:"⚠ 过拟合是头号死因:试足够多参数,随机数据也能挖出漂亮曲线。看参数敏感性——若Sharpe随参数剧烈跳动,即是过拟合警报。本回测样本过小,仅作演示。",
-      source:"Lopez de Prado《回测过拟合的危害》;Harvey-Liu-Zhu (2016) 多重检验。" }
+      pitfall:"⚠ 过拟合是头号死因：试足够多参数，随机数据也能挖出漂亮曲线。看参数敏感性——若Sharpe随参数剧烈跳动，即是过拟合警报。本回测样本过小，仅作演示。",
+      source:"Lopez de Prado《回测过拟合的危害》；Harvey-Liu-Zhu (2016) 多重检验。" }
     ,en:{ term:"Backtest Methodology",
       def:"Simulating a strategy on historical data to test whether the scoring has any edge.",
       calc:"Here: at each rebalance, factor scores use only data up to that day (no look-ahead) → buy top group → deduct trading costs → compare vs equal-weight benchmark.",
@@ -999,12 +999,12 @@ const GLOSSARY = {
   },
   diversification: {
     zh:{ term:"有效分散度 Effective Diversification",
-      def:"把相关性考虑进去后,你的组合实际相当于几只「独立」的股票。",
+      def:"把相关性考虑进去后，你的组合实际相当于几只「独立」的股票。",
       calc:"近似 = (加权平均个股波动)² / 组合方差。范围在 1 到持仓数之间。",
-      read:"接近持仓数=真分散(各股独立);远小于持仓数=表面分散、实则抱团。如4只半导体股可能有效分散度只有1.5——因为它们同涨同跌。",
-      horizon:"长期(桶A):决定组合能否真正平滑波动。短线(桶C):集中反而可能是有意的高风险下注。",
-      pitfall:"分散降低的是非系统性风险;系统性(市场)风险无法靠分散消除。同行业、同因子暴露的股票,分散几乎无效。",
-      source:"Markowitz (1952) 现代组合理论;分散化的数学基础。" }
+      read:"接近持仓数=真分散(各股独立)；远小于持仓数=表面分散、实则抱团。如4只半导体股可能有效分散度只有1.5——因为它们同涨同跌。",
+      horizon:"长期(桶A)：决定组合能否真正平滑波动。短线(桶C)：集中反而可能是有意的高风险下注。",
+      pitfall:"分散降低的是非系统性风险；系统性(市场)风险无法靠分散消除。同行业、同因子暴露的股票，分散几乎无效。",
+      source:"Markowitz (1952) 现代组合理论；分散化的数学基础。" }
     ,en:{ term:"Effective Diversification",
       def:"How many 'independent' stocks your portfolio really equals, once correlation is accounted for.",
       calc:"Approx = (weighted-avg single-stock vol)² / portfolio variance. Ranges from 1 to the number of holdings.",
@@ -1018,9 +1018,9 @@ const GLOSSARY = {
 
 const I18N = {
   zh:{
-    title:"一飞重洋夜航帆 - 股市量化分析", subtitle:"CAPM, QVM+L, and Fama-French 量化分析",
-    epi_zh:"\"终朝只恨聚无多,及到多时眼闭了。\"<br>\"乱烘烘你方唱罢我登场,反认他乡是故乡。甚荒唐,到头来都是为他人作嫁衣裳。\"",
-    rank_label:"综合评分排序 · COMPOSITE RANKING",
+    title:"一飞重洋夜航帆 · 股市量化分析", subtitle:"CAPM, QVM+L, and Fama-French 量化分析",
+    epi_zh:"\"终朝只恨聚无多，及到多时眼闭了。\"<br>\"乱烘烘你方唱罢我登场，反认他乡是故乡。甚荒唐，到头来都是为他人作嫁衣裳。\"",
+    rank_label:"综合评分排序",
     th_rank:"#", th_sym:"标的", th_price:"价格", th_v:"价值 V", th_q:"质量 Q",
     th_m:"动量 M", th_l:"低波 L", th_comp:"综合", th_ivr:"IV分位*",
     click_hint:"↑ 点击任意一行查看单股深度分析",
@@ -1030,60 +1030,60 @@ const I18N = {
     o_exp:"到期日", o_days:"剩余天数", o_iv:"ATM 隐含波动率", o_move:"预期波动",
     o_skew:"偏斜(put−call)", o_pc:"Put/Call 持仓比",
     f_value:"价值", f_quality:"质量", f_momentum:"动量", f_lowvol:"低波动",
-    edgar_title:"盈利质量:净利润 vs 经营现金流(历史)", perf_title:"个股绩效:作为持有标的的风险收益(近一年)", verdict:"解读", footer:"生成于", not_advice:"非投资建议 / Not investment advice",
+    edgar_title:"盈利质量：净利润 vs 经营现金流(历史)", perf_title:"个股绩效：作为持有标的的风险收益(近一年)", verdict:"解读", footer:"生成于", not_advice:"非投资建议 / Not investment advice",
     days_unit:"天", strike:"行权价", iv_axis:"IV %",
-    edit_wl:"✎ 编辑清单", corr_label:"相关性矩阵 · CORRELATION",
+    edit_wl:"✎ 编辑清单", corr_label:"相关性矩阵",
     corr_neg:"−1 反向", corr_pos:"+1 同向",
-    price_chart:"价格走势(近一年,首日=100)", multi_mom:"多时间框动量", drawdown:"回撤",
+    price_chart:"价格走势(近一年，首日=100)", multi_mom:"多时间框动量", drawdown:"回撤",
     dd_cur:"当前回撤", dd_max:"最大回撤", dd_high:"距52周高点",
     wl_title:"编辑 Watchlist", wl_add:"添加", wl_copy:"复制清单", wl_done:"完成",
-    wl_desc:"增删股票后,复制下方清单,存成 watchlist.txt,重跑脚本即可更新数据。",
-    wl_copied:"已复制!",
-    corr_note:"相关性接近 +1 说明这些股票同涨同跌——若一篮子股票彼此高度相关,组合是<b>表面分散、实则集中押注同一风险</b>。真正的分散需要低相关甚至负相关的标的。",
-    attr_label:"因子归因 · FAMA-FRENCH ATTRIBUTION",
-    capm_label:"CAPM 归因 · CAPM",
-    capm_lead:"对每只股票的日度超额收益对市场超额收益(SPY)做回归。α 年化为截距,|t| ≥ 2 视为统计显著;β 为市场敏感度,R² 为市场可解释比例。",
+    wl_desc:"增删股票后，复制下方清单，存成 watchlist.txt，重跑脚本即可更新数据。",
+    wl_copied:"已复制！",
+    corr_note:"相关性接近 +1 说明这些股票同涨同跌——若一篮子股票彼此高度相关，组合是<b>表面分散、实则集中押注同一风险</b>。真正的分散需要低相关甚至负相关的标的。",
+    attr_label:"因子归因",
+    capm_label:"CAPM 归因",
+    capm_lead:"对每只股票的日度超额收益对市场超额收益(SPY)做回归。α 年化为截距，|t| ≥ 2 视为统计显著；β 为市场敏感度，R² 为市场可解释比例。",
     capm_alpha:"α 年化", capm_ta:"t(α)", capm_beta:"β", capm_tb:"t(β)", capm_r2:"R²", capm_n:"样本日数",
-    attr_intro:"把每只股票(及等权组合)的超额收益,对 Fama-French 五因子 + 动量回归。<b>Alpha(α)是扣除所有已知因子暴露后剩下的真超额收益</b>;若 α 不显著(|t|<2),说明该股表现可被市场/规模/价值/盈利/投资/动量等已知风险<b>完全解释,没有真正的 alpha</b>——它只是隐性承担了这些因子暴露。R² 越高,说明收益越能被因子解释。",
-    attr_note:"<b>关键认识</b>:大多数个股的 α 在统计上并不显著——这正是有效市场的常态。能持续产生显著正 α 的极少。本归因基于历史日收益,<b>过去的 α 不保证未来</b>,且单股回归噪声大,样本期与因子构造都会影响结果。这是检验「我的选股到底有没有真本事」的工具,不是预测工具。",
+    attr_intro:"把每只股票(及等权组合)的超额收益，对 Fama-French 五因子 + 动量回归。<b>Alpha(α)是扣除所有已知因子暴露后剩下的真超额收益</b>；若 α 不显著(|t|<2)，说明该股表现可被市场/规模/价值/盈利/投资/动量等已知风险<b>完全解释，没有真正的 alpha</b>——它只是隐性承担了这些因子暴露。R² 越高，说明收益越能被因子解释。",
+    attr_note:"<b>关键认识</b>：大多数个股的 α 在统计上并不显著——这正是有效市场的常态。能持续产生显著正 α 的极少。本归因基于历史日收益，<b>过去的 α 不保证未来</b>，且单股回归噪声大，样本期与因子构造都会影响结果。这是检验「我的选股到底有没有真本事」的工具，不是预测工具。",
     alpha_ann:"年化 α", alpha_t:"t 值", r2_lbl:"R²", n_days:"样本天数",
     sig_yes:"显著", sig_no:"不显著", port_label:"等权组合",
-    attr_window:"因子样本窗口", no_attr:"因子数据下载失败,无归因结果",
-    gl_label:"指标词典 · GLOSSARY",
+    attr_window:"因子样本窗口", no_attr:"因子数据下载失败，无归因结果",
+    gl_label:"指标词典",
     gl_def:"定义", gl_calc:"算法", gl_read:"怎么读", gl_horizon:"长期vs短线", gl_pitfall:"坑", gl_source:"出处",
     explain_btn:"说明", bg_btn:"背景",
-    mr_title:"宏观仪表盘", mr_explain_btn:"利率为何影响股价?",
-    mr_fed:"美联储用它调控经济:加息给经济降温(抑制通胀),降息刺激增长。它是所有其他利率的锚。",
+    mr_title:"宏观仪表盘", mr_explain_btn:"利率为何影响股价？",
+    mr_fed:"美联储用它调控经济：加息给经济降温(抑制通胀)，降息刺激增长。它是所有其他利率的锚。",
     mr_cpi:"通胀率。CPI 过高 → 美联储倾向加息 → 利空股票(见下方解释)。",
-    mr_ust:"10年期国债收益率,被视为「无风险利率」,是给股票估值时的贴现率基准。它一升,股票现值就被压低。",
-    mr_curve:"10年减2年国债利差。若为负(倒挂),历史上常是经济衰退的先行预警。",
-    mr_vix:"市场恐慌指数,衡量预期波动。高=恐慌/不确定,低=平静。和你看到的个股 IV 是同一类东西的市场总水位。",
-    bt_label:"策略回测 · BACKTEST",
-    bt_small_warn:"⚠ 样本仅 {n} 只股票,且历史因子仅含价量子集(动量+低波,因数据源无历史基本面)。回测结果统计意义很弱,仅作<b>方法论演示</b>。扩大 watchlist 到几十只、或接入历史基本面数据后才有实战意义。",
+    mr_ust:"10年期国债收益率，被视为「无风险利率」，是给股票估值时的贴现率基准。它一升，股票现值就被压低。",
+    mr_curve:"10年减2年国债利差。若为负(倒挂)，历史上常是经济衰退的先行预警。",
+    mr_vix:"市场恐慌指数，衡量预期波动。高=恐慌/不确定，低=平静。和你看到的个股 IV 是同一类东西的市场总水位。",
+    bt_label:"策略回测",
+    bt_small_warn:"⚠ 样本仅 {n} 只股票，且历史因子仅含价量子集(动量+低波，因数据源无历史基本面)。回测结果统计意义很弱，仅作<b>方法论演示</b>。扩大 watchlist 到几十只、或接入历史基本面数据后才有实战意义。",
     bt_full:"全样本绩效", bt_strat:"因子策略", bt_bench:"等权基准",
     bt_in:"样本内 In-Sample", bt_out:"样本外 Out-of-Sample",
     bt_eq:"权益曲线(全样本)", bt_sens:"参数敏感性",
     m_annret:"年化收益", m_sharpe:"Sharpe", m_sortino:"Sortino", m_maxdd:"最大回撤", m_calmar:"Calmar", m_vol:"年化波动",
     sens_rb:"调仓(天)", sens_tf:"持仓比例", sens_sharpe:"样本外Sharpe", sens_ret:"样本外收益",
     bt_oos_hot:"← 只有这个才算数",
-    sb_label:"组合沙盘 · PORTFOLIO SANDBOX",
-    sb_intro:"输入你打算用于中短期操作的金额,<b>自己拖动每只股票的权重</b>。工具会实时把这个组合的风险收益、真实分散度、历史最深回撤算给你看,并教你怎么读。<b>它不替你选权重,只把你每个选择的后果诚实地摊开</b>——决定权和责任都在你手里。这些数字基于近一年历史,不预示未来。",
+    sb_label:"组合沙盘",
+    sb_intro:"输入你打算用于中短期操作的金额，<b>自己拖动每只股票的权重</b>。工具会实时把这个组合的风险收益、真实分散度、历史最深回撤算给你看，并教你怎么读。<b>它不替你选权重，只把你每个选择的后果诚实地摊开</b>——决定权和责任都在你手里。这些数字基于近一年历史，不预示未来。",
     sb_amount:"操作金额($)", sb_weights:"权重分配(拖动滑块)", sb_total:"权重合计",
     sb_norm:"归一化到100%", sb_result:"这个组合的风险画像",
     sb_ann:"年化收益", sb_vol:"年化波动", sb_sharpe:"Sharpe", sb_maxdd:"最深回撤",
     sb_divscore:"有效分散度", sb_eq_title:"组合 vs 等权基准(近一年)",
-    sb_dollar_dd:"按你的金额,这个最深回撤约等于浮亏",
-    sb_teach_vol:"组合波动:衡量这一篮子整体的颠簸。<b>关键洞察:如果各股相关性高,分散并不能降低多少波动。</b>",
-    sb_teach_div:"有效分散度≈把相关性考虑进去后,你这个组合相当于几只「独立」的股票。远小于持仓数=表面分散、实则抱团。",
-    sb_teach_dd:"这是过去一年这个权重组合最深的浮亏。<b>事先问自己:这笔钱这样缩水,你睡得着吗?</b>",
-    sb_flag_conc:"⚠ 集中度过高:{sym} 占了 {pct}%。单一持仓过重会让组合命运系于一只票。",
-    sb_flag_div:"⚠ 有效分散度仅 {n}(共 {total} 只)——你看着分散,实则在重押同一个风险。",
+    sb_dollar_dd:"按你的金额，这个最深回撤约等于浮亏",
+    sb_teach_vol:"组合波动：衡量这一篮子整体的颠簸。<b>关键洞察：如果各股相关性高，分散并不能降低多少波动。</b>",
+    sb_teach_div:"有效分散度≈把相关性考虑进去后，你这个组合相当于几只「独立」的股票。远小于持仓数=表面分散、实则抱团。",
+    sb_teach_dd:"这是过去一年这个权重组合最深的浮亏。<b>事先问自己：这笔钱这样缩水，你睡得着吗？</b>",
+    sb_flag_conc:"⚠ 集中度过高：{sym} 占了 {pct}%。单一持仓过重会让组合命运系于一只票。",
+    sb_flag_div:"⚠ 有效分散度仅 {n}(共 {total} 只)——你看着分散，实则在重押同一个风险。",
     sb_flag_ok:"✓ 这个组合的集中度和分散度尚属合理。",
-    note:"<b>关于这个工具</b> · 它的目的是帮你看清风险、边用边学,<b>而不是替你决定买卖</b>——每个数字旁的解读教你怎么读、有什么坑,判断和责任始终在你手里。数据来自公开行情接口,IV 与 Greeks 由脚本用 Black-Scholes 自行反解(绕开数据源的崩坏值);各项指标的具体局限,见对应板块标题旁的「说明」。非投资建议。",
+    note:"<b>关于这个工具</b> · 它的目的是帮你看清风险、边用边学，<b>而不是替你决定买卖</b>——每个数字旁的解读教你怎么读、有什么坑，判断和责任始终在你手里。数据来自公开行情接口，IV 与 Greeks 由脚本用 Black-Scholes 自行反解(绕开数据源的崩坏值)；各项指标的具体局限，见对应板块标题旁的「说明」。非投资建议。",
     no_opt:"无可用期权数据"
   },
   en:{
-    title:"Yifan the Nightfarer - Quantitative Market Analysis", subtitle:"CAPM, QVM+L, and Fama-French Quantitative Analysis",
+    title:"Yifan the Nightfarer · Quantitative Market Analysis", subtitle:"CAPM, QVM+L, and Fama-French Quantitative Analysis",
     epi_zh:"",
     rank_label:"COMPOSITE RANKING",
     th_rank:"#", th_sym:"Symbol", th_price:"Price", th_v:"Value V", th_q:"Quality Q",
@@ -1152,7 +1152,7 @@ const I18N = {
 let LANG = "zh";
 let openSym = null;
 
-// 中英术语对照(中文模式下,关键术语首次出现自动加注英文)
+// 中英术语对照(中文模式下，关键术语首次出现自动加注英文)
 const TERM_EN = {
   "隐含波动率":"Implied Volatility","已实现波动率":"Realized Volatility",
   "最大回撤":"Max Drawdown","净资产收益率":"ROE","负债权益比":"D/E","净利率":"Profit Margin",
@@ -1165,20 +1165,20 @@ const TERM_EN = {
   "回测":"Backtest","相关性":"Correlation","偏斜":"Skew","行权价":"Strike","权利金":"Premium",
   "夏普比率":"Sharpe Ratio"
 };
-// 按词长降序,避免短词先吃掉长词的子串(如"波动率"吃掉"隐含波动率")
+// 按词长降序，避免短词先吃掉长词的子串(如"波动率"吃掉"隐含波动率")
 const TERM_KEYS = Object.keys(TERM_EN).sort((a,b)=>b.length-a.length);
 function annotateTerms(html){
   if(LANG!=="zh" || !html) return html;
   const used=new Set();
-  // 不进入 HTML 标签内部;只在文本节点上加注。简化:用占位保护已加注区。
+  // 不进入 HTML 标签内部；只在文本节点上加注。简化：用占位保护已加注区。
   for(const term of TERM_KEYS){
     if(used.has(term)) continue;
-    // 跳过已被更长词包含的(用 used 记录已加注英文,避免重复)
+    // 跳过已被更长词包含的(用 used 记录已加注英文，避免重复)
     const en=TERM_EN[term];
-    // 只加注第一次出现,且其后没有紧跟"("(避免重复加注)
+    // 只加注第一次出现，且其后没有紧跟"("(避免重复加注)
     const idx=html.indexOf(term);
     if(idx<0) continue;
-    // 该位置后若已是 ( 或 (,跳过
+    // 该位置后若已是 ( 或 (，跳过
     const after=html.slice(idx+term.length, idx+term.length+2);
     if(after.startsWith("(")||after.startsWith("(")) { used.add(term); continue; }
     html = html.slice(0,idx) + term + `<span class="term-en">(${en})</span>` + html.slice(idx+term.length);
@@ -1508,21 +1508,21 @@ function qm(key){
 }
 // 每个板块包含哪些指标词条
 // ===== 背景知识数据 =====
-// background.js —— 背景知识数据(每个板块一篇:从零讲"这是什么/解决什么困惑/核心洞察"+文献)
-// 结构: { 板块key: { zh:{lead, body:[...段落]}, en:{lead, body:[...]} } }
-// lead = 简短引子(一句话,显示在板块下方常驻); body = 展开后的完整背景(数段)
+// background.js —— 背景知识数据(每个板块一篇：从零讲"这是什么/解决什么困惑/核心洞察"+文献)
+// 结构： { 板块key: { zh:{lead, body:[...段落]}, en:{lead, body:[...]} } }
+// lead = 简短引子(一句话，显示在板块下方常驻); body = 展开后的完整背景(数段)
 
 const BACKGROUND = {
   // ===== 综合评分排序 =====
   rank: {
     zh:{
-      lead:"本表对候选股票进行四因子横截面评分;因子的定义、构造与选用依据,见「背景」。",
+      lead:"本表对候选股票进行四因子横截面评分；因子的定义、构造与选用依据，。",
       body:[
-        "【要解决的困惑】最朴素的问题是:为什么有的股票长期回报更高?早期的理论(CAPM)说,只有一个原因——你承担了多少「市场风险」。但学者们盯着几十年的真实数据发现:事情没这么简单。有些类型的股票,系统性地比别的赚得多,而且这种规律稳定到不像是运气。",
-        "【什么是「因子」】「因子」就是这些被反复验证的、能解释回报差异的「共同特征」。比如:便宜的股票(价值)长期跑赢贵的;近期涨得好的(动量)倾向于继续涨;质量高、波动低的也各有规律。每个因子背后都有大量论文。把股票在这些特征上打分、排序,就是「因子投资」的核心做法。",
-        "【这张表在做什么】它对你 watchlist 里的股票,在价值(V)、质量(Q)、动量(M)、低波动(L)四个维度各打一个分,再合成一个总分。高分=在这组里、在这些被学术验证过的维度上「看起来更优」。",
-        "【但必须清醒】⚠ 因子是「历史规律」,不是「未来保证」;而且本工具把四个因子简单等权相加,这个权重是随意选的、未经验证。这张表是帮你「结构化地观察」,不是「告诉你买哪只」。它有没有用,要靠后面的「因子归因」和「回测」来检验。",
-        "【关键文献】Sharpe (1964) CAPM;Fama & French (1992, 1993) 三因子模型;Carhart (1997) 加入动量。"
+        "【要解决的困惑】最朴素的问题是：为什么有的股票长期回报更高？早期的理论(CAPM)说，只有一个原因——你承担了多少「市场风险」。但学者们盯着几十年的真实数据发现：事情没这么简单。有些类型的股票，系统性地比别的赚得多，而且这种规律稳定到不像是运气。",
+        "【什么是「因子」】「因子」就是这些被反复验证的、能解释回报差异的「共同特征」。比如：便宜的股票(价值)长期跑赢贵的；近期涨得好的(动量)倾向于继续涨；质量高、波动低的也各有规律。每个因子背后都有大量论文。把股票在这些特征上打分、排序，就是「因子投资」的核心做法。",
+        "【这张表在做什么】它对你 watchlist 里的股票，在价值(V)、质量(Q)、动量(M)、低波动(L)四个维度各打一个分，再合成一个总分。高分=在这组里、在这些被学术验证过的维度上「看起来更优」。",
+        "【但必须清醒】⚠ 因子是「历史规律」，不是「未来保证」；而且本工具把四个因子简单等权相加，这个权重是随意选的、未经验证。这张表是帮你「结构化地观察」，不是「告诉你买哪只」。它有没有用，要靠后面的「因子归因」和「回测」来检验。",
+        "【关键文献】Sharpe (1964) CAPM;Fama & French (1992, 1993) 三因子模型；Carhart (1997) 加入动量。"
       ]
     },
     en:{
@@ -1540,17 +1540,17 @@ const BACKGROUND = {
   // ===== 相关性矩阵 =====
   corr: {
     zh:{
-      lead:"本热图度量两两收益相关性;持有多只高度同向波动的标的,仅构成名义分散而非有效分散。详见「背景」。",
+      lead:"本热图度量两两收益相关性；持有多只高度同向波动的标的，仅构成名义分散而非有效分散。",
       body:[
-        "【要解决的困惑】「不要把鸡蛋放一个篮子」——分散投资能降风险,这是常识。但有个陷阱:如果你买了10只股票,它们却总是同涨同跌,那你其实只是把同一个鸡蛋装进了10个看起来不同的篮子。风险根本没分散。",
-        "【什么是相关性】相关性衡量两只股票的涨跌「有多同步」。+1=完全同步(一起涨一起跌),0=毫无关系,−1=完全相反(一个涨另一个必跌)。真正能降风险的分散,需要的是低相关、甚至负相关的资产。",
-        "【这张热图在做什么】它把你 watchlist 里每两只股票的相关性算出来,用颜色画成矩阵:越红=越同步,越蓝=越反向。如果你的票一片红(比如全是半导体股),它就直观地警告你:你以为的「分散」是假的。",
-        "【为什么这是现代投资的基石】Markowitz 在1952年用数学证明:一个组合的风险,不只取决于每只股票各自多波动,更取决于它们之间的相关性。这个洞察拿了诺贝尔奖,是「投资组合」这个概念的理论起点。",
-        "【关键文献】Markowitz (1952) 《Portfolio Selection》,现代投资组合理论的奠基之作。"
+        "【要解决的困惑】「不要把鸡蛋放一个篮子」——分散投资能降风险，这是常识。但有个陷阱：如果你买了10只股票，它们却总是同涨同跌，那你其实只是把同一个鸡蛋装进了10个看起来不同的篮子。风险根本没分散。",
+        "【什么是相关性】相关性衡量两只股票的涨跌「有多同步」。+1=完全同步(一起涨一起跌),0=毫无关系，−1=完全相反(一个涨另一个必跌)。真正能降风险的分散，需要的是低相关、甚至负相关的资产。",
+        "【这张热图在做什么】它把你 watchlist 里每两只股票的相关性算出来，用颜色画成矩阵：越红=越同步，越蓝=越反向。如果你的票一片红(比如全是半导体股)，它就直观地警告你：你以为的「分散」是假的。",
+        "【为什么这是现代投资的基石】Markowitz 在1952年用数学证明：一个组合的风险，不只取决于每只股票各自多波动，更取决于它们之间的相关性。这个洞察拿了诺贝尔奖，是「投资组合」这个概念的理论起点。",
+        "【关键文献】Markowitz (1952) 《Portfolio Selection》，现代投资组合理论的奠基之作。"
       ]
     },
     en:{
-      lead:"Pairwise return correlations. Holding many co-moving names constitutes nominal, not effective, diversification. See Background.",
+      lead:"Pairwise return correlations. Holding many co-moving names constitutes nominal, not effective, diversification.",
       body:[
         "[The puzzle] 'Don't put all your eggs in one basket' — diversification reduces risk, common sense. But here's the trap: if you buy 10 stocks that always rise and fall together, you've merely put the same egg into 10 baskets that only look different. Risk isn't diversified at all.",
         "[What correlation is] Correlation measures how synchronized two stocks' moves are. +1 = perfectly in sync (up together, down together), 0 = unrelated, -1 = perfectly opposite. Real risk-reducing diversification needs low- or even negatively-correlated assets.",
@@ -1564,18 +1564,18 @@ const BACKGROUND = {
   // ===== 因子归因 =====
   attr: {
     zh:{
-      lead:"Fama-French 归因将收益分解为系统性因子暴露与残差 α,以区分风险补偿与超额技能。详见「背景」。",
+      lead:"Fama-French 归因将收益分解为系统性因子暴露与残差 α，以区分风险补偿与超额技能。",
       body:[
-        "【要解决的困惑】假设一只股票去年涨了40%。这很厉害吗?不一定。如果当年整个市场都涨了35%,那它其实只比大盘多赚5%,剩下的35%只是「随大流」。更进一步:如果它属于某类天然高回报的股票(比如小盘股、价值股),那这「多赚的」可能也只是吃了某个已知规律的红利,而不是选股人有眼光。问题是:怎么把「真本事」和「风口」拆开?",
-        "【Fama-French 做了什么】Eugene Fama(后来拿了诺贝尔奖)和 Kenneth French 提出:一只股票的回报,可以拆解成几个「因子」的贡献之和。最初是三个(1993):市场、规模(小盘 vs 大盘)、价值(便宜 vs 贵);后来扩成五个(2015),加上盈利能力和投资风格;再加上动量(Carhart 1997),一共六个。这套框架成了金融学界检验「超额收益从哪来」的标准工具。",
-        "【什么是 Alpha】把一只股票的历史回报,用这六个因子去「解释」之后,如果还剩下一块解释不了的、稳定为正的收益——那才是真正的「本事」,叫 Alpha(α)。如果剩下的部分在统计上和「零」没区别(看 t 值),那说明这只股票的全部回报,都能被「市场+规模+价值+动量……」这些已知规律解释完——选股人并没有什么独到之处。",
-        "【这个板块在做什么】它把你的股票(和组合)的历史日收益,对这六个因子做一次回归,告诉你:① 你承担了哪些因子的风险(各因子的 β);② 扣掉这些之后,还剩多少真 Alpha;③ 这个 Alpha 在统计上可信吗(t 值 ≥2 才算数)。这是「我的选股到底有没有用」的照妖镜。",
-        "【但必须清醒】⚠ 多数个股的 Alpha 在统计上并不显著——这正是「市场大体有效」的常态,不是工具坏了。过去的 Alpha 也不保证未来。",
-        "【关键文献】Fama & French (1993) 三因子;(2015) 五因子;Carhart (1997) 动量;Jensen (1968) 提出 Alpha 概念。"
+        "【要解决的困惑】假设一只股票去年涨了40%。这很厉害吗？不一定。如果当年整个市场都涨了35%，那它其实只比大盘多赚5%，剩下的35%只是「随大流」。更进一步：如果它属于某类天然高回报的股票(比如小盘股、价值股)，那这「多赚的」可能也只是吃了某个已知规律的红利，而不是选股人有眼光。问题是：怎么把「真本事」和「风口」拆开？",
+        "【Fama-French 做了什么】Eugene Fama(后来拿了诺贝尔奖)和 Kenneth French 提出：一只股票的回报，可以拆解成几个「因子」的贡献之和。最初是三个(1993)：市场、规模(小盘 vs 大盘)、价值(便宜 vs 贵)；后来扩成五个(2015)，加上盈利能力和投资风格；再加上动量(Carhart 1997)，一共六个。这套框架成了金融学界检验「超额收益从哪来」的标准工具。",
+        "【什么是 Alpha】把一只股票的历史回报，用这六个因子去「解释」之后，如果还剩下一块解释不了的、稳定为正的收益——那才是真正的「本事」，叫 Alpha(α)。如果剩下的部分在统计上和「零」没区别(看 t 值)，那说明这只股票的全部回报，都能被「市场+规模+价值+动量……」这些已知规律解释完——选股人并没有什么独到之处。",
+        "【这个板块在做什么】它把你的股票(和组合)的历史日收益，对这六个因子做一次回归，告诉你：① 你承担了哪些因子的风险(各因子的 β);② 扣掉这些之后，还剩多少真 Alpha;③ 这个 Alpha 在统计上可信吗(t 值 ≥2 才算数)。这是「我的选股到底有没有用」的照妖镜。",
+        "【但必须清醒】⚠ 多数个股的 Alpha 在统计上并不显著——这正是「市场大体有效」的常态，不是工具坏了。过去的 Alpha 也不保证未来。",
+        "【关键文献】Fama & French (1993) 三因子；(2015) 五因子；Carhart (1997) 动量；Jensen (1968) 提出 Alpha 概念。"
       ]
     },
     en:{
-      lead:"Fama-French attribution decomposes returns into systematic factor exposures and residual alpha, separating risk compensation from skill. See Background.",
+      lead:"Fama-French attribution decomposes returns into systematic factor exposures and residual alpha, separating risk compensation from skill.",
       body:[
         "[The puzzle] Say a stock rose 40% last year. Impressive? Not necessarily. If the whole market rose 35% that year, it only beat the market by 5% — the other 35% was just 'going with the flow'. Further: if it belongs to a naturally high-returning type (small-caps, value stocks), even that 'extra' may just be harvesting a known regularity, not stock-picking skill. The problem: how do you separate real skill from a tailwind?",
         "[What Fama-French did] Eugene Fama (later a Nobel laureate) and Kenneth French proposed that a stock's return can be decomposed into the sum of contributions from several 'factors'. First three (1993): market, size (small vs large), value (cheap vs expensive); later five (2015), adding profitability and investment style; plus momentum (Carhart 1997) makes six. This framework became the standard academic tool for testing 'where excess return comes from'.",
@@ -1590,17 +1590,17 @@ const BACKGROUND = {
   // ===== 回测 =====
   bt: {
     zh:{
-      lead:"回测在历史样本上模拟策略表现;结果对过拟合与前视偏差高度敏感,解读须谨慎。详见「背景」。",
+      lead:"回测在历史样本上模拟策略表现；结果对过拟合与前视偏差高度敏感，解读须谨慎。",
       body:[
-        "【要解决的困惑】你有了一套选股规则(比如「买因子分最高的几只」),怎么知道它好不好?最直接的想法:拿过去几年的数据跑一遍,看看赚不赚。这就是「回测」。",
-        "【为什么回测是把双刃剑】问题在于:只要你不停调参数(调仓频率、买几只、用哪些因子),总能在历史数据里「凑」出一条漂亮的收益曲线——哪怕这套规则其实毫无道理。这叫「过拟合」:你不是发现了规律,而是把历史的噪声当成了规律。一旦用真钱、面对未来,它立刻失效。这是量化投资里最常见、也最致命的自欺。",
-        "【三道安全锁】为了不自欺,本回测内置三道锁:① 样本外检验——用一段历史「定」策略,在另一段它从没见过的历史上「考」它,只有样本外的成绩才算数;② 交易成本——每次买卖都扣手续费,因为很多「纸面盈利」一扣成本就没了;③ 参数敏感性——把不同参数的结果列出来,如果换个参数成绩就剧变,说明你挖到的是噪声,工具会直接报「过拟合警报」。",
-        "【这个板块的诚实】⚠ 它会告诉你:本回测样本太小(就你那几只票),且历史因子只能用价量子集(因为拿不到历史财务数据)。所以它是「方法论演示」,不是可信的策略验证。一个肯说自己哪里不可信的工具,才值得信。",
-        "【关键文献】Bailey, Borwein, López de Prado & Zhu (2014) 论回测过拟合;Harvey, Liu & Zhu (2016) 论因子的多重检验问题。"
+        "【要解决的困惑】你有了一套选股规则(比如「买因子分最高的几只」)，怎么知道它好不好？最直接的想法：拿过去几年的数据跑一遍，看看赚不赚。这就是「回测」。",
+        "【为什么回测是把双刃剑】问题在于：只要你不停调参数(调仓频率、买几只、用哪些因子)，总能在历史数据里「凑」出一条漂亮的收益曲线——哪怕这套规则其实毫无道理。这叫「过拟合」：你不是发现了规律，而是把历史的噪声当成了规律。一旦用真钱、面对未来，它立刻失效。这是量化投资里最常见、也最致命的自欺。",
+        "【三道安全锁】为了不自欺，本回测内置三道锁：① 样本外检验——用一段历史「定」策略，在另一段它从没见过的历史上「考」它，只有样本外的成绩才算数；② 交易成本——每次买卖都扣手续费，因为很多「纸面盈利」一扣成本就没了；③ 参数敏感性——把不同参数的结果列出来，如果换个参数成绩就剧变，说明你挖到的是噪声，工具会直接报「过拟合警报」。",
+        "【这个板块的诚实】⚠ 它会告诉你：本回测样本太小(就你那几只票)，且历史因子只能用价量子集(因为拿不到历史财务数据)。所以它是「方法论演示」，不是可信的策略验证。一个肯说自己哪里不可信的工具，才值得信。",
+        "【关键文献】Bailey, Borwein, López de Prado & Zhu (2014) 论回测过拟合；Harvey, Liu & Zhu (2016) 论因子的多重检验问题。"
       ]
     },
     en:{
-      lead:"A backtest simulates strategy performance on historical data; results are highly sensitive to overfitting and look-ahead bias. See Background.",
+      lead:"A backtest simulates strategy performance on historical data; results are highly sensitive to overfitting and look-ahead bias.",
       body:[
         "[The puzzle] You have a stock-picking rule (e.g. 'buy the highest factor-scored names'). How do you know if it's any good? The obvious idea: run it over the past few years and see if it made money. That's a 'backtest'.",
         "[Why it's a double-edged sword] The catch: if you keep tweaking parameters (rebalance frequency, how many to hold, which factors), you can always 'fit' a pretty return curve out of historical data — even when the rule is meaningless. This is 'overfitting': you didn't find a pattern, you mistook historical noise for one. The moment you use real money against the future, it fails. It's the most common and most fatal self-deception in quant investing.",
@@ -1614,17 +1614,17 @@ const BACKGROUND = {
   // ===== 组合沙盘 =====
   sandbox: {
     zh:{
-      lead:"在交互式沙盘中自行设定组合权重,并观察其对风险收益、有效分散度与历史回撤的影响。详见「背景」。",
+      lead:"在交互式沙盘中自行设定组合权重，并观察其对风险收益、有效分散度与历史回撤的影响。",
       body:[
-        "【要解决的困惑】你有一笔钱、几只看上的股票,该怎么分配?各买多少?这个决定的后果——整个组合会有多波动、最坏能亏多少——光靠直觉是想不清楚的。",
-        "【核心洞察:组合 ≠ 个股的简单相加】一个组合的风险,不等于把每只股票的风险加起来。因为它们的涨跌会相互抵消(如果不同步)或相互放大(如果同步)。这就是为什么相关性那么重要(见相关性板块)。一组高度同步的股票,凑成的组合几乎和单押一只一样危险。",
-        "【什么是「有效分散度」】这个沙盘会算一个数:你这个组合,扣掉相关性的影响后,实际上相当于几只「真正独立」的股票。如果你持有6只半导体股,有效分散度可能只有1.5——意味着你以为分散到6只,实则在重押同一个赌注。",
-        "【这个沙盘在做什么】你输入金额、拖动每只票的权重,它实时算给你看:这个组合的历史波动、Sharpe、最深回撤(换算成具体亏多少钱)、有效分散度、以及集中度警示。关键是:⚠ 它不替你选权重——它只把你每个选择的「后果」诚实摊开,让你在亲手试错中学会组合构建。决定和责任始终在你手里。",
-        "【关键文献】Markowitz (1952) 现代投资组合理论;有效分散度的思想源自其「分散化的数学」。"
+        "【要解决的困惑】你有一笔钱、几只看上的股票，该怎么分配？各买多少？这个决定的后果——整个组合会有多波动、最坏能亏多少——光靠直觉是想不清楚的。",
+        "【核心洞察：组合 ≠ 个股的简单相加】一个组合的风险，不等于把每只股票的风险加起来。因为它们的涨跌会相互抵消(如果不同步)或相互放大(如果同步)。这就是为什么相关性那么重要(见相关性板块)。一组高度同步的股票，凑成的组合几乎和单押一只一样危险。",
+        "【什么是「有效分散度」】这个沙盘会算一个数：你这个组合，扣掉相关性的影响后，实际上相当于几只「真正独立」的股票。如果你持有6只半导体股，有效分散度可能只有1.5——意味着你以为分散到6只，实则在重押同一个赌注。",
+        "【这个沙盘在做什么】你输入金额、拖动每只票的权重，它实时算给你看：这个组合的历史波动、Sharpe、最深回撤(换算成具体亏多少钱)、有效分散度、以及集中度警示。关键是：⚠ 它不替你选权重——它只把你每个选择的「后果」诚实摊开，让你在亲手试错中学会组合构建。决定和责任始终在你手里。",
+        "【关键文献】Markowitz (1952) 现代投资组合理论；有效分散度的思想源自其「分散化的数学」。"
       ]
     },
     en:{
-      lead:"Set portfolio weights interactively and observe the effect on risk/return, effective diversification, and historical drawdown. See Background.",
+      lead:"Set portfolio weights interactively and observe the effect on risk/return, effective diversification, and historical drawdown.",
       body:[
         "[The puzzle] You have some money and a few stocks you like. How should you split it? How much of each? The consequences of that choice — how volatile the whole portfolio is, how much you could lose at worst — can't be reasoned out by intuition alone.",
         "[Core insight: a portfolio is NOT the simple sum of its stocks] A portfolio's risk does not equal the sum of each stock's risk, because their moves cancel out (if unsynchronized) or amplify (if synchronized). That's why correlation matters so much (see the Correlation panel). A set of highly-synchronized stocks forms a portfolio nearly as risky as betting on one alone.",
@@ -1638,7 +1638,7 @@ const BACKGROUND = {
 
 const SECTION_TERMS = {
   rank: ["composite","value","quality","momentum","lowvol","iv_rank"],
-  corr: ["beta"],   // 相关性板块用 beta 概念解释"共同风险";另补一条专门说明见下
+  corr: ["beta"],   // 相关性板块用 beta 概念解释"共同风险"；另补一条专门说明见下
   attr: ["alpha","alpha_t","r2","beta"],
   bt: ["backtest_method","sharpe","sortino","calmar"],
   sandbox: ["diversification","sharpe","drawdown","rvol"],
@@ -1748,7 +1748,7 @@ function sensTable(sens, t){
   let warn="";
   if(sens.sharpe_spread!==null && sens.sharpe_spread>1.0){
     warn=`<div class="bt-warn" style="margin-top:10px">${LANG==='zh'
-      ?`样本外Sharpe在不同参数下从 ${sens.sharpe_min} 跳到 ${sens.sharpe_max}(跨度 ${sens.sharpe_spread})——<b>结果对参数高度敏感,过拟合警报</b>。不可轻信任何单一参数下的漂亮数字。`
+      ?`样本外Sharpe在不同参数下从 ${sens.sharpe_min} 跳到 ${sens.sharpe_max}(跨度 ${sens.sharpe_spread})——<b>结果对参数高度敏感，过拟合警报</b>。不可轻信任何单一参数下的漂亮数字。`
       :`OOS Sharpe swings from ${sens.sharpe_min} to ${sens.sharpe_max} (spread ${sens.sharpe_spread}) across parameters — <b>highly parameter-sensitive, overfitting alarm</b>. Don't trust any single pretty number.`}</div>`;
   }
   const rows=sens.grid.map(g=>`<tr><td class="l">${g.rebalance_days}</td><td>${g.top_frac}</td>
@@ -1825,8 +1825,8 @@ function sbMetrics(rets){
   return {annRet, annVol, sharpe, maxdd:maxdd*100, curve};
 }
 function sbEffectiveN(weights){
-  // 有效分散度:用组合方差 vs 加权个股方差,结合相关性。
-  // 近似:有效独立股票数 = (Σw·σ)² / 组合方差  —— 衡量相关性吃掉了多少分散
+  // 有效分散度：用组合方差 vs 加权个股方差，结合相关性。
+  // 近似：有效独立股票数 = (Σw·σ)² / 组合方差  —— 衡量相关性吃掉了多少分散
   const syms=sbSyms();
   const vars={}, sds={};
   for(const s of syms){
@@ -1839,8 +1839,8 @@ function sbEffectiveN(weights){
   const portVar=portRets.reduce((a,b)=>a+(b-pm)**2,0)/(portRets.length-1);
   let weightedSD=0;
   for(const s of syms) weightedSD += (weights[s]||0)*sds[s];
-  // 若完全无相关,组合方差=Σw²σ²;若完全相关,组合SD=Σwσ。
-  // 有效N = (加权平均SD)² / 组合方差,夹在[1, 持仓数]
+  // 若完全无相关，组合方差=Σw²σ²；若完全相关，组合SD=Σwσ。
+  // 有效N = (加权平均SD)² / 组合方差，夹在[1， 持仓数]
   const portSD=Math.sqrt(portVar);
   const effN = portSD>0 ? Math.pow(weightedSD/portSD,2) : 1;
   return effN;
@@ -1853,7 +1853,7 @@ function renderSandbox(){
   sec.style.display="block";
   document.getElementById("sbIntro").innerHTML=t.sb_intro;
   const syms=sbSyms();
-  // 左:输入面板
+  // 左：输入面板
   const sliders=syms.map(s=>{
     const w=SB_STATE.weights[s]||0;
     return `<div class="sb-w-row">
@@ -1872,7 +1872,7 @@ function renderSandbox(){
     <div class="sb-total"><span>${t.sb_total}</span><span class="ttv" id="sbTotalW">${Math.round(totalW*100)}%</span></div>
     <button class="sb-norm-btn" onclick="sbNormalize()">${t.sb_norm}</button>
   </div>`;
-  // 右:结果(用归一化权重计算)
+  // 右：结果(用归一化权重计算)
   const right=`<div class="sb-panel" id="sbResult"></div>`;
   document.getElementById("sandboxBox").innerHTML=`<div class="sb-grid">${left}${right}</div>`;
   sbRenderResult();
@@ -1977,11 +1977,11 @@ function macroSparkSVG(spark, up){
 }
 function rateExplainHTML(){
   if(LANG==="zh"){
-    return `<h4>一句话</h4><p>利率是金钱的「时间价格」。利率越高,<b>未来的钱在今天就越不值钱</b>——而股票的价值,本质是它未来现金流折算到今天的总和。</p>
-    <h4>贴现率渠道(最核心)</h4><p>给股票估值,要把它未来每年赚的钱「折现」回今天。折现用的利率,基准就是国债收益率。利率一升,折现得越狠,<b>同样的未来利润,今天就只值更少</b>。这就是为什么加息往往压低股价——尤其是利润集中在遥远未来的成长股(科技股),对利率最敏感。</p>
-    <h4>另外两条渠道</h4><p>① <b>机会成本</b>:国债等无风险资产收益变高,股票的吸引力相对下降,资金流出。② <b>企业成本</b>:借钱变贵,公司利润和扩张受压。</p>
-    <h4>关键:只有「意外」才影响</h4><p>市场会提前消化「预期内」的加息。真正推动股价的,是<b>超出预期</b>的利率变动。所以看的不是利率本身,而是它和市场预期的差。</p>
-    <p style="color:var(--faint);font-style:italic">理论根基:贴现现金流(DCF)估值;Gordon 增长模型。</p>`;
+    return `<h4>一句话</h4><p>利率是金钱的「时间价格」。利率越高，<b>未来的钱在今天就越不值钱</b>——而股票的价值，本质是它未来现金流折算到今天的总和。</p>
+    <h4>贴现率渠道(最核心)</h4><p>给股票估值，要把它未来每年赚的钱「折现」回今天。折现用的利率，基准就是国债收益率。利率一升，折现得越狠，<b>同样的未来利润，今天就只值更少</b>。这就是为什么加息往往压低股价——尤其是利润集中在遥远未来的成长股(科技股)，对利率最敏感。</p>
+    <h4>另外两条渠道</h4><p>① <b>机会成本</b>：国债等无风险资产收益变高，股票的吸引力相对下降，资金流出。② <b>企业成本</b>：借钱变贵，公司利润和扩张受压。</p>
+    <h4>关键：只有「意外」才影响</h4><p>市场会提前消化「预期内」的加息。真正推动股价的，是<b>超出预期</b>的利率变动。所以看的不是利率本身，而是它和市场预期的差。</p>
+    <p style="color:var(--faint);font-style:italic">理论根基：贴现现金流(DCF)估值；Gordon 增长模型。</p>`;
   }
   return `<h4>In one line</h4><p>Interest rates are the "time price" of money. The higher the rate, <b>the less future money is worth today</b> — and a stock's value is essentially the sum of its future cash flows discounted back to today.</p>
     <h4>Discount-rate channel (the core)</h4><p>To value a stock, you "discount" its future yearly earnings back to today. The rate used is anchored to Treasury yields. When rates rise, you discount harder, so <b>the same future profit is worth less now</b>. That's why hikes tend to depress prices — especially growth (tech) stocks whose profits sit far in the future, the most rate-sensitive.</p>
@@ -1991,7 +1991,7 @@ function rateExplainHTML(){
 }
 const MACRO_DESC = {fed_funds:"mr_fed", cpi_yoy:"mr_cpi", ust10y:"mr_ust", curve_10_2:"mr_curve", vix:"mr_vix"};
 const MACRO_ORDER = ["fed_funds","cpi_yoy","ust10y","curve_10_2","vix"];
-// 对某些指标,"上升"是利好还是中性需区别着色;这里仅用涨跌色,解释里说明含义
+// 对某些指标，"上升"是利好还是中性需区别着色；这里仅用涨跌色，解释里说明含义
 function renderMacro(){
   const t=I18N[LANG];
   const rail=document.getElementById("macroRail");
@@ -2050,13 +2050,13 @@ function copyWL(){
     const b=document.querySelector(".wl-copy"); const old=b.textContent;
     b.textContent=I18N[LANG].wl_copied; setTimeout(()=>b.textContent=old,1400);
   }).catch(()=>{
-    // 回退:选中导出框
+    // 回退：选中导出框
     const r=document.createRange(); r.selectNode(document.getElementById("wlExport"));
     window.getSelection().removeAllRanges(); window.getSelection().addRange(r);
   });
 }
 
-// 个股绩效教学块:每个指标配"就这只股票"的解读 + 同组排名对比
+// 个股绩效教学块：每个指标配"就这只股票"的解读 + 同组排名对比
 function edgarBlock(r, t){
   const e=r.edgar, hist=e.history;
   const fmtUSD=(v)=>{
@@ -2081,10 +2081,10 @@ function edgarBlock(r, t){
     </tr>`;
   }).join("");
   const intro = LANG==="zh"
-    ? `这是 <b>${r.symbol}</b> 来自 SEC 年报(10-K)的<b>历史盈利质量</b>——yfinance 给不了的东西。核心看一件事:<b>账面净利润有没有真实现金流支撑。</b>`
+    ? `这是 <b>${r.symbol}</b> 来自 SEC 年报(10-K)的<b>历史盈利质量</b>——yfinance 给不了的东西。核心看一件事：<b>账面净利润有没有真实现金流支撑。</b>`
     : `<b>${r.symbol}</b>'s historical earnings quality from SEC annual filings (10-K) — something yfinance can't give you. The key question: <b>is reported net income backed by real cash flow?</b>`;
   const teach = LANG==="zh"
-    ? `<b>应计比率 Accrual Ratio = (净利润 − 经营现金流) / |净利润|</b>。<b style="color:var(--green)">负值或接近0</b>=利润有现金支撑(健康);<b style="color:var(--red)">高正值(>0.2)</b>=利润远超实际收到的现金,可能是「纸面利润」——靠应计项目、激进确认收入撑起来的账面数字,是经典的盈余操纵警讯。这是 CPA 查账的核心视角之一。`
+    ? `<b>应计比率 Accrual Ratio = (净利润 − 经营现金流) / |净利润|</b>。<b style="color:var(--green)">负值或接近0</b>=利润有现金支撑(健康);<b style="color:var(--red)">高正值(>0.2)</b>=利润远超实际收到的现金，可能是「纸面利润」——靠应计项目、激进确认收入撑起来的账面数字，是经典的盈余操纵警讯。这是 CPA 查账的核心视角之一。`
     : `<b>Accrual Ratio = (Net Income - Operating Cash Flow) / |Net Income|</b>. <b style="color:var(--green)">Negative or near 0</b> = earnings backed by cash (healthy); <b style="color:var(--red)">high positive (>0.2)</b> = profit far exceeds cash actually collected — possible "paper profits" propped up by accruals or aggressive revenue recognition, a classic earnings-manipulation red flag. This is one of the core lenses a CPA uses.`;
   return `<div class="pf-intro">${intro}</div>
     <div class="edgar-q" style="border-color:${q.col}">
@@ -2111,20 +2111,20 @@ function perfBlock(r, t){
     return {rank:sorted.indexOf(p[key])+1, total:vals.length,
             best:sorted[0], worst:sorted[sorted.length-1]};
   };
-  // 每个指标:值 + 教学解读
+  // 每个指标：值 + 教学解读
   const items=[
     {k:'sharpe', label:'Sharpe', val:p.sharpe, fmt:v=>v, hb:true,
      teach: sharpeTeach(p.sharpe)},
     {k:'sortino', label:'Sortino', val:p.sortino, fmt:v=>v, hb:true,
-     teach: LANG==='zh'?'只罚下行波动,比Sharpe更贴近你真正怕的"亏"。':'Penalizes only downside — closer to the loss you actually fear.'},
+     teach: LANG==='zh'?'只罚下行波动，比Sharpe更贴近你真正怕的"亏"。':'Penalizes only downside — closer to the loss you actually fear.'},
     {k:'max_dd', label:LANG==='zh'?'最大回撤':'Max DD', val:p.max_dd, fmt:v=>v+'%', hb:false,
      teach: ddTeach(p.max_dd)},
     {k:'calmar', label:'Calmar', val:p.calmar, fmt:v=>v, hb:true,
-     teach: LANG==='zh'?'年化收益÷最大回撤:每承受1%的最痛跌幅,换来多少年化收益。':'Annual return per 1% of worst-case pain.'},
+     teach: LANG==='zh'?'年化收益÷最大回撤：每承受1%的最痛跌幅，换来多少年化收益。':'Annual return per 1% of worst-case pain.'},
     {k:'ann_return', label:LANG==='zh'?'年化收益':'Ann.Ret', val:p.ann_return, fmt:v=>(v>=0?'+':'')+v+'%', hb:true,
      teach: LANG==='zh'?'光看这个不够——要配合波动和回撤一起读。':'Never read alone — pair it with vol and drawdown.'},
     {k:'ann_vol', label:LANG==='zh'?'年化波动':'Ann.Vol', val:p.ann_vol, fmt:v=>v+'%', hb:false,
-     teach: LANG==='zh'?'这只票的"颠簸程度";高波动对长期持有是负担,对短线是机会。':'How bumpy the ride is; a burden for holding, an opportunity for trading.'}
+     teach: LANG==='zh'?'这只票的"颠簸程度"；高波动对长期持有是负担，对短线是机会。':'How bumpy the ride is; a burden for holding, an opportunity for trading.'}
   ];
   const rows=items.map(it=>{
     const rk=rankOf(it.k, it.hb);
@@ -2141,7 +2141,7 @@ function perfBlock(r, t){
     </div>`;
   }).join("");
   const intro = LANG==='zh'
-    ? `下面是 <b>${r.symbol}</b> 作为一项"持有"的近一年风险收益画像。<b>重点不是数字本身,而是学会怎么读它们、以及它们彼此如何印证。</b>`
+    ? `下面是 <b>${r.symbol}</b> 作为一项"持有"的近一年风险收益画像。<b>重点不是数字本身，而是学会怎么读它们、以及它们彼此如何印证。</b>`
     : `Below is <b>${r.symbol}</b>'s trailing-1y risk/return profile as a holding. <b>The point isn't the numbers themselves, but learning how to read them and how they corroborate each other.</b>`;
   return `<div class="pf-intro">${intro}</div><div class="pf-grid">${rows}</div>`;
 }
@@ -2149,7 +2149,7 @@ function sharpeTeach(s){
   if(s===null||s===undefined) return '';
   if(LANG==='zh'){
     let q = s>=2?'优秀':s>=1?'尚可':s>=0?'偏弱':'为负(亏钱)';
-    return `每承担一单位波动换来 ${s} 单位超额收益,属于<b>${q}</b>。`+(s<1&&s>=0?'低于1意味着波动给的"性价比"一般。':'')+(s<0?'负值说明这段时间持有它,风险调整后是亏的。':'');
+    return `每承担一单位波动换来 ${s} 单位超额收益，属于<b>${q}</b>。`+(s<1&&s>=0?'低于1意味着波动给的"性价比"一般。':'')+(s<0?'负值说明这段时间持有它，风险调整后是亏的。':'');
   } else {
     let q = s>=2?'excellent':s>=1?'decent':s>=0?'weak':'negative (losing)';
     return `${s} units of excess return per unit of volatility — <b>${q}</b>.`+(s<0?' Negative means holding it lost money on a risk-adjusted basis.':'');
@@ -2159,7 +2159,7 @@ function ddTeach(dd){
   if(dd===null||dd===undefined) return '';
   if(LANG==='zh'){
     const deep = dd<=-35?'很深':dd<=-20?'中等':'较浅';
-    return `这一年里它最深从高点跌过 ${dd}%(${deep})。<b>扪心自问:如果你满仓持有时它这样跌,你扛得住不割肉吗?</b>扛不住,说明它的波动超出了你的承受力。`;
+    return `这一年里它最深从高点跌过 ${dd}%(${deep})。<b>扪心自问：如果你满仓持有时它这样跌，你扛得住不割肉吗？</b>扛不住，说明它的波动超出了你的承受力。`;
   } else {
     const deep = dd<=-35?'deep':dd<=-20?'moderate':'shallow';
     return `Its worst peak-to-trough fall this year was ${dd}% (${deep}). <b>Ask yourself: if you held it fully through that drop, could you have held without selling?</b> If not, its volatility exceeds your tolerance.`;
@@ -2169,14 +2169,14 @@ function ddTeach(dd){
 function verdictText(r){
   const o=r.option;
   if(LANG==="zh"){
-    let s=`综合评分 <b>${fmt(r.composite,1)}</b>,组内排名第 ${r.rank}。`;
+    let s=`综合评分 <b>${fmt(r.composite,1)}</b>，组内排名第 ${r.rank}。`;
     s+= r.momentum_score>=70?`动量强(${fmt(r.momentum_score,0)}),`:r.momentum_score<35?`动量弱(${fmt(r.momentum_score,0)}),`:``;
-    s+= r.lowvol_score<25?`但波动极高(低波分仅 ${fmt(r.lowvol_score,0)}),风险大。`:r.quality_score>=70?`质量优(${fmt(r.quality_score,0)})。`:``;
+    s+= r.lowvol_score<25?`但波动极高(低波分仅 ${fmt(r.lowvol_score,0)})，风险大。`:r.quality_score>=70?`质量优(${fmt(r.quality_score,0)})。`:``;
     if(o&&o.atm_iv){
-      s+=` 期权 ATM IV ${o.atm_iv}%,预期到期日 ±${o.exp_move_pct}% 波动。`;
-      if(r.iv_rank_proxy!==null&&r.iv_rank_proxy>=70) s+=` <b style="color:var(--red)">IV 分位代理高达 ${fmt(r.iv_rank_proxy,0)} — 期权偏贵,买方逆风,警惕 IV crush。</b>`;
-      else if(r.iv_rank_proxy!==null&&r.iv_rank_proxy<35) s+=` IV 分位代理较低(${fmt(r.iv_rank_proxy,0)}),期权相对便宜。`;
-      if(o.skew&&o.skew>5) s+=` put skew 偏陡(${o.skew}),市场偏向防跌。`;
+      s+=` 期权 ATM IV ${o.atm_iv}%，预期到期日 ±${o.exp_move_pct}% 波动。`;
+      if(r.iv_rank_proxy!==null&&r.iv_rank_proxy>=70) s+=` <b style="color:var(--red)">IV 分位代理高达 ${fmt(r.iv_rank_proxy,0)} — 期权偏贵，买方逆风，警惕 IV crush。</b>`;
+      else if(r.iv_rank_proxy!==null&&r.iv_rank_proxy<35) s+=` IV 分位代理较低(${fmt(r.iv_rank_proxy,0)})，期权相对便宜。`;
+      if(o.skew&&o.skew>5) s+=` put skew 偏陡(${o.skew})，市场偏向防跌。`;
     }
     return s;
   } else {
@@ -2223,7 +2223,7 @@ function setLang(l){
     const p=document.getElementById("explain_"+s);
     if(p && p.classList.contains("open")) renderExplain(s);
   });
-  // 背景:常驻引子 + 已展开面板随语言刷新
+  // 背景：常驻引子 + 已展开面板随语言刷新
   ["rank","corr","attr","bt","sandbox"].forEach(s=>{
     renderBgLead(s);
     const bp=document.getElementById("bg_"+s);
