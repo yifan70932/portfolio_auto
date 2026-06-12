@@ -100,15 +100,26 @@ def themes_for_template(bridge):
         return {}
     return {wl["name"]: wl["symbols"] for wl in bridge["watchlists"]["watchlists"]}
 
+def _f(x, default=np.nan):
+    """Defensive float: None / missing / junk -> default (NaN)."""
+    try:
+        return float(x)
+    except (TypeError, ValueError):
+        return default
+
 def positions_frame(bridge):
-    """Flatten accounts -> DataFrame [account, symbol, qty, avg_cost, bucket]."""
+    """Flatten accounts -> DataFrame [account, symbol, qty, avg_cost, bucket].
+    Tolerates null avg_cost / qty (e.g. IPO allocations before settlement)."""
     rows = []
     cash = {}
     for acct in bridge["portfolio"]["accounts"]:
-        cash[acct["label"]] = float(acct.get("cash_usd", 0.0))
+        cash[acct["label"]] = _f(acct.get("cash_usd"), 0.0)
         for p in acct["positions"]:
+            qty = _f(p.get("qty"), 0.0)
+            if qty == 0.0 and p.get("qty") in (None, ""):
+                continue                      # placeholder rows (e.g. pending IPO) are skipped
             rows.append({"account": acct["label"], "symbol": p["symbol"],
-                         "qty": float(p["qty"]), "avg_cost": float(p["avg_cost"]),
+                         "qty": qty, "avg_cost": _f(p.get("avg_cost")),
                          "bucket": p.get("bucket", "")})
     return pd.DataFrame(rows), cash
 
@@ -187,8 +198,8 @@ def portfolio_analytics(bridge, period="1y"):
 
     # --- per-position market value & weights (cash included)
     pos["price"] = pos["symbol"].map(last)
-    pos["value"] = pos["qty"] * pos["price"]
-    pos["pnl"]   = (pos["price"] - pos["avg_cost"]) * pos["qty"]
+    pos["value"] = (pos["qty"] * pos["price"]).fillna(0.0)
+    pos["pnl"]   = (pos["price"] - pos["avg_cost"]) * pos["qty"]   # NaN cost -> NaN pnl, rendered as —
     total_cash   = sum(cash.values())
     total_value  = pos["value"].sum() + total_cash
     pos["weight"] = pos["value"] / total_value
@@ -518,6 +529,8 @@ font-family:var(--mono);font-size:12px;cursor:pointer;letter-spacing:.5px;transi
 """
 
 def _fmt_pnl(v):
+    if v is None or (isinstance(v, float) and np.isnan(v)):
+        return '<span class="insig">—</span>'
     cls = "pos" if v >= 0 else "neg"
     return f'<span class="{cls}">{v:+,.2f}</span>'
 
@@ -621,10 +634,13 @@ def build_portfolio_html(pa, ledger, contracts, out_path=HTML_OUT):
              '<th>Qty</th><th>Cost</th><th>Price</th><th>Value</th><th>P&L</th><th>Weight</th><th>β</th><th class="l">Themes</th></tr></thead><tbody>')
     for _, r in pa["positions"].iterrows():
         beta_txt = "" if pd.isna(r["beta"]) else f'{r["beta"]:.2f}'
+        cost_txt = "—" if pd.isna(r["avg_cost"]) else f'{r["avg_cost"]:,.2f}'
+        price_txt = "—" if pd.isna(r["price"]) else f'{r["price"]:,.2f}'
+        val_txt = "—" if pd.isna(r["value"]) else f'{r["value"]:,.2f}'
         h.append(f'<tr data-acct="{r["account"]}"><td class="l sym">{r["symbol"]}</td><td class="l">{r["account"]}</td>'
-                 f'<td>{r["qty"]:g}</td><td>{r["avg_cost"]:,.2f}</td><td>{r["price"]:,.2f}</td>'
-                 f'<td>{r["value"]:,.2f}</td><td>{_fmt_pnl(r["pnl"])}</td>'
-                 f'<td>{r["weight"]*100:.2f}%</td><td>{beta_txt}</td>'
+                 f'<td>{r["qty"]:g}</td><td>{cost_txt}</td><td>{price_txt}</td>'
+                 f'<td>{val_txt}</td><td>{_fmt_pnl(r["pnl"])}</td>'
+                 f'<td>{(0 if pd.isna(r["weight"]) else r["weight"])*100:.2f}%</td><td>{beta_txt}</td>'
                  f'<td class="l" style="color:var(--dim);font-size:11px">{r["themes"]}</td></tr>')
     h.append('</tbody></table>')
 
