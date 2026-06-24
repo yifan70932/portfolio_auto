@@ -1,30 +1,34 @@
 {
   "schema_version": "1.0",
-  "exported_at": "2026-06-12T20:30:00-04:00",
-  "source": "Robinhood MCP (live, post-close 2026-06-12 / audit run 2026-06-12 16:30 ET)",
-  "quote_date": "2026-06-12",
+  "exported_at": "2026-06-24T16:30:00-04:00",
+  "source": "Robinhood MCP (live, post-session 2026-06-23 / audit run 2026-06-24)",
+  "quote_date": "2026-06-23",
+  "note": "Quotes are 6/23 official closes (SIP). Portfolio totals from live Robinhood portfolio tool (may reflect intraday). 6/24 session ongoing at time of pull.",
   "accounts": [
     {
       "label": "main",
       "account_ref": "1686",
       "type": "margin",
       "mandate": "core + contracted satellites; full critical-thinking channel",
-      "total_value_usd": 15437.23,
-      "equity_value_usd": 3221.40,
-      "cash_usd": 12215.83,
+      "total_value_usd": 15364.81,
+      "equity_value_usd": 3855.02,
+      "cash_usd": 11509.79,
       "pending_deposits_usd": 0,
-      "buying_power_usd": 12216.83,
+      "buying_power_usd": 11510.79,
       "positions": [
-        {"symbol": "VOO",  "qty": 2.5,      "avg_cost": 673.08,  "last_close": 681.92,  "unrealized_pnl": 22.10,           "bucket": "etf"},
-        {"symbol": "QQQM", "qty": 1.5,      "avg_cost": 291.61,  "last_close": 297.04,  "unrealized_pnl": 8.15,            "bucket": "etf"},
-        {"symbol": "SPCX", "qty": 5.0,      "avg_cost": null,    "avg_cost_note": "unavailable — reconciling; IPO price $135.00 est", "last_close": 161.29, "last_close_note": "last trade 2026-06-12; official close source=ipo $135 interpolated", "unrealized_pnl": null, "unrealized_pnl_est": 131.45, "unrealized_pnl_est_basis": "IPO price $135.00", "shares_available": 4.0, "shares_held_for_sell": 1.0, "bucket": "defense", "flag": "NO CONTRACT — VIOLATION; IPO 2026-06-12; 60-day flip restriction; 1 share held-for-sell (pending)"},
-        {"symbol": "INTC", "qty": 1.0,      "avg_cost": 119.95,  "last_close": 124.54,  "unrealized_pnl": 4.59,            "bucket": "semis", "flag": "NO CONTRACT — VIOLATION; entered 2026-06-12"},
-        {"symbol": "HOOD", "qty": 1.0,      "avg_cost": 88.24,   "last_close": 93.16,   "unrealized_pnl": 4.92,            "bucket": "satellite", "flag": "no contract in registry — VIOLATION per doctrine"},
-        {"symbol": "KO",   "qty": 0.5,      "avg_cost": 83.22,   "last_close": 82.62,   "unrealized_pnl": -0.30,           "bucket": "defensive", "flag": "no contract in registry — VIOLATION per doctrine"}
+        {"symbol": "VOO",  "qty": 4.0,      "avg_cost": 678.56, "last_close": 676.34, "unrealized_pnl": -8.88,  "bucket": "etf"},
+        {"symbol": "QQQM", "qty": 2.0,      "avg_cost": 294.77, "last_close": 293.87, "unrealized_pnl": -1.80,  "bucket": "etf"},
+        {"symbol": "VXUS", "qty": 2.0,      "avg_cost": 86.88,  "last_close": 84.41,  "unrealized_pnl": -4.94,  "bucket": "etf"},
+        {"symbol": "SPCX", "qty": 2.0,      "avg_cost": 135.00, "last_close": 156.11, "unrealized_pnl": 42.22,  "bucket": "defense",
+          "flag": "NO CONTRACT — VIOLATION; 60-day flip restriction active ~2026-08-11; reduced from 5 to 2 shares since 6/12"},
+        {"symbol": "QNT",  "qty": 1.0,      "avg_cost": 78.65,  "last_close": 77.46,  "unrealized_pnl": -1.19,  "bucket": "unclassified",
+          "flag": "NO CONTRACT — VIOLATION; ticker not in watchlists.json; entry date unknown; 4th no-contract entry"}
       ],
-      "closed_this_run": [
-        {"symbol": "SNDK", "note": "position no longer in live positions; exited 2026-06-12 (decision b or otherwise); journal entry pending"},
-        {"symbol": "SMCI", "note": "position no longer in live positions; exited 2026-06-12; journal entry pending"}
+      "closed_since_last_run": [
+        {"symbol": "INTC", "note": "closed 6/12-6/24; was VIOLATION; entry $119.95; exit price unknown (journal not updated)"},
+        {"symbol": "HOOD", "note": "closed 6/12-6/24; was VIOLATION; entry $88.24; exit price unknown (journal not updated)"},
+        {"symbol": "KO",   "note": "closed 6/12-6/24; was VIOLATION; entry $83.22; exit price unknown (journal not updated)"},
+        {"symbol": "SPCX", "note": "partial exit: 5.0 -> 2.0 shares; 3 shares sold at unknown price (journal not updated)"}
       ]
     },
     {
@@ -32,14 +36,22 @@
       "account_ref": "4830",
       "type": "cash",
       "mandate": "written-off experimental sandbox; event-driven alpha trades <= $20 each; growth mandate, idle capital is a violation",
-      "total_value_usd": 199.50,
-      "equity_value_usd": 32.91,
-      "cash_usd": 166.59,
+      "total_value_usd": 202.46,
+      "equity_value_usd": 143.70,
+      "cash_usd": 58.76,
       "pending_deposits_usd": 0,
-      "buying_power_usd": 166.59,
+      "buying_power_usd": 58.76,
       "positions": [
-        {"symbol": "SMCI", "qty": 0.5,      "avg_cost": 30.36,   "last_close": 30.45,   "unrealized_pnl": 0.05,            "bucket": "event"},
-        {"symbol": "COO",  "qty": 0.261248, "avg_cost": 68.90,   "last_close": 67.89,   "unrealized_pnl": -0.26,           "bucket": "legacy", "flag": "thesis-watch; FOMC slot review 2026-06-17"}
+        {"symbol": "SMCI", "qty": 0.5,      "avg_cost": 30.36, "last_close": 33.32, "unrealized_pnl": 1.48,
+          "bucket": "event", "contract": "SMCI-AGENTIC-2026-06-11",
+          "flag": "time-limit reviews 6/15+6/17 BOTH EXPIRED; price at $33.32 = 2.0% below $34 target; trim action overdue"},
+        {"symbol": "QQQ",  "qty": 0.136411, "avg_cost": 733.08, "last_close": 713.65, "unrealized_pnl": -2.65,
+          "bucket": "etf", "flag": "initial cost ~$100 EXCEEDS agentic $20/trade mandate (5x over)"},
+        {"symbol": "SMH",  "qty": 0.046800, "avg_cost": 641.03, "last_close": 622.05, "unrealized_pnl": -0.89,
+          "bucket": "etf", "flag": "initial cost ~$30 exceeds agentic $20/trade mandate (1.5x over)"}
+      ],
+      "closed_since_last_run": [
+        {"symbol": "COO", "note": "closed 6/12-6/24; contract COO-AGENTIC-LEGACY -> CLOSED; entry $68.90; exit price unknown (journal not updated); likely small loss vs close $66.15 on 6/23"}
       ]
     }
   ]
