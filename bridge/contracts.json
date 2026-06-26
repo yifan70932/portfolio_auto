@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0",
-  "updated_at": "2026-06-11T21:30:00-04:00",
+  "updated_at": "2026-06-26T13:10:00-04:00",
   "doctrine": {
     "five_items": ["thesis", "size", "invalidation (stop)", "target", "time_limit"],
     "rules": [
@@ -20,7 +20,7 @@
       "invalidation": "Daily close below 27.50 (issue price = floor of this price discovery round; break = thesis dead).",
       "target": "34-36 (gap-fill zone); trim half at target, trail remainder.",
       "time_limit": "Review 2026-06-15 (depositary shares settle; last convert-hedge supply window). Hard review at FOMC 2026-06-17.",
-      "status": "OPEN, healthy"
+      "status": "OPEN, RED — time_limit EXPIRED; FOMC 2026-06-17 hard review is 9 days overdue (as of 2026-06-26); no documented decision on file. Position still above stop ($31.68 vs $27.50 stop). Requires: exit and log, OR new contract with updated time_limit and confirmed thesis."
     },
     {
       "id": "COO-AGENTIC-LEGACY",
@@ -30,32 +30,42 @@
       "invalidation": "Daily close below 65.00 -> exit immediately (upgraded from 62 mental stop).",
       "target": "80-82 (original; low conviction).",
       "time_limit": "Slot review at FOMC 2026-06-17: if still underperforming both directions, slot reallocates to AVGO-class candidates.",
-      "status": "OPEN, thesis-watch"
+      "status": "CLOSED — position exited circa 2026-06-17 (FOMC review; slot freed for reallocation). Exit price and realized P&L not yet in journal."
     },
     {
       "id": "SMCI-MAIN-2026-06-11",
       "account": "main", "symbol": "SMCI", "qty": 1.0, "entry": 30.01, "opened": "2026-06-11",
       "thesis_type": "event",
-      "thesis": "PENDING SIGNATURE: same event thesis as sandbox. NOTE: violates one-thesis-one-account rule; user to either adopt sandbox contract verbatim or exit. Default if unsigned by 2026-06-12 close: adopt sandbox contract (stop 27.50 close / target 34-36).",
+      "thesis": "PENDING SIGNATURE: same event thesis as sandbox. NOTE: violates one-thesis-one-account rule.",
       "invalidation": "27.50 daily close (pending adoption)",
       "target": "34-36 (pending adoption)",
       "time_limit": "2026-06-15 review (same as sandbox)",
-      "status": "OPEN, CONTRACT PENDING"
+      "status": "CLOSED — position exited 2026-06-12. Exit price and realized P&L not yet in journal."
     },
     {
       "id": "SNDK-MAIN-2026-06-11",
       "account": "main", "symbol": "SNDK", "qty": 0.1, "entry": 1861.00, "opened": "2026-06-11",
       "thesis_type": "UNDECLARED",
-      "thesis": "PENDING (a)/(b) DECISION due 2026-06-12 open. (a) = declare cycle thesis (NAND undersupply, 4-maker capacity discipline) with cycle-signal invalidation and explicit horizon; (b) = exit. Advisory: (b). Context: 3rd engagement with this ticker in 30h; entry chased +13% intraday; price closed above analyst consensus PT ($1,751).",
-      "invalidation": "UNSET (candidate: daily close below 1643 = full give-back of 6/11 re-rating day)",
+      "thesis": "PENDING (a)/(b) DECISION",
+      "invalidation": "UNSET",
       "target": "UNSET",
       "time_limit": "Decision due 2026-06-12 market open",
-      "status": "OPEN, VIOLATION (no contract at entry)"
+      "status": "CLOSED — position exited 2026-06-12. Realized P&L not yet confirmed in journal."
+    }
+  ],
+  "uncovered_positions": [
+    {
+      "symbol": "AAPL", "account": "main", "qty": 1.0, "avg_cost": 276.50,
+      "status": "VIOLATION — no contract; entered between 2026-06-12 and 2026-06-26; non-ETF requires contract before entry"
+    },
+    {
+      "symbol": "SPCX", "account": "main", "qty": 2.0, "avg_cost": 135.00,
+      "status": "VIOLATION — no contract; continuing from 2026-06-12; IPO 2026-06-12; 60-day flip restriction active ~2026-08-11; position reduced 5→2 shares within restriction window"
     }
   ],
   "watch_queue": [
-    {"symbol": "AVGO", "thesis_type": "post-earnings drift", "trigger": "post-FOMC deployment window 2026-06-17+; pullback vs known blowout fundamentals (AI rev +143%, Q3 guide +200%)"},
-    {"symbol": "MU",   "thesis_type": "post-print entry",    "trigger": "after 2026-06-24 earnings, on confirmation; NEVER before the print (re-entry ban active)"},
-    {"symbol": "ORCL", "thesis_type": "event dislocation",   "trigger": "stabilization day + financing terms settled; beat-but-sold pattern (price reaction governs drift, not the accounting surprise)"}
+    {"symbol": "AVGO", "thesis_type": "post-earnings drift", "trigger": "post-FOMC deployment window 2026-06-17+; pullback vs known blowout fundamentals (AI rev +143%, Q3 guide +200%); window NOW OPEN as of 2026-06-17"},
+    {"symbol": "MU",   "thesis_type": "post-print entry",    "trigger": "EARNINGS REPORTED 2026-06-24: actual $25.11 vs est $20.20 (+24.3% beat); re-entry ban LIFTED; entry on confirmation, price $1,213.56 (2026-06-25 close)"},
+    {"symbol": "ORCL", "thesis_type": "event dislocation",   "trigger": "stabilization day + financing terms settled; beat-but-sold pattern (price reaction governs drift, not the accounting surprise); price $152.46 (2026-06-25 close)"}
   ]
 }
