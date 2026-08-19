@@ -1,30 +1,30 @@
 {
   "schema_version": "1.0",
-  "exported_at": "2026-06-12T20:30:00-04:00",
-  "source": "Robinhood MCP (live, post-close 2026-06-12 / audit run 2026-06-12 16:30 ET)",
-  "quote_date": "2026-06-12",
+  "exported_at": "2026-08-19T09:05:00-04:00",
+  "source": "Robinhood MCP (live). NOTE: this run fired 2026-08-19 ~09:05 ET (premarket, Wednesday) — off the routine's designed Tue/Fri 16:30 ET post-close schedule. Position values below use the official 2026-08-18 close for consistency with prior reports; live premarket quotes were materially higher for SNDK (see flag).",
+  "quote_date": "2026-08-18",
   "accounts": [
     {
       "label": "main",
       "account_ref": "1686",
       "type": "margin",
       "mandate": "core + contracted satellites; full critical-thinking channel",
-      "total_value_usd": 15437.23,
-      "equity_value_usd": 3221.40,
-      "cash_usd": 12215.83,
+      "total_value_usd": 15592.50,
+      "equity_value_usd": 6773.86,
+      "cash_usd": 8818.48,
       "pending_deposits_usd": 0,
-      "buying_power_usd": 12216.83,
+      "buying_power_usd": 8819.48,
       "positions": [
-        {"symbol": "VOO",  "qty": 2.5,      "avg_cost": 673.08,  "last_close": 681.92,  "unrealized_pnl": 22.10,           "bucket": "etf"},
-        {"symbol": "QQQM", "qty": 1.5,      "avg_cost": 291.61,  "last_close": 297.04,  "unrealized_pnl": 8.15,            "bucket": "etf"},
-        {"symbol": "SPCX", "qty": 5.0,      "avg_cost": null,    "avg_cost_note": "unavailable — reconciling; IPO price $135.00 est", "last_close": 161.29, "last_close_note": "last trade 2026-06-12; official close source=ipo $135 interpolated", "unrealized_pnl": null, "unrealized_pnl_est": 131.45, "unrealized_pnl_est_basis": "IPO price $135.00", "shares_available": 4.0, "shares_held_for_sell": 1.0, "bucket": "defense", "flag": "NO CONTRACT — VIOLATION; IPO 2026-06-12; 60-day flip restriction; 1 share held-for-sell (pending)"},
-        {"symbol": "INTC", "qty": 1.0,      "avg_cost": 119.95,  "last_close": 124.54,  "unrealized_pnl": 4.59,            "bucket": "semis", "flag": "NO CONTRACT — VIOLATION; entered 2026-06-12"},
-        {"symbol": "HOOD", "qty": 1.0,      "avg_cost": 88.24,   "last_close": 93.16,   "unrealized_pnl": 4.92,            "bucket": "satellite", "flag": "no contract in registry — VIOLATION per doctrine"},
-        {"symbol": "KO",   "qty": 0.5,      "avg_cost": 83.22,   "last_close": 82.62,   "unrealized_pnl": -0.30,           "bucket": "defensive", "flag": "no contract in registry — VIOLATION per doctrine"}
+        {"symbol": "VOO",  "qty": 4.0, "avg_cost": 691.65,  "last_close": 705.40, "unrealized_pnl": 55.00, "bucket": "etf"},
+        {"symbol": "QQQM", "qty": 7.0, "avg_cost": 295.64,  "last_close": 295.45, "unrealized_pnl": -1.33, "bucket": "etf"},
+        {"symbol": "VXUS", "qty": 2.0, "avg_cost": 86.88,   "last_close": 86.44,  "unrealized_pnl": -0.88, "bucket": "etf"},
+        {"symbol": "SNDK", "qty": 1.0, "avg_cost": 1645.54, "last_close": 1625.78, "last_close_note": "2026-08-18 official close; premarket 2026-08-19 09:03 ET quote was $1691.06 (+4.0%)", "unrealized_pnl": -19.76, "bucket": "semis", "flag": "NO CONTRACT — VIOLATION. This lot opened 2026-08-19 (today); it is the latest of ~25 SNDK fills since 2026-06-12 with no five-item contract on file at any point in that run. See audit report for full trade reconstruction."}
       ],
       "closed_this_run": [
-        {"symbol": "SNDK", "note": "position no longer in live positions; exited 2026-06-12 (decision b or otherwise); journal entry pending"},
-        {"symbol": "SMCI", "note": "position no longer in live positions; exited 2026-06-12; journal entry pending"}
+        {"symbol": "SPCX", "note": "Long 10.0 sh (carried in from before 2026-06-12) exited via sells 2026-06-12 to 2026-07-06 (avg ~$156.30); separate short scalp opened/closed 2026-07-24/27 (+$2.52). No longer held. Journal not updated."},
+        {"symbol": "INTC", "note": "Bought 1.0 @119.945 on 2026-06-12, sold 1.0 @128.145 on 2026-06-15 (+$8.20). No longer held. Journal not updated."},
+        {"symbol": "HOOD", "note": "Sold 1.0 @96.2302 on 2026-06-16 (cost basis pre-dates this window, unknown). No longer held. Journal not updated."},
+        {"symbol": "KO", "note": "Sold 0.5 @80.49 on 2026-06-15 (cost basis pre-dates this window, unknown). No longer held. Journal not updated."}
       ]
     },
     {
@@ -32,14 +32,18 @@
       "account_ref": "4830",
       "type": "cash",
       "mandate": "written-off experimental sandbox; event-driven alpha trades <= $20 each; growth mandate, idle capital is a violation",
-      "total_value_usd": 199.50,
-      "equity_value_usd": 32.91,
-      "cash_usd": 166.59,
+      "total_value_usd": 202.54,
+      "equity_value_usd": 143.67,
+      "cash_usd": 58.87,
       "pending_deposits_usd": 0,
-      "buying_power_usd": 166.59,
+      "buying_power_usd": 58.87,
       "positions": [
-        {"symbol": "SMCI", "qty": 0.5,      "avg_cost": 30.36,   "last_close": 30.45,   "unrealized_pnl": 0.05,            "bucket": "event"},
-        {"symbol": "COO",  "qty": 0.261248, "avg_cost": 68.90,   "last_close": 67.89,   "unrealized_pnl": -0.26,           "bucket": "legacy", "flag": "thesis-watch; FOMC slot review 2026-06-17"}
+        {"symbol": "SMCI", "qty": 0.5, "avg_cost": 30.36, "last_close": 37.41, "unrealized_pnl": 3.53, "bucket": "semis", "flag": "RED — contract SMCI-AGENTIC-2026-06-11 target (34-36) breached to the upside AND time_limit (review 2026-06-15 / hard review FOMC 2026-06-17) expired ~63 days ago with no review. Pre-written action never executed: 'trim half at target, trail remainder.'"},
+        {"symbol": "QQQ", "qty": 0.136411, "avg_cost": 733.08, "last_close": 717.51, "unrealized_pnl": -2.12, "bucket": "etf"},
+        {"symbol": "SMH", "qty": 0.0468, "avg_cost": 641.03, "last_close": 569.77, "unrealized_pnl": -3.34, "bucket": "etf"}
+      ],
+      "closed_this_run": [
+        {"symbol": "COO", "note": "Sold 0.261248 @65.7101 on 2026-06-17, per contract COO-AGENTIC-LEGACY's FOMC 6/17 slot review (contract executed as written — reallocated into QQQ+SMH same day). No longer held."}
       ]
     }
   ]
