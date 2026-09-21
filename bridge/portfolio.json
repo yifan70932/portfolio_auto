@@ -1,30 +1,33 @@
 {
   "schema_version": "1.0",
-  "exported_at": "2026-06-12T20:30:00-04:00",
-  "source": "Robinhood MCP (live, post-close 2026-06-12 / audit run 2026-06-12 16:30 ET)",
-  "quote_date": "2026-06-12",
+  "exported_at": "2026-09-21T09:04:40-04:00",
+  "source": "Robinhood MCP (live)",
+  "quote_date": "2026-09-18",
+  "note": "Official closes are 2026-09-18 (last completed regular session). Positions/cash pulled live 2026-09-21 ~09:04 ET, before the 09:30 ET open (market still in pre-market session) — the routine fired off its normal Tue/Fri 16:30 ET cadence; see report for the schedule gap flag. Last snapshot before this one was exported 2026-06-12 (101 days prior); nearly the entire book has turned over since then and journal.csv/contracts.json were not kept current — see audit report RED section.",
   "accounts": [
     {
       "label": "main",
       "account_ref": "1686",
       "type": "margin",
       "mandate": "core + contracted satellites; full critical-thinking channel",
-      "total_value_usd": 15437.23,
-      "equity_value_usd": 3221.40,
-      "cash_usd": 12215.83,
+      "total_value_usd": 15865.37,
+      "equity_value_usd": 8242.11,
+      "cash_usd": 7623.05,
       "pending_deposits_usd": 0,
-      "buying_power_usd": 12216.83,
+      "buying_power_usd": 7624.05,
       "positions": [
-        {"symbol": "VOO",  "qty": 2.5,      "avg_cost": 673.08,  "last_close": 681.92,  "unrealized_pnl": 22.10,           "bucket": "etf"},
-        {"symbol": "QQQM", "qty": 1.5,      "avg_cost": 291.61,  "last_close": 297.04,  "unrealized_pnl": 8.15,            "bucket": "etf"},
-        {"symbol": "SPCX", "qty": 5.0,      "avg_cost": null,    "avg_cost_note": "unavailable — reconciling; IPO price $135.00 est", "last_close": 161.29, "last_close_note": "last trade 2026-06-12; official close source=ipo $135 interpolated", "unrealized_pnl": null, "unrealized_pnl_est": 131.45, "unrealized_pnl_est_basis": "IPO price $135.00", "shares_available": 4.0, "shares_held_for_sell": 1.0, "bucket": "defense", "flag": "NO CONTRACT — VIOLATION; IPO 2026-06-12; 60-day flip restriction; 1 share held-for-sell (pending)"},
-        {"symbol": "INTC", "qty": 1.0,      "avg_cost": 119.95,  "last_close": 124.54,  "unrealized_pnl": 4.59,            "bucket": "semis", "flag": "NO CONTRACT — VIOLATION; entered 2026-06-12"},
-        {"symbol": "HOOD", "qty": 1.0,      "avg_cost": 88.24,   "last_close": 93.16,   "unrealized_pnl": 4.92,            "bucket": "satellite", "flag": "no contract in registry — VIOLATION per doctrine"},
-        {"symbol": "KO",   "qty": 0.5,      "avg_cost": 83.22,   "last_close": 82.62,   "unrealized_pnl": -0.30,           "bucket": "defensive", "flag": "no contract in registry — VIOLATION per doctrine"}
+        {"symbol": "VOO",  "qty": 4.0,      "avg_cost": 691.65,  "last_close": 701.78,  "unrealized_pnl": 40.52,  "bucket": "etf"},
+        {"symbol": "QQQM", "qty": 8.0,      "avg_cost": 295.41,  "last_close": 296.91,  "unrealized_pnl": 12.00,  "bucket": "etf"},
+        {"symbol": "VXUS", "qty": 2.0,      "avg_cost": 86.88,   "last_close": 85.88,   "unrealized_pnl": -2.00, "bucket": "etf"},
+        {"symbol": "MU",   "qty": 1.0,      "avg_cost": 994.50,  "last_close": 1015.80, "unrealized_pnl": 21.30, "bucket": "semis", "flag": "NO CONTRACT — VIOLATION; current lot opened 2026-09-11, no entry in contracts.json"},
+        {"symbol": "SNDK", "qty": 1.0,      "avg_cost": 1645.54, "last_close": 1791.82, "unrealized_pnl": 146.28, "bucket": "semis", "flag": "NO CONTRACT — VIOLATION; current lot opened 2026-08-19; registry's SNDK-MAIN-2026-06-11 is a different, already-exited lot and is stale"}
       ],
-      "closed_this_run": [
-        {"symbol": "SNDK", "note": "position no longer in live positions; exited 2026-06-12 (decision b or otherwise); journal entry pending"},
-        {"symbol": "SMCI", "note": "position no longer in live positions; exited 2026-06-12; journal entry pending"}
+      "closed_since_last_snapshot": [
+        {"symbol": "SPCX", "note": "fully exited across several sells, last 2026-07-06"},
+        {"symbol": "INTC", "note": "exited 2026-06-15"},
+        {"symbol": "HOOD", "note": "exited 2026-06-16"},
+        {"symbol": "KO",   "note": "exited 2026-06-15"},
+        {"symbol": "AAPL, WDC, QNT, TQQQ, PG, MUU", "note": "opened and fully closed intraday/multi-day between 2026-06-11 and 2026-09-21, net flat, none logged in journal.csv"}
       ]
     },
     {
@@ -32,14 +35,18 @@
       "account_ref": "4830",
       "type": "cash",
       "mandate": "written-off experimental sandbox; event-driven alpha trades <= $20 each; growth mandate, idle capital is a violation",
-      "total_value_usd": 199.50,
-      "equity_value_usd": 32.91,
-      "cash_usd": 166.59,
+      "total_value_usd": 205.69,
+      "equity_value_usd": 146.82,
+      "cash_usd": 58.87,
       "pending_deposits_usd": 0,
-      "buying_power_usd": 166.59,
+      "buying_power_usd": 58.87,
       "positions": [
-        {"symbol": "SMCI", "qty": 0.5,      "avg_cost": 30.36,   "last_close": 30.45,   "unrealized_pnl": 0.05,            "bucket": "event"},
-        {"symbol": "COO",  "qty": 0.261248, "avg_cost": 68.90,   "last_close": 67.89,   "unrealized_pnl": -0.26,           "bucket": "legacy", "flag": "thesis-watch; FOMC slot review 2026-06-17"}
+        {"symbol": "SMCI", "qty": 0.5,      "avg_cost": 30.36,  "last_close": 39.09,  "unrealized_pnl": 4.37,  "bucket": "event", "flag": "Contract SMCI-AGENTIC-2026-06-11: target 34-36 breached (current $39.09), time_limit expired 2026-06-17 (96 days overdue), pre-written action 'trim half at target, trail remainder' never executed — RED"},
+        {"symbol": "QQQ",  "qty": 0.136411, "avg_cost": 733.08, "last_close": 721.45, "unrealized_pnl": -1.59, "bucket": "etf"},
+        {"symbol": "SMH",  "qty": 0.0468,   "avg_cost": 641.03, "last_close": 573.00, "unrealized_pnl": -3.18, "bucket": "etf"}
+      ],
+      "closed_since_last_snapshot": [
+        {"symbol": "COO", "note": "sold 2026-06-17 at $65.71 (stop was daily close below $65.00) — contract closed correctly, but contracts.json still lists it OPEN, thesis-watch; stale"}
       ]
     }
   ]
